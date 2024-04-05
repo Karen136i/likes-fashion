@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+
+      <p class="text-center mt-5" style="font-size: 45px; font-family: 'Itim', cursive;">About</p>
+
+      <div class="d-flex justify-content-center">
+      <%= image_tag 'about.jpg', style: "width: 900px; height: 550px;" %>
+      </div>
+
+      <div class="text-center mt-5" style="font-size: 20px; font-family: 'M PLUS 1p', sans-serif;">
+        <p>Likes fashionは全国発送可能な洋服屋さんです。<br>
+        <p>ファッションに興味を持つ全ての女性がご利用でき、<br>
+        <p>自分らしさを表現していただくサイトです。<br>
+        <p>ぜひご注文ください。
+          <% if admin_signed_in? %>
+            <%= link_to new_admin_session_path, class: "your-link-class" do %>
+              <i class="fa-solid fa-heart"></i>
+            <% end %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
