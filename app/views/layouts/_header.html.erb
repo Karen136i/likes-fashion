@@ -1,6 +1,6 @@
 <header style="background-color: #FAD4D4">
   <nav class="navbar navbar-expand-lg navbar-light">
-    
+
       <!-- ロゴを左中央に配置するための要素 -->
       <div class="text-center">
         <a class="navbar-brand p-3" href="/"><%= image_tag("Logo.png", size: "100x100") %></a>
@@ -14,115 +14,129 @@
       <!--ナビゲーションメニューの作成-->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-
-        <!-- 顧客も管理者もログインしていない場合 -->
-        <% unless admin_signed_in? || customer_signed_in? %>
-
-       <!--style: 'margin-right: 10px;'は横に10pxの余白を入れている-->
-        <a>
-        <p>
-          <%= link_to new_customer_registration_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-user-plus"></i>新規登録
-          <% end %>
-        </p>
-
-        <p>
-          <%= link_to new_customer_session_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-arrow-right-to-bracket"></i>ログイン
-          <% end %>
-        <p>
           
-        <p>
-          <%= link_to public_items_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-shirt"></i>商品一覧
+          <a>
+  
+          <!-- 顧客も管理者もログインしていない場合 -->
+          <% unless admin_signed_in? || customer_signed_in? %>
+  
+         <!--style: 'margin-right: 10px;'は横に10pxの余白を入れている-->
+          
+          <p>
+            <%= link_to new_customer_registration_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-user-plus"></i>sign up
+            <% end %>
+          </p>
+  
+          <p>
+            <%= link_to new_customer_session_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> log in
+            <% end %>
+          <p>
+  
+          <p>
+            <%= link_to public_items_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-shirt"></i> items
+            <% end %>
+          </p>
+  
+          <p>
+            <%= link_to about_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-house-laptop"></i> about
+            <% end %>
+          <p>
+            
+          <p>
+            <%= link_to new_admin_session_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-key"></i> log in
+            <% end %>
+          </p>
+  
           <% end %>
-        </p>
-
-        <p>
-          <%= link_to about_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-house-laptop"></i>about
+  
+  
+          <!-- 管理者がログインしている場合 -->
+          <% if admin_signed_in? %>
+          
+          
+          <p>
+            <%= link_to admin_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-shirt"></i> items
+            <% end %>
+          </p>
+  
+          <p>
+            <%= link_to admin_categories_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-list"></i> categorys
+            <% end %>
+          </p>
+  
+          <p>
+            <%= link_to admin_customers_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-users"></i> customers
+            <% end %>
+          </p>
+  
+          <p>
+            <%= link_to admin_customers_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-comments"></i> reviews
+            <% end %>
+          </p>
+  
+  
+          <p>
+            <%= link_to admin_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-cart-shopping"></i>orders
+            <% end %>
+          </p>
+  
+          <p>
+            <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-right-from-bracket"></i> log out
+            <% end %>
+          </p>
+  
           <% end %>
-        <p>
-
-        <% end %>
-
-
-        <!-- 管理者がログインしている場合 -->
-        <% if admin_signed_in? %>
-        <p>
-          <%= link_to admin_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-shirt"></i> Items
+  
+  
+          <!-- 顧客がログインしている場合 -->
+          <% if customer_signed_in? %>
+  
+          <p>
+            <%= link_to public_favorites_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-heart"></i> favorite
+            <% end %>
+          </p>
+          
+          <p>
+            <%= link_to root_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-user"></i> my page
+            <% end %>
+          </p>
+  
+          <p>
+            <%= link_to public_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-shirt"></i> items
+            <% end %>
+          </p>
+  
+          <p>
+            <%= link_to public_cart_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-cart-plus"></i> cart
+            <% end %>
+          </p>
+  
+          <p>
+            <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-right-from-bracket"></i> log out
+            <% end %>
+          </p>
+          
           <% end %>
-        </p>
-
-        <p>
-          <%= link_to admin_genres_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-list"></i> Categorys
-          <% end %>
-        </p>
-
-        <p>
-          <%= link_to admin_customers_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-users"></i> Customers
-          <% end %>
-        </p>
-
-        <p>
-          <%= link_to admin_customers_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-comments"></i> Reviews
-          <% end %>
-        </p>
-
-
-        <p>
-          <%= link_to admin_orders_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-cart-shopping"></i>Orders
-          <% end %>
-        </p>
-
-        <p>
-          <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-right-from-bracket"></i> Log out
-          <% end %>
-        </p>
-
-        <% end %>
-
-
-        <!-- 顧客がログインしている場合 -->
-        <% if customer_signed_in? %>
-
-        <p>
-          <%= link_to public_customers_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-heart"></i> favorite
-          <% end %>
-
-        </p>
-        <%= link_to public_customers_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-        <i class="fa-solid fa-user"></i> my page
-        <% end %>
-
-        <p>
-          <%= link_to public_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-light fa-shirt"></i> Items
-          <% end %>
-        </p>
-
-        <p>
-          <%= link_to public_cart_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-cart-plus"></i> Cart
-          <% end %>
-        </p>
-
-        <p>
-          <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-          <i class="fa-solid fa-right-from-bracket"></i> Log out
-          <% end %>
-        </p>
-
-        <% end %>
-
-        </a>
+  
+          </a>
+          
+        
         </ul>
       </div>
     </div>

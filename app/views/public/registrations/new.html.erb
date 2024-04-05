@@ -1,2 +1,102 @@
-<h1>Public::Registrations#new</h1>
-<p>Find me in app/views/public/registrations/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+    
+      <h2 class="mt-5">新規会員登録</h2>
+        
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div>
+        <%= render "public/shared/error_messages", resource: resource %>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+              <tr>
+                <td class="mb-2">名前</td>
+                <td class="field">
+                  <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "mb-2 mx-5", placeholder: ' 姓' %>
+                </td>
+
+                <td class="field">
+                  <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "mb-2 mx-5", placeholder: ' 名' %>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="mb-2">フリガナ</td>
+                <td class="field">
+                  <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class: "mb-2 mx-5", placeholder: ' セイ' %>
+                </td>
+
+                <td class="mb-2"="field">
+                  <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "mb-2 mx-5", placeholder: ' メイ' %>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="mb-2">メールアドレス</td>
+                <td class="field">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mb-2 mx-5" %>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="mb-2">郵便番号(ハイフンなし)</td>
+                <td class="field">
+                  <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "mb-2 mx-5" %>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="mb-2">住所</td>
+                <td class="field">
+                  <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "mb-2 mx-5" %>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="mb-2">電話番号(ハイフンなし)</td>
+                <td class="field">
+                  <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class: "mb-2 mx-5" %>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="mb-2">パスワード(6文字以上)</td>
+                <td class="field">
+                  <%= f.password_field :password, autocomplete: "new-password", class: "mb-2 mx-5" %>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="mb-2">パスワード(確認用)</td>
+                <td class="field">
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mb-2 mx-5" %>
+                </td>
+              </tr>
+
+              <tr>
+              <td>
+              <div class="actions">
+                <%= f.submit "新規登録", class: "btn btn-outline-success mb-2" %>
+              </div>
+              </td>
+              </tr>
+
+        </tbody>
+       </table>
+      <% end %>
+    
+      <h3 class="mt-5 mb-2">既に登録済みの方</h3>
+        <p><%= link_to "こちら", new_customer_session_path %>　からログインしてください。</p>
+
+    </div>
+  </div>
+</div>

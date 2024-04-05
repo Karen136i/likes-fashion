@@ -1,2 +1,38 @@
-<h1>Admin::Categories#index</h1>
-<p>Find me in app/views/admin/categories/index.html.erb</p>
+<div class="col-sm-12 col-md-12 col-lg-12 px-5 px-sm-0 mx-auto align-self-center text-center" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8"> <!-- col-xl-10からcol-xl-8に変更 -->
+        <div class="table-responsive"> <!-- 追加 -->
+          <table class="table table-hover table-inverse">
+            <thead>
+              <tr>
+                <th colspan="2"> <!-- colspanを追加してセルを結合 -->
+                  <h3 class="text-center">カテゴリー 一覧/追加</h3> <!-- md-10を削除 -->
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-center">
+                <td style="margin-righht: 30px;"> <!-- 新しい行を追加 -->
+                  <%= form_with url: admin_categories_path, model: @category do |f| %>
+                    <div class="form-group">
+                      <%= f.text_field :name, class: 'form-control', placeholder: 'カテゴリー名' %>
+                    </div>
+                    <%= f.submit '新規登録', class: "btn btn-success btn-block" %>
+                  <% end %>
+                </td>
+                <td></td>
+              </tr>
+              <% @categories.each do |category| %>
+                <tr>
+                  <td><%= category.name %></td> <!-- category.nemeをcategory.nameに修正 -->
+                  <td><%= link_to '編集する', edit_admin_category_path(category), class: "btn btn-outline-primary btn-sm" %></td> <!-- dit_admin_category_pathをedit_admin_category_pathに修正 -->
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
