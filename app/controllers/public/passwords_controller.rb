@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Admins::PasswordsController < Devise::PasswordsController
-  before_action :authenticate_admin!
+class Public::PasswordsController < Devise::PasswordsController
+  before_action :authenticate_customer! #アクセス制限
   # GET /resource/password/new
   # def new
   #   super
