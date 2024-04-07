@@ -13,11 +13,11 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @categories = Category.all
     if @item.save
-      flash[:natice] = "Itemを追加しました。"
+      flash[:notice] = "Itemを追加しました。"
       redirect_to admin_item_path(@item.id)
     else
       flash.now[:alert] = "Itemの追加に失敗しました。"
-      render new_admin_item_path
+      render :new  # エラーがある場合はnewアクションを再度表示
     end
   end
 

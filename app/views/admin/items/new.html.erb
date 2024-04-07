@@ -1,2 +1,86 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="col-sm-12 col-md-12 col-lg-12 px-5 px-sm-0 mx-auto align-self-center text-center" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8"> <!-- col-xl-10からcol-xl-8に変更 -->
+        <div class="table-responsive"> <!-- 追加 -->
+          <table class="table table-hover table-inverse">
+
+            <thead>
+              <tr>
+                <th colspan="2" class="no-border">
+                  <h3 class="text-center">商品の新規登録</h3>
+                </th>
+              </tr>
+            </thead>
+
+            <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
+
+              <tr class="no-border">
+                <th class="no-border">商品画像</th>
+                <td class="no-border">
+                  <%= f.file_field :image, accept: "image/*", class: "btn btn-outline-secondary" %>
+                </td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border">商品名</th>
+                <td class="no-border"><%= f.text_field :name, class: 'custom-name-field' %></td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border">商品説明</th>
+                <td class="no-border"><%= f.text_area :introduction, class: 'custom-textarea-field' %></td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border">カテゴリー</th>
+                <td class="no-border">
+                  <%= f.collection_select :category_id, @categories, :id, :name, prompt: "カテゴリーを選択してください", class: 'md-2 mr-3 ' %>
+                </td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border">税抜価格</th>
+                <td class="no-border"><%= f.text_field :price, class: 'custom-price-field' %> 円</td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border">販売ステータス</th>
+                <td class="no-border">
+                  <div style="display: inline-block; margin-right: 10px;">
+                    <label>
+                      <%= f.radio_button :sales_status, "販売中" %>
+                      販売中　
+                    </label>
+                  </div>
+                  <div style="display: inline-block; margin-right: 10px;">
+                    <label>
+                      <%= f.radio_button :sales_status, "販売停止中" %>
+                      販売停止中　
+                    </label>
+                  </div>
+                  <div style="display: inline-block;">
+                    <label>
+                      <%= f.radio_button :sales_status, "入荷待ち" %>
+                      入荷待ち　
+                    </label>
+                  </div>
+                </td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border"></th>
+                <td class="text-center no-border">
+                <%= f.submit '新規登録', class: "btn btn-pink custom-btn" %>
+                </td>
+              </tr>
+
+
+           <% end %>
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
