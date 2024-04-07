@@ -23,7 +23,7 @@ end
     resources :order_details, only: [:update]
     resources :orders, only: [:show, :update]
     resources :customers, only: [:index, :show, :edit, :update] # ここでcustomersリソースを定義
-    resources :categories, only: [:index, :create, :edit, :update]
+    resources :categories, only: [:index, :create, :edit, :update, :destroy]
     resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :sessions, only: [:new, :create, :destroy]
     resources :homes, only: [:top]

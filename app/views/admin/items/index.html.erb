@@ -1,0 +1,50 @@
+<div class="col-sm-13 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="d-flex justify-content-around">
+    <h3 style="text-center mt-5">items</h3>
+    <%= link_to '+', new_admin_item_path, class: "btn btn-pink" %>
+    </div>
+    <div style="margin-top: 5px; margin-bottom: 5px;"></div>
+    <div>
+    <table class='table table-hover table-inverse'>
+      <thead>
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>カテゴリー</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do|item| %>
+          <tr>
+            <td>
+            <%= item.id %>
+            </td>
+            <td>
+              <%= link_to admin_item_path(item) do %>
+              <%= item.name %>
+              <% end %>
+            </td>
+            <td>
+            <%= number_with_delimiter(item.price) %>
+            </td>
+            <td>
+            <%= item.category.name %>
+            </td>
+            <td>
+            <% if item.is_active %>
+            <span class='text-success'>販売中</span>
+            <% else %>
+            <span class='text-secondary'>販売停止</span>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-center" style="margin-top: 50px;">
+      <%= paginate @items %>
+    </div>
+  </div>
+</div>

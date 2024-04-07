@@ -4,16 +4,20 @@
       <div class="col-xl-8"> <!-- col-xl-10からcol-xl-8に変更 -->
         <div class="table-responsive"> <!-- 追加 -->
           <table class="table table-hover table-inverse">
+
             <thead>
-              <tr>
-                <th colspan="2"> <!-- colspanを追加してセルを結合 -->
-                  <h3 class="text-center">カテゴリー 一覧/追加</h3> <!-- md-10を削除 -->
+              <tr class="no-border">
+                <th colspan="2" class="no-border">
+                  <h3 class="text-center">カテゴリー 一覧/追加</h3>
                 </th>
               </tr>
             </thead>
+
+
             <tbody>
-              <tr class="text-center">
-                <td style="margin-righht: 30px;"> <!-- 新しい行を追加 -->
+              <tr class="justify-content-center">
+                 <th colspan="1">
+                <td> <!-- 新しい行を追加 -->
                   <%= form_with url: admin_categories_path, model: @category do |f| %>
                     <div class="form-group">
                       <%= f.text_field :name, class: 'form-control', placeholder: 'カテゴリー名' %>
@@ -23,10 +27,13 @@
                 </td>
                 <td></td>
               </tr>
+
+
               <% @categories.each do |category| %>
-                <tr>
-                  <td><%= category.name %></td> <!-- category.nemeをcategory.nameに修正 -->
-                  <td><%= link_to '編集する', edit_admin_category_path(category), class: "btn btn-outline-primary btn-sm" %></td> <!-- dit_admin_category_pathをedit_admin_category_pathに修正 -->
+                <tr class="justify-content-center">
+                  <td class="text-center"><%= category.name %></td>
+                  <td><%= link_to '編集する', edit_admin_category_path(category), class: "btn btn-success btn-sm", style: "margin-left: 350px;" %></td>
+                  <td><%= link_to '削除する', admin_category_path(category), method: :delete, class: "btn btn-danger btn-sm", style: "margin-left: 50px;" %></td>
                 </tr>
               <% end %>
             </tbody>

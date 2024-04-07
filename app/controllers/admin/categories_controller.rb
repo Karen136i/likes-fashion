@@ -31,6 +31,12 @@ class Admin::CategoriesController < ApplicationController
       flash.now[:alert] = "カテゴリーの変更に失敗しました。"
       render :edit
     end
+  end
+  
+  def destroy
+    category = Category.find(params[:id])
+    category.destroy
+    redirect_to admin_categories_path
   end 
   
   private
@@ -38,5 +44,5 @@ class Admin::CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end
-    
+  
 end
