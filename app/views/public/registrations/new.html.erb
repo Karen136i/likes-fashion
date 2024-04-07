@@ -1,6 +1,6 @@
-<div class="col-sm-15 col-md-13 col-lg-10 px-8 px-sm-0 mx-auto align-self-center text-start justify-content-center" style="margin-top: 50px; margin-bottom: 50px;">
+<div class="col-sm-15 col-md-13 col-lg-11 px-9 px-sm-5 mx-auto align-self-center text-start justify-content-center" style="margin-top: 50px; margin-bottom: 50px;">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-5">
       <h2 class="text-center mt-4 ">sign up</h2>
       <p class="mt-4"></p>
       
@@ -93,12 +93,12 @@
                  </td>
                </tr>
 
-        </tbody>
-       </table>
+          </tbody>
+        </table>
       <% end %>
-    
-      <h3 class="mt-5 mb-2">既に登録済みの方</h3>
-        <p><%= link_to "こちら", new_customer_session_path %>　からログインしてください。</p>
+      
+      <h5 class="mt-5 mb-2">既に登録済みの方</h5>
+      <p><%= link_to "こちら", new_customer_session_path, style: "color: red;" %> からログインしてください。</p>
 
     </div>
   </div>

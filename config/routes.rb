@@ -11,6 +11,10 @@ devise_for :customers, controllers: {
 devise_for :admin, controllers: {
   sessions: "admin/sessions"
 }
+#ゲストログイン
+devise_scope :customer do
+  post "/public/guest_sign_in", to: "public/sessions#guest_sign_in"
+end
 
   root to: 'public/homes#top'
   get '/about', to: 'public/homes#about', as: 'about'

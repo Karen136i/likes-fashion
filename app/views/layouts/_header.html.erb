@@ -14,129 +14,135 @@
       <!--ナビゲーションメニューの作成-->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          
+
           <a>
-  
+
           <!-- 顧客も管理者もログインしていない場合 -->
           <% unless admin_signed_in? || customer_signed_in? %>
-  
+
          <!--style: 'margin-right: 10px;'は横に10pxの余白を入れている-->
-          
+
           <p>
             <%= link_to new_customer_registration_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-user-plus"></i>sign up
             <% end %>
           </p>
-  
+
           <p>
             <%= link_to new_customer_session_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-arrow-right-to-bracket"></i> log in
             <% end %>
           <p>
-  
+
+          <p>
+            <%= link_to public_guest_sign_in_path, class: 'navlink text-black', style: 'margin-right: 10px;', method: :post do %>
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> guest login
+            <% end %>
+          <p>
+
           <p>
             <%= link_to public_items_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-shirt"></i> items
             <% end %>
           </p>
-  
+
           <p>
             <%= link_to about_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-house-laptop"></i> about
             <% end %>
           <p>
-            
+
           <p>
             <%= link_to new_admin_session_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-key"></i> log in
             <% end %>
           </p>
-  
+
           <% end %>
-  
-  
+
+
           <!-- 管理者がログインしている場合 -->
           <% if admin_signed_in? %>
-          
-          
+
+
           <p>
             <%= link_to admin_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-shirt"></i> items
             <% end %>
           </p>
-  
+
           <p>
             <%= link_to admin_categories_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-list"></i> categorys
             <% end %>
           </p>
-  
+
           <p>
             <%= link_to admin_customers_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-users"></i> customers
             <% end %>
           </p>
-  
+
           <p>
             <%= link_to admin_customers_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-comments"></i> reviews
             <% end %>
           </p>
-  
-  
+
+
           <p>
             <%= link_to admin_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-cart-shopping"></i>orders
             <% end %>
           </p>
-  
+
           <p>
             <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-right-from-bracket"></i> log out
             <% end %>
           </p>
-  
+
           <% end %>
-  
-  
+
+
           <!-- 顧客がログインしている場合 -->
           <% if customer_signed_in? %>
-  
+
           <p>
             <%= link_to public_favorites_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-heart"></i> favorite
             <% end %>
           </p>
-          
+
           <p>
             <%= link_to root_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-user"></i> my page
             <% end %>
           </p>
-  
+
           <p>
             <%= link_to public_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-shirt"></i> items
             <% end %>
           </p>
-  
+
           <p>
             <%= link_to public_cart_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-cart-plus"></i> cart
             <% end %>
           </p>
-  
+
           <p>
             <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-right-from-bracket"></i> log out
             <% end %>
           </p>
-          
+
           <% end %>
-  
+
           </a>
-          
-        
+
+
         </ul>
       </div>
     </div>
