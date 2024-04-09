@@ -19,22 +19,27 @@
         <!-- 商品詳細 -->
         <div class="col-md-6">
           <table class="table" style="border: none;">
+            
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">商品名</th>
               <td style="border: none;"><%= @item.name %></td>
             </tr>
+            
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">商品説明</th>
               <td style="border: none; white-space: normal;"><%= @item.introduction %></td>
             </tr>
+            
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">税込価格:</th>
               <td style="border: none; white-space: normal;">￥<%= number_with_delimiter((@item.price * 1.1).round, delimiter: ',') %> (税込)</td>
             </tr>
+            
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">税抜価格:</th>
               <td style="border: none; white-space: normal;">￥<%= number_with_delimiter((@item.price).ceil.to_i, delimiter: ',') %> (税抜)</td>
             </tr>
+            
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">カテゴリー</th>
               <td style="border: none; white-space: normal;">
@@ -45,18 +50,16 @@
                 <% end %>
               </td>
             </tr>
+            
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">販売ステータス</th>
               <td style="border: none; white-space: normal;">
-                <% if @item.is_active? %>
-                  <span class='text-success'>販売中</span>
-                <% elsif @item.status == '販売停止中' %>
-                  <span class='text-secondary'>販売停止中</span>
-                <% elsif @item.status == '入荷待ち' %>
-                  <span class='text-warning'>入荷待ち</span>
-                <% end %>
+                <p style="<%= 'color:green;' if @item.status == 'on_sale' %> <%= 'color:gray;' if @item.status == 'not_on_sale' %> <%= 'color:blue;' if @item.status == 'back_orderd' %>">
+                <%= @item.status_i18n %>
+                </p>
               </td>
             </tr>
+            
           </table>
 
           <div class="text-center">

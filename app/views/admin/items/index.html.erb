@@ -1,6 +1,6 @@
-<div class="col-sm-13 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
+<div class="col-sm-12 col-md-9 col-lg-7 px-5 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
   <div class="d-flex justify-content-around">
-    <h2 style="text-center">items</h2>
+    <h2 style="margin-left: 230px;">items</h2>
     <%= link_to '+', new_admin_item_path, class: "btn btn-pink" %>
     </div>
     <div style="margin-top: 5px; margin-bottom: 5px;"></div>
@@ -43,14 +43,8 @@
               <% end %>
             </td>
 
-            <td>
-              <% if item.is_active? %>
-                <span class='text-success'>販売中</span>
-              <% elsif item.status == '販売停止中' %>
-                <span class='text-secondary'>販売停止中</span>
-              <% elsif item.status == '入荷待ち' %>
-                <span class='text-warning'>入荷待ち</span>
-              <% end %>
+            <td style="<%= 'color:green;' if item.status == 'on_sale' %> <%= 'color:gray;' if item.status == 'not_on_sale' %> <%= 'color:blue;' if item.status == 'back_orderd' %> ">
+             <%= item.status_i18n %>
             </td>
             
           </tr>

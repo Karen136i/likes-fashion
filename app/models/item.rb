@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  enum status: { on_sale: 0, not_on_sale: 1, back_orderd: 2 }
   has_one_attached :image
   belongs_to :category, optional: true
   has_many :cart_items

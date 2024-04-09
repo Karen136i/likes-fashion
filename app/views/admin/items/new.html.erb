@@ -1,8 +1,9 @@
 <div class="col-sm-12 col-md-12 col-lg-12 px-5 px-sm-0 mx-auto align-self-center text-center" style="margin-top: 50px; margin-bottom: 50px;">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-xl-8"> <!-- col-xl-10からcol-xl-8に変更 -->
-        <div class="table-responsive"> <!-- 追加 -->
+      <div class="col-xl-8">
+        <div class="table-responsive">
+         <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
           <table class="table table-hover table-inverse">
 
             <thead>
@@ -12,8 +13,6 @@
                 </th>
               </tr>
             </thead>
-
-            <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
 
               <tr class="no-border">
                 <th class="no-border">商品画像</th>
@@ -47,24 +46,7 @@
               <tr class="no-border">
                 <th class="no-border">販売ステータス</th>
                 <td class="no-border">
-                  <div style="display: inline-block; margin-right: 10px;">
-                    <label>
-                      <%= f.radio_button :sales_status, "販売中" %>
-                      販売中　
-                    </label>
-                  </div>
-                  <div style="display: inline-block; margin-right: 10px;">
-                    <label>
-                      <%= f.radio_button :sales_status, "販売停止中" %>
-                      販売停止中　
-                    </label>
-                  </div>
-                  <div style="display: inline-block;">
-                    <label>
-                      <%= f.radio_button :sales_status, "入荷待ち" %>
-                      入荷待ち　
-                    </label>
-                  </div>
+                  <%= f.collection_radio_buttons :status, Item.statuses_i18n, :first, :last %>
                 </td>
               </tr>
 

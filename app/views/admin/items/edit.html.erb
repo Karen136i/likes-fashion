@@ -3,8 +3,8 @@
     <div class="row justify-content-center">
       <div class="col-xl-8"> <!-- col-xl-10からcol-xl-8に変更 -->
         <div class="table-responsive"> <!-- 追加 -->
+          <%= form_with model: @item, url: admin_item_path(@item), method: :patch do |f| %>
           <table class="table table-hover table-inverse">
-
             <thead>
               <tr>
                 <th colspan="2" class="no-border">
@@ -12,9 +12,8 @@
                 </th>
               </tr>
             </thead>
-
-            <%= form_with model: @item, url: admin_item_path(@item), method: :patch do |f| %>
-
+            
+            <tbody>
               <tr class="no-border">
                 <th class="no-border">商品画像</th>
                 <td class="no-border">
@@ -47,41 +46,20 @@
               <tr class="no-border">
                 <th class="no-border">販売ステータス</th>
                 <td class="no-border">
-                  <div style="display: inline-block; margin-right: 10px;">
-                    <label>
-                      <%= f.radio_button :is_active?, true, checked: @item.is_active? == true %>
-                      販売中
-                    </label>
-                  </div>
-                  <div style="display: inline-block; margin-right: 10px;">
-                    <label>
-                      <%= f.radio_button :is_active?, false, checked: @item.is_active? == false %>
-                      販売停止中
-                    </label>
-                  </div>
-                  <div style="display: inline-block;">
-                    <label>
-                      <%= f.radio_button :is_active?, nil, checked: @item.is_active?.nil? %>
-                      入荷待ち
-                    </label>
-                  </div>
+                  <%= f.collection_radio_buttons :status, Item.statuses_i18n, :first, :last %>
                 </td>
               </tr>
-
 
               <tr class="no-border">
                 <th class="no-border"></th>
                 <td class="text-center no-border">
-                <%= f.submit '変更を保存', class: "btn btn-pink custom-btn" %>
+                  <%= f.submit '変更を保存', class: "btn btn-pink custom-btn" %>
                 </td>
               </tr>
-
-
-           <% end %>
-           </div>
-
+            </tbody>
           </table>
-        
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
