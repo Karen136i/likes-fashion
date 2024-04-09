@@ -6,22 +6,19 @@
       </div>
     </div>
     
-    <div class="row justify-content-center"> <!-- テーブルを真ん中に揃える -->
+    <div class="text-center"> <!-- テーブルを真ん中に揃える -->
       <table class="table table-hover table-inverse">
         
         <tbody>
-          <tr class="justify-content-center">
-            <!--<th class="no-border">-->
-              <!--<td class="no-border">-->
+          <tr class="col text-center">
                 <%= form_with url: admin_categories_path, model: @category do |f| %>
                 <div class="form-group">
                   <%= f.text_field :name, class: 'form-control-1', placeholder: 'カテゴリー名' %>
                 </div>
-                <%= f.submit '新規登録', class: "btn btn-pink btn-block", style: "width: 400px;" %>
+                <div class="text-center">
+                <%= f.submit '新規登録', class: "btn btn-pink", style: "width: 400px;" %>
                 <% end %>
-              <!--</td>-->
-              <!--<td class="no-border"></td>-->
-            <!--</th>-->
+                </div>
           </tr>
           
           <tr class="no-border"><!-- 間隔 -->
@@ -43,6 +40,11 @@
           </div>
         </tbody>
       </table>
+      
+      <div class="d-flex justify-content-center" style="margin-top: 50px;">
+      <%= paginate @category %>
+      </div>
+      
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="col-sm-12 col-md-9 col-lg-7 px-5 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
   <div class="d-flex justify-content-around">
     <h2 style="margin-left: 230px;">items</h2>
-    <%= link_to '+', new_admin_item_path, class: "btn btn-pink" %>
+    <%= link_to '+', new_admin_item_path, class: "btn btn-pink-1" %>
     </div>
     <div style="margin-top: 5px; margin-bottom: 5px;"></div>
 
@@ -54,8 +54,9 @@
      </div>
 
     </table>
+    
     <div class="d-flex justify-content-center" style="margin-top: 50px;">
       <%= paginate @items %>
-  </div>
+    </div>
   
 </div>

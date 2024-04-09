@@ -1,8 +1,8 @@
 <div class="col-sm-12 col-md-12 col-lg-12 px-5 px-sm-0 mx-auto align-self-center text-center" style="margin-top: 50px; margin-bottom: 50px;">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-xl-8"> <!-- col-xl-10からcol-xl-8に変更 -->
-        <div class="table-responsive"> <!-- 追加 -->
+      <div class="col-xl-8">
+        <div class="table-responsive">
           <%= form_with model: @item, url: admin_item_path(@item), method: :patch do |f| %>
           <table class="table table-hover table-inverse">
             <thead>
@@ -12,7 +12,7 @@
                 </th>
               </tr>
             </thead>
-            
+
             <tbody>
               <tr class="no-border">
                 <th class="no-border">商品画像</th>
@@ -23,18 +23,18 @@
 
               <tr class="no-border">
                 <th class="no-border">商品名</th>
-                <td class="no-border"><%= f.text_field :name, class: 'custom-name-field' %></td>
+                <td class="no-border"><%= f.text_field :name, class: 'custom-name-field border-radius: 5px;' %></td>
               </tr>
 
               <tr class="no-border">
                 <th class="no-border">商品説明</th>
-                <td class="no-border"><%= f.text_area :introduction, class: 'custom-textarea-field' %></td>
+                <td class="no-border"><%= f.text_area :introduction, class: 'custom-textarea-field border-radius: 5px;' %></td>
               </tr>
 
               <tr class="no-border">
                 <th class="no-border">カテゴリー</th>
                 <td class="no-border">
-                  <%= f.collection_select :category_id, @categories, :id, :name, prompt: "カテゴリーを選択してください", class: 'md-2 mr-3 ' %>
+                  <%= f.collection_select :category_id, @categories, :id, :name, prompt: "カテゴリーを選択してください", class: 'md-2 mr-3 border-radius: 5px; ' %>
                 </td>
               </tr>
 
@@ -53,7 +53,7 @@
               <tr class="no-border">
                 <th class="no-border"></th>
                 <td class="text-center no-border">
-                  <%= f.submit '変更を保存', class: "btn btn-pink custom-btn" %>
+                  <%= f.submit '変更を保存', class: "btn btn-pink" %>
                 </td>
               </tr>
             </tbody>
