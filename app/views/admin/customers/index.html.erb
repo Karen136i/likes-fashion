@@ -1,2 +1,50 @@
-<h1>Admin::Customers#index</h1>
-<p>Find me in app/views/admin/customers/index.html.erb</p>
+<div class="col-sm-13 col-md-9 col-lg-8 px-5 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center"> <!-- タイトルを真ん中に揃える -->
+        <h3>会員一覧</h3>
+      </div>
+    </div>
+    
+    <div class="row justify-content-center"> <!-- テーブルを真ん中に揃える -->
+      <table class="table table-hover table-inverse">
+        
+        <thead>
+          <tr>
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.id %></td>
+            
+            <td><%= link_to "#{customer.last_name} #{customer.first_name}",admin_customer_path(customer.id) %></td>
+            
+            <td><%= customer.email %></td>
+            
+            <td>
+            <% if customer.is_active %>
+            <span class='text-success'>有効</span>
+            <% else %>
+            <span class='text-secondary'>退会</span>
+        　   <% end %>
+            </td>
+            
+          </tr>
+          <% end %>
+        </tbody>
+        
+        </table>
+        
+        <div class="d-flex justify-content-center" style="margin-top: 50px;">
+        <%= paginate @customers %>
+        </div>
+      
+    </div>
+  </div>
+</div>

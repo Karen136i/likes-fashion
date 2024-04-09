@@ -22,33 +22,46 @@
         <% @items.each do|item| %>
           <tr>
             <td>
-            <%= item.id %>
+              <%= item.id %>
             </td>
+            
             <td>
               <%= link_to admin_item_path(item) do %>
               <%= item.name %>
               <% end %>
             </td>
+            
             <td>
-            <%= number_with_delimiter(item.price) %>
+              <%= number_with_delimiter(item.price) %>
             </td>
+            
             <td>
-            <%= item.category.name %>
+              <% if item.category.present? %>
+                <%= item.category.name %>
+              <% else %>
+                カテゴリー未設定
+              <% end %>
             </td>
+
             <td>
-            <% if item.is_active? %>
-            <span class='text-success'>販売中</span>
-            <% else %>
-            <span class='text-secondary'>販売停止</span>
-            <% end %>
+              <% if item.is_active? %>
+                <span class='text-success'>販売中</span>
+              <% elsif item.status == '販売停止中' %>
+                <span class='text-secondary'>販売停止中</span>
+              <% elsif item.status == '入荷待ち' %>
+                <span class='text-warning'>入荷待ち</span>
+              <% end %>
             </td>
+            
           </tr>
+          
         <% end %>
       </tbody>
+     </div>
 
     </table>
     <div class="d-flex justify-content-center" style="margin-top: 50px;">
       <%= paginate @items %>
-    </div>
   </div>
+  
 </div>

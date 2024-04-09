@@ -1,2 +1,152 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<!--管理者側の会員情報編集ページ-->
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+
+      <h2 class="mt-5">会員情報編集</h2>
+      
+      <%= form_with(model: @customer, url: admin_customer_path(@customer), local: true) do |form| %>
+        <%= render "public/shared/error_messages", resource: @customer %>
+        
+        <table class="form-group d-flex align-items-center mt-4">
+          <thead>
+            <tr>
+              <th></th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr>
+              <th class="nowrap col-md-4">会員ID</th>
+              <td><%= @customer.id %></td>
+            </tr>
+            
+            <tr>
+              <td colspan="2"></td> <!-- colspan="2" は、2列に合わせるために追加 -->
+            </tr>
+            
+             <tr>
+               <th class="nowrap col-md-4">氏名</th>
+               <td>
+                 <div class="row g-3">
+                   <div class="col-md-6"> 
+                     <%= form.text_field :last_name, class: 'form-control' %>
+                   </div>
+                   <div class="col-md-6"> 
+                     <%= form.text_field :first_name, class: 'form-control'%>
+                   </div>
+                </div>
+               </td>
+             </tr>
+             
+             <tr>
+              <td colspan="2"></td> <!-- colspan="2" は、2列に合わせるために追加 -->
+            </tr>
+             
+             <tr>
+               <th class="nowrap col-md-4">フリガナ</th>
+               <td>
+                 <div class="row g-3">
+                   <div class="col">
+                     <%= form.text_field :last_name_kana, class: 'form-control' %>
+                     </div>
+                     <div class="col">
+                       <%= form.text_field :first_name_kana, class: 'form-control' %>
+                     </div>
+                 </div>
+               </td>
+             </tr>
+             
+             <tr>
+              <td colspan="2"></td> <!-- colspan="2" は、2列に合わせるために追加 -->
+            </tr>
+             
+             <tr>
+               <th class="nowrap col-md-4">郵便番号</th>
+               <td>
+                 <div class="row g-3">
+                   <div class="col">
+                     <%= form.text_field :postal_code, class: 'form-control' %>
+                   </div>
+                 </div>
+               </td>
+             </tr>
+             
+             <tr>
+              <td colspan="2"></td> <!-- colspan="2" は、2列に合わせるために追加 -->
+            </tr>
+             
+             <tr>
+               <th class="nowrap col-md-4">住所</th>
+               <td>
+                 <div class="row g-3">
+                   <div class="col">
+                     <%= form.text_field :address, class: 'form-control' %>
+                   </div>
+                 </div>
+               </td>
+             </tr>
+             
+             <tr>
+              <td colspan="2"></td> <!-- colspan="2" は、2列に合わせるために追加 -->
+            </tr>
+             
+             <tr>
+               <th class="nowrap col-md-4">電話番号</th>
+               <td>
+                 <div class="row g-3">
+                   <div class="col">
+                     <%= form.text_field :telephone_number, class: 'form-control' %>
+                   </div>
+                 </div>
+               </td>
+             </tr>
+             
+             <tr>
+              <td colspan="2"></td> <!-- colspan="2" は、2列に合わせるために追加 -->
+            </tr>
+             
+             <tr>
+               <th class="nowrap col-md-4">メールアドレス</th>
+               <td>
+                 <div class="row g-3">
+                   <div class="col">
+                     <%= form.text_field :email, class: 'form-control' %>
+                   </div>
+                 </div>
+               </td>
+             </tr>
+             
+             <tr>
+              <td colspan="2"></td> <!-- colspan="2" は、2列に合わせるために追加 -->
+             </tr>
+
+             <tr>
+               <th class="nowrap col-md-4">会員ステータス</td>
+                <td>
+                  <div class="row g-3">
+                   <div class="col">
+                     <%= form.radio_button :is_active, true, id: "customer_is_active_true" %>
+                     <%= form.label :is_active, "有効", value: true, for: "customer_is_active_true" %>
+        
+                     <%= form.radio_button :is_active, false, id: "customer_is_active_false" %>
+                     <%= form.label :is_active, "退会", value: false, for: "customer_is_active_false" %>
+                </td>
+             </tr>
+
+             <tr>
+               <td></td>
+                <td>
+                 <input type="submit" name="commit" value="変更を保存" class="btn btn-success" data-disable-with="Update Book">
+                </td>
+             </tr>
+
+
+      
+      
+          </tbody>
+      </table>
+     <% end %>
+    </div>
+  </div>
+</div>

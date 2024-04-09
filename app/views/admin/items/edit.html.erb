@@ -1,2 +1,88 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<div class="col-sm-12 col-md-12 col-lg-12 px-5 px-sm-0 mx-auto align-self-center text-center" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8"> <!-- col-xl-10からcol-xl-8に変更 -->
+        <div class="table-responsive"> <!-- 追加 -->
+          <table class="table table-hover table-inverse">
+
+            <thead>
+              <tr>
+                <th colspan="2" class="no-border">
+                  <h3 class="text-center">商品編集</h3>
+                </th>
+              </tr>
+            </thead>
+
+            <%= form_with model: @item, url: admin_item_path(@item), method: :patch do |f| %>
+
+              <tr class="no-border">
+                <th class="no-border">商品画像</th>
+                <td class="no-border">
+                  <%= f.file_field :image, accept: "image/*", class: "btn btn-outline-secondary" %>
+                </td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border">商品名</th>
+                <td class="no-border"><%= f.text_field :name, class: 'custom-name-field' %></td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border">商品説明</th>
+                <td class="no-border"><%= f.text_area :introduction, class: 'custom-textarea-field' %></td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border">カテゴリー</th>
+                <td class="no-border">
+                  <%= f.collection_select :category_id, @categories, :id, :name, prompt: "カテゴリーを選択してください", class: 'md-2 mr-3 ' %>
+                </td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border">税抜価格</th>
+                <td class="no-border"><%= f.text_field :price, class: 'custom-price-field' %> 円</td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border">販売ステータス</th>
+                <td class="no-border">
+                  <div style="display: inline-block; margin-right: 10px;">
+                    <label>
+                      <%= f.radio_button :is_active?, true, checked: @item.is_active? == true %>
+                      販売中
+                    </label>
+                  </div>
+                  <div style="display: inline-block; margin-right: 10px;">
+                    <label>
+                      <%= f.radio_button :is_active?, false, checked: @item.is_active? == false %>
+                      販売停止中
+                    </label>
+                  </div>
+                  <div style="display: inline-block;">
+                    <label>
+                      <%= f.radio_button :is_active?, nil, checked: @item.is_active?.nil? %>
+                      入荷待ち
+                    </label>
+                  </div>
+                </td>
+              </tr>
+
+
+              <tr class="no-border">
+                <th class="no-border"></th>
+                <td class="text-center no-border">
+                <%= f.submit '変更を保存', class: "btn btn-pink custom-btn" %>
+                </td>
+              </tr>
+
+
+           <% end %>
+           </div>
+
+          </table>
+        
+      </div>
+    </div>
+  </div>
+</div>

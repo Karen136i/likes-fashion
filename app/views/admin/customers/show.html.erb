@@ -1,2 +1,68 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="col-sm-9 col-md-7 col-lg-5 px-5 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+          <h3 class="text-left md-4"><strong><%= @customer.last_name %> <%= @customer.first_name %></strong> さんの会員詳細</h3>
+          
+          <table class="table table-borderless">
+            
+            
+            <tr>
+              <th class="nowrap" style="font-size: 18px;">会員ID</th>
+              <td style="font-size: 18px;"><%= @customer.id %></td>
+            </tr>
+
+            <tr>
+              <th class="nowrap" style="font-size: 18px;">氏名</th>
+              <td style="font-size: 18px;"><%= "#{@customer.last_name} #{@customer.first_name}" %></td>
+            </tr>
+
+            <tr>
+              <th class="nowrap" style="font-size: 18px;">フリガナ</th>
+              <td style="font-size: 18px;"><%= "#{@customer.last_name_kana} #{@customer.first_name_kana}" %></td>
+            </tr>
+
+            <tr>
+              <th class="nowrap" style="font-size: 18px;">郵便番号</th>
+              <td style="font-size: 18px;"><%= @customer.postal_code %></td>
+            </tr>
+
+            <tr>
+              <th class="nowrap" style="font-size: 18px;">住所</th>
+              <td style="font-size: 18px;"><%= @customer.address %></td>
+            </tr>
+
+            <tr>
+              <th class="nowrap" style="font-size: 18px;">電話番号</th>
+              <td style="font-size: 18px;"><%= @customer.telephone_number %></td>
+            </tr>
+
+            <tr>
+              <th class="nowrap" style="font-size: 18px;">メールアドレス</th>
+              <td style="font-size: 18px;"><%= @customer.email %></td>
+            </tr>
+
+            <tr>
+              <th class="nowrap" style="font-size: 18px;">会員ステータス</th>
+              <td style="font-size: 18px;">
+                <% if @customer.is_active %>
+                <span class='text-success'>有効</span>
+                <% else %>
+                <span class='text-secondary'>退会</span>
+                <% end %>
+              </td>
+            </tr>
+
+            <tr>
+              <th></th>
+              <td><%= link_to '編集する', edit_admin_customer_path(@customer.id), class: "btn btn-success" %></td>
+              <td><%= link_to '注文履歴一覧を見る', admin_orders_path(@customer.id), class: "btn btn-primary" %></td>
+            </tr>
+            
+          </table>
+          
+      </div>
+    </div>
+  </div>
+</div>
