@@ -27,10 +27,10 @@
           
           <% @categories.each do |category| %>
           <div class="no-border">
-            <tr class="justify-content-center no-border">
-              <td class="text-center no-border" style="width: 400px;"><%= category.name %></td>
+            <tr class="text-center no-border">
+              <td class="text-center no-border" style="width: 250px;"><%= category.name %></td>
               
-              <td class="text-right no-border">
+              <td class="text-left no-border">
                 <%= link_to '編集する', edit_admin_category_path(category), class: "btn btn-success btn-sm", style: "margin-right: 40px;" %>
                 <%= link_to '削除する', admin_category_path(category), method: :delete, class: "btn btn-danger btn-sm", style: "margin-right: 30px;" %>
               </td>
@@ -42,7 +42,7 @@
       </table>
       
       <div class="d-flex justify-content-center" style="margin-top: 50px;">
-      <%= paginate @category %>
+      <%= paginate @categories %>
       </div>
       
     </div>

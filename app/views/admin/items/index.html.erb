@@ -24,17 +24,17 @@
             <td>
               <%= item.id %>
             </td>
-            
+
             <td>
               <%= link_to admin_item_path(item) do %>
               <%= item.name %>
               <% end %>
             </td>
-            
+
             <td>
               <%= number_with_delimiter(item.price) %>
             </td>
-            
+
             <td>
               <% if item.category.present? %>
                 <%= item.category.name %>
@@ -46,17 +46,17 @@
             <td style="<%= 'color:green;' if item.status == 'on_sale' %> <%= 'color:gray;' if item.status == 'not_on_sale' %> <%= 'color:blue;' if item.status == 'back_orderd' %> ">
              <%= item.status_i18n %>
             </td>
-            
+
           </tr>
-          
+
         <% end %>
       </tbody>
      </div>
 
     </table>
-    
+
     <div class="d-flex justify-content-center" style="margin-top: 50px;">
       <%= paginate @items %>
     </div>
-  
+
 </div>

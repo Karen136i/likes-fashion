@@ -1,2 +1,65 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class='container' style="margin-top: 100px; margin-bottom: 100px;">
+  <div class='row justify-content-center'>
+    <div class="col-sm-14 col-md-12 col-lg-10 px-5 px-sm-0 mx-auto align-self-center text-start">
+      <h3 class="text-center" style="margin-bottom: 20px;">商品詳細</h3>
+      
+
+      <div class="row">
+        <!-- 商品の画像 -->
+        <div class="col-md-6">
+          <%= image_tag @item.image, class: 'img-top' %>
+        </div>
+        <!-- 商品詳細 -->
+        <div class="col-md-6">
+          <table class="table">
+            
+            <tr>
+              <th style="border: none;">商品名:</th>
+              <td style="border: none;"><%= @item.name %></td>
+            </tr>
+
+            <tr>
+              <th style="width: 40%; border: none;">商品紹介:</th>
+              <td style="border: none;"><%= @item.introduction %></td>
+            </tr>
+            
+            <tr>
+              <th style="border: none;">税抜価格:</th>
+              <td style="border: none;">￥<%= number_with_delimiter((@item.price).ceil.to_i, delimiter: ',') %></td>
+            </tr>
+            
+            <tr>
+              <th style="border: none;">販売ステータス:</th>
+              <td style="border: none;">
+                <p style="<%= 'color:green;' if @item.status == 'on_sale' %> <%= 'color:gray;' if @item.status == 'not_on_sale' %> <%= 'color:blue;' if @item.status == 'back_orderd' %>">
+                <%= @item.status_i18n %>
+                </p>
+              </td>
+            </tr>
+            
+            <tr>
+              <th style="border: none;">♥お気に入り</th>
+              <td style="border: none;">💬レビュー</td>
+            </tr>
+            
+          </table>
+          <!-- カートに追加フォーム -->
+          <%= form_with(model: @cart_item, url: public_cart_items_path, html: { class: "text-center" }) do |form| %>
+            <%= form.hidden_field :item_id, value: @item.id %>
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <!-- Bootstrapのカスタムセレクト -->
+                <div class="input-group mb-3">
+                  <%= form.select :amount, options_for_select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], params[:amount] || 1), class: 'form-select form-control-sm' %>
+                  <div>　</div>
+                  <button class="btn btn-success btn-sm" type="submit">カートへ</button>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

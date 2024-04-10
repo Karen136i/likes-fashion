@@ -5,10 +5,10 @@
         <h3>会員一覧</h3>
       </div>
     </div>
-
+    
     <div class="row justify-content-center"> <!-- テーブルを真ん中に揃える -->
       <table class="table table-hover table-inverse">
-
+        
         <thead>
           <tr class="text-center">
           <th>会員ID</th>
@@ -17,7 +17,7 @@
           <th>ステータス</th>
           </tr>
         </thead>
-
+        
         <tbody>
           <% @customers.each do |customer| %>
           <tr class="text-center font-size 18px;">
@@ -28,11 +28,11 @@
             <td><%= customer.email %></td>
 
             <td>
-            <% if customer.is_active %>
-            <span class='text-success'>有効</span>
-            <% else %>
-            <span class='text-secondary'>退会</span>
-        　   <% end %>
+              <% if customer.is_active %>
+              <span class='text-success'>有効</span>
+              <% else %>
+              <span class='text-secondary'>退会</span>
+              <% end %>
             </td>
 
           </tr>
@@ -41,37 +41,9 @@
 
         </table>
 
-        <ul class="Pagination">
-          <li class="Pagination-Item">
-              <a class="Pagination-Item-Link" href="/pages/1/">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="Pagination-Item-Link-Icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
-                  </svg>
-              </a>
-          </li>
-          <li class="Pagination-Item">
-              <a class="Pagination-Item-Link" href="/pages/1/"><span>1</span></a>
-          </li>
-          <li class="Pagination-Item">
-              <a class="Pagination-Item-Link isActive" href="/pages/2/"><span>2</span></a>
-          </li>
-          <li class="Pagination-Item">
-              <a class="Pagination-Item-Link" href="/pages/3/"><span>3</span></a>
-          </li>
-          <li class="Pagination-Item">
-              <a class="Pagination-Item-Link" href="/pages/4/"><span>4</span></a>
-          </li>
-          <li class="Pagination-Item">
-              <a class="Pagination-Item-Link" href="/pages/5/"><span>5</span></a>
-          </li>
-          <li class="Pagination-Item">
-              <a class="Pagination-Item-Link" href="/pages/5/">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="Pagination-Item-Link-Icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-                  </svg>
-              </a>
-          </li>
-      </ul>
+        <div class="d-flex justify-content-center" style="margin-top: 50px;">
+        <%= paginate @customers %>
+        </div>
 
     </div>
   </div>

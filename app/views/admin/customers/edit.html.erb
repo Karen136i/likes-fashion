@@ -6,7 +6,7 @@
           <%= form_with(model: @customer, url: admin_customer_path(@customer), local: true) do |form| %>
           <%= render "public/shared/error_messages", resource: @customer %>
           <table class="table table-hover table-inverse">
-            
+
             <thead>
               <tr>
                 <th colspan="2" class="no-border">
@@ -14,14 +14,14 @@
                 </th>
               </tr>
             </thead>
-            
+
             <tbody>
-              
+
               <tr class="no-border">
                 <th class="no-border">会員ID</th>
                 <td class="no-border"><%= @customer.id %></td>
               </tr>
-            
+
               <tr class="no-border">
                 <th class="no-border">氏名</th>
                 <td class="no-border">
@@ -29,7 +29,7 @@
                   <%= form.text_field :first_name, class: 'form-control-2'%>
                 </td>
               </tr>
-             
+
               <tr class="no-border">
                 <th class="no-border">氏名</th>
                 <td class="no-border">
@@ -37,41 +37,41 @@
                    <%= form.text_field :first_name_kana, class: 'form-control-2'%>
                 </td>
               </tr>
-             
+
               <tr class="no-border">
                 <th class="no-border">郵便番号</th>
                 <td class="no-border">
                   <%= form.text_field :postal_code, class: 'form-control-3' %>
                 </td>
               </tr>
-             
+
               <tr class="no-border">
                 <th class="no-border">住所</th>
                 <td class="no-border">
                   <%= form.text_field :address, class: 'form-control-3' %>
                 </td>
               </tr>
-             
+
               <tr class="no-border">
                 <th class="no-border">電話番号</th>
                 <td class="no-border">
                   <%= form.text_field :telephone_number, class: 'form-control-3' %>
                 </td>
               </tr>
-             
+
               <tr class="no-border">
                 <th class="no-border">メールアドレス</th>
                 <td class="no-border">
                   <%= form.text_field :email, class: 'form-control-3' %>
                 </td>
               </tr>
-             
+
               <tr class="no-border">
                 <th class="no-border">会員ステータス</td>
                 <td class="no-border">
                   <%= form.radio_button :is_active, true, id: "customer_is_active_true" %>
                   <%= form.label :is_active, "有効　　", value: true, for: "customer_is_active_true" %>
-        
+
                   <%= form.radio_button :is_active, false, id: "customer_is_active_false" %>
                   <%= form.label :is_active, "退会　　", value: false, for: "customer_is_active_false" %>
                 </td>
@@ -84,7 +84,7 @@
                   <%= form.submit '変更を保存', class: "btn btn-pink" %>
                 </td>
               </tr>
-              
+
             </tbody>
           </table>
           <% end %>
