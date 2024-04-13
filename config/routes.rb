@@ -31,10 +31,10 @@ Rails.application.routes.draw do
   namespace :public do
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :destroy, :create] do
-      delete 'cart_items', to: 'cart_items#destroy_all'
       get 'cart_items', to: 'cart_items#index'
       post 'cart_items', to: 'cart_items#create' # 追加: cart_items#createを処理するルートを追加
     end
+    delete 'cart_items', to: 'cart_items#destroy_all', as: "cart_items_all_destroy"
 
     resources :customers, only: [:show, :edit, :update] do
       member do
@@ -48,5 +48,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :show, :update, :create, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
     resources :categories, only: [:show]
+    post 'orders', to: 'orders#confirm', as: 'order_confirm'
+    get 'orders', to: 'orders#thanks', as: 'order_thanks'
   end
 end

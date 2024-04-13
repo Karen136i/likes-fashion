@@ -51,7 +51,7 @@ class Public::CartItemsController < ApplicationController
   
   def destroy_all
     current_customer.cart_items.destroy_all
-    redirect_to public_cart_items_path, notice: 'カート内のすべての商品が削除されました'
+    redirect_to public_cart_items_all_destroy_path, notice: 'カート内のすべての商品が削除されました'
   end
   
   

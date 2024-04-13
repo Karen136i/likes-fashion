@@ -1,8 +1,69 @@
-<h3>注文情報入力</h3>
+<div class="col-sm-11 col-md-9 col-lg-7 px-5 px-sm-0 mx-auto align-self-center text-start justify-content-center" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="container">
+  <%= form_with model: @order, url: public_order_confirm_path, local: true, class: "needs-validation", novalidate: true do |f| %>
 
-<%= f.radio_button :payment_method, "credit_card" %>
-<%= f.label :payment_method_credit_card, "クレジットカード" %>
+  <% if @order.errors.any? %>
+      <div class="alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-<%= f.radio_button :payment_method, "transfer" %>
-<%= f.label :payment_method_transfer, "銀行振込" %>
+      <div class="row justify-content-start mb-5">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <h2>支払い方法</h2>
+          <div class="form-check form-check-inline">
+            <%= f.radio_button :payment_method, "credit_card", { class: "form-check-input", checked: true } %>
+            <%= f.label :payment_method, "クレジットカード", class: "form-check-label" %>
+          </div>
+          <div class="form-check form-check-inline">
+            <%= f.radio_button :payment_method, "transfer", class: "form-check-input" %>
+            <%= f.label :payment_method, "銀行振込", class: "form-check-label" %>
+          </div>
 
+          <h3 class="mt-3">お届け先</h3>
+          <div class="form-check">
+            <%= f.radio_button :select_address, 0,{ class: "form-check-input", checked: true }%>
+            <label class="form-check-label"><%= current_customer.address %></label>
+          </div>
+          <div class="mt-3 form-check">
+            <%= f.radio_button :select_address, 1, class: "form-check-input", id: "registered_address_radio" %>
+            <%= label_tag "registered_address_radio", "登録済み住所から選択", class: "form-check-label" %>
+          </div>
+          <div class="form-check">
+            <%= f.select :address_id , options_from_collection_for_select(@addresses, :id, :full_address), class: "form-select" %>
+          </div>
+
+          <div class="form-check">
+            <%= f.radio_button :select_address, 2, class: "form-check-input" %>
+            <label class="form-check-label">新しいお届け先</label>
+          </div>
+
+          <table>
+            <tr>
+              <td>郵便番号</td>
+              <td><%= f.text_field :postal_code, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td>住所</td>
+              <td><%= f.text_field :address, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td>宛名</td>
+              <td><%= f.text_field :name, class: "form-control" %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+
+    <div class="col-md-3 mx-auto">
+      <%= f.submit "確認画面へ進む", class: "btn btn-primary w-100" %>
+    </div>
+  <% end %>
+  </div>
+</div>
