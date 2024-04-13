@@ -1,11 +1,19 @@
 class Customer < ApplicationRecord
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
+  has_many :cart_items
+  has_many :addresses
+  has_many :orders
+
+  # フォーム内がすべて空じゃないようにする
+   validates :last_name, :first_name, :last_name_kana, :first_name_kana, :email, :encrypted_password, :telephone_number, :postal_code, :address, presence: true
+
+
   # ゲストログインの記述
-  
   GUEST_USER_EMAIL = "guest@example.com"
 
   def self.guest
@@ -20,7 +28,7 @@ class Customer < ApplicationRecord
       customer.address = "ゲスト"
     end
   end
-  
+
   def guest_customer?
     email == GUEST_USER_EMAIL
   end

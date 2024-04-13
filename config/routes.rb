@@ -1,20 +1,18 @@
 Rails.application.routes.draw do
   # 顧客用
-# URL /customers/sign_in ...
-devise_for :customers, controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
+  devise_for :customers, controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
 
-# 管理者用
-# URL /admin/sign_in ...
-devise_for :admin, controllers: {
-  sessions: "admin/sessions"
-}
-#ゲストログイン
-devise_scope :customer do
-  post "/public/guest_sign_in", to: "public/sessions#guest_sign_in"
-end
+  # 管理者用
+  devise_for :admin, controllers: {
+    sessions: "admin/sessions"
+  }
+  #ゲストログイン
+  devise_scope :customer do
+    post "/public/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
 
   root to: 'public/homes#top'
   get '/about', to: 'public/homes#about', as: 'about'
@@ -32,9 +30,10 @@ end
 
   namespace :public do
     resources :items, only: [:index, :show]
-    resources :cart_items, only: [:index, :update, :destroy] do
+    resources :cart_items, only: [:index, :update, :destroy, :create] do
       delete 'cart_items', to: 'cart_items#destroy_all'
       get 'cart_items', to: 'cart_items#index'
+      post 'cart_items', to: 'cart_items#create' # 追加: cart_items#createを処理するルートを追加
     end
 
     resources :customers, only: [:show, :edit, :update] do

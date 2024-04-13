@@ -109,18 +109,6 @@
           <% if customer_signed_in? %>
 
           <p>
-            <%= link_to public_favorites_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-            <i class="fa-solid fa-heart"></i> favorite
-            <% end %>
-          </p>
-
-          <p>
-            <%= link_to root_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
-            <i class="fa-solid fa-user"></i> my page
-            <% end %>
-          </p>
-
-          <p>
             <%= link_to public_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-shirt"></i> items
             <% end %>
@@ -129,6 +117,18 @@
           <p>
             <%= link_to public_cart_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-cart-plus"></i> cart
+            <% end %>
+          </p>
+
+          <p>
+            <%= link_to public_customer_path(current_customer.id),class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-user"></i> my page
+            <% end %>
+          </p>
+
+          <p>
+            <%= link_to public_favorites_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-heart"></i> favorite
             <% end %>
           </p>
 

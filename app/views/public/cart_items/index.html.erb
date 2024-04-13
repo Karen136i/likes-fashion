@@ -1,2 +1,51 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class='container' style="margin-top: 100px; margin-bottom: 100px;">
+  <div class='row justify-content-center'>
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto align-self-center text-start">
+      <h3 class="text-center"><i class="fa-solid fa-cart-plus"></i> Cart Items<i class="fa-solid fa-cart-plus"></i></h3>
+
+      <% if @cart_items.any? %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>商品名</th>
+              <th>単価(税込)</th>
+              <th>数量</th>
+              <th>小計</th>
+              <th><%= button_to '全削除', public_cart_items_path, method: :delete, data: { confirm: '本当にカートを空にしますか?' }, class: 'btn btn-danger btn-sm' %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% total_price = 0 %>
+            <% @cart_items.each do |cart_item| %>
+              <% tax_inclusive_price = cart_item.item.price * 1.10 %> <!-- 税込価格を計算 -->
+              <% subtotal = (tax_inclusive_price.round * cart_item.amount).round %> <!-- 小計を計算し、四捨五入 -->
+              <% total_price += subtotal %> <!-- 合計金額を計算 -->
+              <tr>
+                <td><%= link_to cart_item.item.name, public_item_path(cart_item.item) %></td>
+                <td>￥<%= number_with_delimiter(tax_inclusive_price.round, delimiter: ',') %></td>
+                <td>
+                  <%= form_with model: cart_item, url: public_cart_item_path(cart_item), method: :patch do |form| %>
+                    <%= form.select :amount, (1..10), { selected: cart_item.amount }, { class: 'form-select form-control-sm' } %>
+                    <%= form.submit '更新', class: 'btn btn-sm btn-primary mt-1' %>
+                  <% end %>
+                </td>
+                <td>￥<%= number_with_delimiter(subtotal.ceil.to_i, delimiter: ',') %></td>
+                <td>
+                  <%= link_to '削除', public_cart_item_path(cart_item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <div class="text-center">
+          <p>合計金額　: ￥<%= number_with_delimiter(total_price.ceil.to_i, delimiter: ',') %></p>
+          <%= link_to '情報入力に進む', new_public_order_path, class: "btn btn-primary" %>
+          <%= link_to '買い物を続ける', public_items_path, class: "btn btn-secondary" %>
+        </div>
+      <% else %>
+        <p class="text-center">カートに商品がありません。</p>
+      <% end %>
+    </div>
+  </div>
+</div>
