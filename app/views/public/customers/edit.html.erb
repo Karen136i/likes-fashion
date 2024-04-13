@@ -2,7 +2,7 @@
   <div class="row">
     <div class="mx-auto">
 
-     <h1 class="mb-4 mt-5"><%= @customer.last_name %> <%= @customer.first_name %>さんの会員情報編集</h1>
+     <h2 class="text-center mb-4 mt-5"><%= @customer.last_name %> <%= @customer.first_name %>さんの会員情報編集</h2>
 
       <%= form_with model: @customer, url: public_customer_path(@customer), method: :patch, local: true do |f| %>
        <% if @customer.errors.any? %>
@@ -15,9 +15,9 @@
             </div>
           </ul>
         <% end %>
-        
+
          <div class="row">
-              <label class="col-lg-3" style="background-color: #db7093; border-radius: 5px; padding: 5px; color: #ffffff; text-align: center;">氏名</label>
+              <label class="col-lg-4" style="background-color: #db7093; border-radius: 5px; padding: 5px; color: #ffffff; text-align: center;">氏名</label>
               <div class="col-lg-3">
                 <%= f.text_field :last_name,autofocus: true, autocomplete: "last_name", class: 'form-control-2' %>
               </div>
@@ -28,7 +28,7 @@
          </div><br>
 
          <div class="row">
-              <label class="col-lg-3" style="background-color: #db7093; border-radius: 5px; padding: 5px; color: #ffffff; text-align: center;">フリガナ</label>
+              <label class="col-lg-4" style="background-color: #db7093; border-radius: 5px; padding: 5px; color: #ffffff; text-align: center;">フリガナ</label>
               <div class="col-lg-3">
                 <%= f.text_field :last_name_kana,autofocus: true, autocomplete: "last_name_kana",class: 'form-control-2' %>
               </div>
@@ -39,40 +39,41 @@
          </div><br>
 
          <div class="row">
-              <label class="col-lg-3" style="background-color: #db7093; border-radius: 5px; padding: 5px; color: #ffffff; text-align: center;">郵便番号</label>
+              <label class="col-lg-4" style="background-color: #db7093; border-radius: 5px; padding: 5px; color: #ffffff; text-align: center;">郵便番号</label>
               <div class="col-lg-3">
                 <%= f.text_field :postal_code,autofocus: true, autocomplete: "postal_code",class: 'form-control' %>
               </div>
          </div><br>
 
          <div class="row">
-              <label class="col-lg-3" style="background-color: #db7093; border-radius: 5px; padding: 5px; color: #ffffff; text-align: center;">住所</label>
+              <label class="col-lg-4" style="background-color: #db7093; border-radius: 5px; padding: 5px; color: #ffffff; text-align: center;">住所</label>
               <div class="col-lg-6">
                 <%= f.text_field :address,autofocus: true, autocomplete: "address",class: 'form-control' %>
               </div>
          </div><br>
 
          <div class="row">
-              <label class="col-lg-3" style="background-color: #db7093; border-radius: 5px; padding: 5px; color: #ffffff; text-align: center;">電話番号</label>
+              <label class="col-lg-4" style="background-color: #db7093; border-radius: 5px; padding: 5px; color: #ffffff; text-align: center;">電話番号</label>
               <div class="col-lg-6">
                 <%= f.text_field :telephone_number,autofocus: true, autocomplete: "telephone_number",class: 'form-control' %>
               </div>
          </div><br>
 
          <div class="row">
-              <label class="col-lg-3" style="background-color: #db7093; border-radius: 5px; padding: 5px; color: #ffffff; text-align: center;">メールアドレス</label>
+              <label class="col-lg-4" style="background-color: #db7093; border-radius: 5px; padding: 5px; color: #ffffff; text-align: center;">メールアドレス</label>
               <div class="col-lg-4">
                 <%= f.text_field :email,autofocus: true, autocomplete: "email",class: 'form-control' %>
               </div>
          </div><br>
 
 
-         <div class="row justify-content-center">
-            <div> <%= f.submit "編集内容を保存", class: "btn btn-success" %></div>
+         <div class='row justify-content-center'>
+           <div style='margin-left: 70px;'>
+            <div> <%= f.submit "編集内容を保存", class: "btn btn-success mt-2", style: "width: 200px; height: 40px;" %></div>
+           </div>
          </div>
 
      <% end %>
-      </div>
     </div>
   </div>
 </div>
