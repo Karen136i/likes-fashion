@@ -36,4 +36,3 @@
 ## 使用素材
 フリー画像の素材として以下を使用<br>
 URL(https://www.ac-illust.com/main/related.php?id=1239738)
-
