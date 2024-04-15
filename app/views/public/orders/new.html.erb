@@ -28,7 +28,7 @@
 
         <h4 class="mt-3">お届け先</h4>
 
-        <div class="form-check">
+        <div class="form-check" style: "margin-bottom: 10px;">
           <%= f.radio_button :select_address, 0, { class: "form-check-input", checked: true } %>
           <label class="form-check-label">
             <span>ご自身の住所</span><br>
@@ -39,7 +39,7 @@
 
         <div class="mt-3 form-check">
           <%= f.radio_button :select_address, 1, class: "form-check-input", id: "registered_address_radio" %>
-          <%= label_tag "registered_address_radio", "登録済み住所から選択", class: "form-check-label" %>
+          <%= label_tag "registered_address_radio", "登録済み住所から選択", class: "form-check-label", style: "margin-bottom: 10px;" %>
         </div>
 
         <div class="form-check" style="margin-bottom: 20px;">
@@ -49,30 +49,32 @@
         <div class="mt-2">
           <div class="form-check">
             <%= f.radio_button :select_address, 2, class: "form-check-input" %>
-            <label class="form-check-label">新しいお届け先</label>
+            <label class="form-check-label" style="margin-bottom: 10px;">新しいお届け先</label>
           </div>
         </div>
 
         <table>
-          <tr>
-            <td>郵便番号</td>
+          <tr class="row">
+            <td class="col-4"><span class="rotate">郵便番号</span></td>
             <td class="col-8"><%= f.text_field :postal_code, class: "form-control" %></td>
           </tr>
-        
-          <tr>
-            <td>住所</td>
+          
+          <tr class="row">
+            <td class="col-4"><span class="rotate">住所</span></td>
             <td class="col-8"><%= f.text_field :address, class: "form-control" %></td>
           </tr>
-        
-          <tr>
-            <td>宛名</td>
+          
+          <tr class="row">
+            <td class="col-4"><span class="rotate">宛名</span></td>
             <td class="col-8"><%= f.text_field :name, class: "form-control" %></td>
           </tr>
         </table>
-
-
-    <div class="col-md-4" style="margin-top:30px; margin-left: 100px;">
-      <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+        
+        
+        <div class="col-md-4" style="margin-top:30px; margin-left: 100px;">
+          <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+        </div>
+      </div>
     </div>
   <% end %>
   </div>

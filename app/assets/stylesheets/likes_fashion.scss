@@ -228,3 +228,11 @@ a {
 .custom-gap {
   margin-left: 50px; /* または他の値 */
 }
+
+.rotate {
+  display: inline-block;
+  transform: rotate(-360deg);
+  white-space: nowrap; /* テキストが折り返されないように */
+  transform-origin: 0 0;
+  width: 1.5em; /* 回転した後の幅を調整 */
+}
