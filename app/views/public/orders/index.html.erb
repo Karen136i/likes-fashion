@@ -1,44 +1,58 @@
-<div class="col-sm-12 col-md-12 col-lg-6 px-5 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
-  <h3>注文履歴一覧</h3>
+<div class="col-sm-15 col-md-13 col-lg-10 px-7 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
+  <h3 class="text-center">注文履歴一覧</h3>
   <table class="order-table table">
+    
     <thead>
-      <tr>
+      <tr style="margin-top: 50px;">
         <th>注文日</th>
         <th>配送先</th>
         <th>注文商品</th>
+        <th>レビュー</th>
         <th>支払金額</th>
         <th>ステータス</th>
         <th>注文詳細</th>
       </tr>
     </thead>
+    
     <% @orders.each do |order| %>
-      <tbody>
-        <tr>
-          <td><%= order.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M ") %></td>
-          <td>
-            <%= order.postal_code %><br/>
-            <%= order.address %><br/>
-            <%= order.name %>
-          </td>
-          <td>
-            <table>
+    <tbody>
+      <tr>
+        <td><%= order.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M ") %></td>
+        
+        <td>
+          〒<%= current_customer.postal_code %><br/>
+          <%= current_customer.address %><br/>
+          <%= current_customer.last_name %> <%= current_customer.first_name %>
+        </td>
+        
+        <td>
+          <table>
             <% order.order_details.each do |order_detail| %>
+            
             <tbody>
               <tr>
-                <td>
-              <%= order_detail.item.name %>
-              </td>
+                <td class="no-border">
+                  <%= order_detail.item.name %>
+                </td>
               </tr>
             </tbody>
+            
             <% end %>
-            </table>
-          </td>
-          <td><%= "#{order.total_payment.to_s(:delimited)}" %>円</td>
-          <td><%= order.status %></td>
-          <td><%= link_to '表示する', public_order_path(order.id) %></td>
-        </tr>
-      </tbody>
+          </table>
+        </td>
+        
+        <td><%= link_to 'レビュー', new_public_review_path, class: "btn btn-danger btn-sm" %></td>
+        <td><%= "#{order.total_payment.to_s(:delimited)}" %>円</td>
+        <td><%= order.status %></td>
+        <td>
+          <div style="margin-top: 15px;">
+            <%= link_to '表示する', public_order_path(order.id), class: "btn btn-primary" %>
+          </div>
+        </td>
+
+    </tbody>
     <% end %>
   </table>
-    <%= paginate @orders %>
+  <%= paginate @orders %>
+  
 </div>

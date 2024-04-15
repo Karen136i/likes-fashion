@@ -22,7 +22,6 @@ before_action :authenticate_customer!
     @order = current_customer.orders.new(order_params)
     @order.shipping_cost = 800
     @order.total_payment = calculate_order_total(current_customer.cart_items) + @order.shipping_cost
-
     if @order.save
       create_order_details(@order)
       current_customer.cart_items.destroy_all

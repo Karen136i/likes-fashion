@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :order_details, only: [:update]
     resources :orders, only: [:show, :update]
-    resources :customers, only: [:index, :show, :edit, :update] # ここでcustomersリソースを定義
+    resources :customers, only: [:index, :show, :edit, :update] 
     resources :categories, only: [:index, :create, :edit, :update, :destroy]
     resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :sessions, only: [:new, :create, :destroy]
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :show, :update, :create, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
     resources :categories, only: [:show]
-    post 'orders', to: 'orders#confirm', as: 'order_confirm'
+    get 'orders', to: 'orders#confirm', as: 'order_confirm'
     get 'orders', to: 'orders#thanks', as: 'order_thanks'
   end
 end

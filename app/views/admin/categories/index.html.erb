@@ -12,16 +12,18 @@
         <tbody>
           <tr class="col text-center">
                 <%= form_with url: admin_categories_path, model: @category do |f| %>
+                
                 <div class="form-group">
                   <%= f.text_field :name, class: 'form-control-1', placeholder: 'カテゴリー名' %>
                 </div>
+                
                 <div class="text-center">
                 <%= f.submit '新規登録', class: "btn btn-pink", style: "width: 400px;" %>
                 <% end %>
                 </div>
           </tr>
 
-          <tr class="no-border"><!-- 間隔 -->
+          <tr class="no-border">
             <td class="no-border"></td>
           </tr>
 
