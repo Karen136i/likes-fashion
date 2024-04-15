@@ -4,7 +4,12 @@
       <h2 class="text-center mt-4 ">sign up</h2>
       <p class="mt-4"></p>
       
-      <h5 class="text-center mt-5">新規会員の方はお手数ですがフォームの入力をお願いいたします。</h5>
+      <h5 class="text-center mt-5">
+        <div style= "margin-bottom: 30px;">
+          新規会員の方はお手数ですがフォームの入力をお願いいたします。
+        </div>
+      </h5>
+        
       <p class="md-5"></p>
       
         
@@ -88,8 +93,8 @@
 
                <tr>
                  <td class="mb-2"></td>
-                 <td>
-                   <%= f.submit "新規登録", class: "btn btn-primary btn-block w-75 mb-3 mx-5" %>
+                 <td style="margin-top: 20px;">
+                   <%= f.submit "新規登録", class: "btn btn-primary btn-block mb-3 mx-5 w-75", style: "margin-top: 20px;" %>
                  </td>
                </tr>
 
@@ -97,8 +102,8 @@
         </table>
       <% end %>
       
-      <h5 class="mt-5 mb-2">既に登録済みの方</h5>
-      <p><%= link_to "こちら", new_customer_session_path, style: "color: red;" %> からログインしてください。</p>
+      <h5 style="margin-top: 20px;">既に登録済みの方</h5>
+      <p><%= link_to "こちら", new_customer_session_path, style: "color: #0000ff;" %> からログインしてください。</p>
 
     </div>
   </div>
