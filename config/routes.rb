@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:show]
     get 'orders/confirm', to: 'orders#confirm'
     post 'orders/confirm', to: 'orders#confirm'
+    get 'orders/thanks', to: 'orders#thanks'
     get 'orders/:id', to: 'orders#show'
 
   end
