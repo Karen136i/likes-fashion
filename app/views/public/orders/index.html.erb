@@ -41,7 +41,22 @@
           </table>
         </td>
         
-        <td><%= link_to 'レビュー', new_public_review_path, class: "btn btn-danger btn-sm" %></td>
+        <td>
+          <table>
+            <% order.order_details.each do |order_detail| %>
+            
+            <tbody>
+              <tr>
+                <td class="no-border">
+                  
+                  <%= link_to 'レビュー', new_public_review_path(item_id: order_detail.item_id), class: "btn btn-danger btn-sm" %>
+                </td>
+              </tr>
+            </tbody>
+            
+            <% end %>
+          </table>
+        </td>
         <td><%= "#{order.total_payment.to_s(:delimited)}" %>円</td>
         <td><%= order.status %></td>
         <td>

@@ -1,3 +1,4 @@
+# app/controllers/public/orders_controller.rb
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
 
@@ -15,6 +16,7 @@ class Public::OrdersController < ApplicationController
     set_order_address(@order)
     @cart_items = current_customer.cart_items
     @sum = calculate_order_total(@cart_items)
+    @total_payment = @sum + 800 # 送料を加算
     render :confirm
   end
 
@@ -22,21 +24,26 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.new(order_params)
     @order.shipping_cost = 800
     @order.total_payment = calculate_order_total(current_customer.cart_items) + @order.shipping_cost
-
     if @order.save
       create_order_details(@order)
       current_customer.cart_items.destroy_all
-      redirect_to thanks_public_orders_path
+      redirect_to public_order_thanks_path(order_id: @order.id)
     else
       @addresses = current_customer.addresses
       render :new
     end
+  end
+  
+  def thanks
+    @order = Order.find(params[:order_id])
   end
 
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details.all
   end
+  
+  
 
   private
 
@@ -68,7 +75,7 @@ class Public::OrdersController < ApplicationController
     if params[:order][:select_address] == "0"
       order.postal_code = current_customer.postal_code
       order.address = current_customer.address
-      order.name = current_customer.full_name
+      order.name = "#{current_customer.last_name} #{current_customer.first_name}"
     elsif params[:order][:select_address] == "1"
       address = Address.find(params[:order][:address_id])
       order.postal_code = address.postal_code

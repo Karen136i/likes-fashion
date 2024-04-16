@@ -1,6 +1,6 @@
-<div class="col-sm-15 col-md-12 col-lg-9 px-7 px-sm-0 mx-auto align-self-center text-start justify-content-center" style="margin-top: 50px; margin-bottom: 50px;">
+<div class="col-sm-15 col-md-12 col-lg-9 px-7 px-sm-0 mx-auto align-self-center text-start justify-content-center" style="margin-top: 90px; margin-bottom: 50px;">
   <div class="container">
-  <%= form_with model: @order, url: public_order_confirm_path, local: true, class: "needs-validation", novalidate: true do |f| %>
+  <%= form_with model: @order, url: public_orders_confirm_path, local: true, class: "needs-validation", novalidate: true do |f| %>
 
     <% if @order.errors.any? %>
     <div class="alert alert-danger">
@@ -58,22 +58,22 @@
             <td class="col-4"><span class="rotate">郵便番号</span></td>
             <td class="col-8"><%= f.text_field :postal_code, class: "form-control" %></td>
           </tr>
-          
+
           <tr class="row">
             <td class="col-4"><span class="rotate">住所</span></td>
             <td class="col-8"><%= f.text_field :address, class: "form-control" %></td>
           </tr>
-          
+
           <tr class="row">
             <td class="col-4"><span class="rotate">宛名</span></td>
             <td class="col-8"><%= f.text_field :name, class: "form-control" %></td>
           </tr>
         </table>
-        
-        
-        <div class="col-md-4" style="margin-top:30px; margin-left: 100px;">
-          <%= f.submit "確認画面へ進む", class: "btn btn-primary" style: width:%>
+
+        <div class="col-md-4" style="margin-top:30px; margin-left: 110px;">
+          <%= f.submit "確認画面へ進む",class: "btn btn-primary ", style: "width: 200px;" %>
         </div>
+
       </div>
     </div>
   <% end %>

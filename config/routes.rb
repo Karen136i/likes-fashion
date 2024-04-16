@@ -49,7 +49,9 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
     resources :addresses, only: [:index, :edit, :update, :create, :destroy]
     resources :categories, only: [:show]
-    get 'orders', to: 'orders#confirm', as: 'order_confirm'
-    get 'orders', to: 'orders#thanks', as: 'order_thanks'
+    get 'orders/confirm', to: 'orders#confirm'
+    post 'orders/confirm', to: 'orders#confirm'
+    get 'orders/:id', to: 'orders#show'
+
   end
 end
