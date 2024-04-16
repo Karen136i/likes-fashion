@@ -2,6 +2,6 @@ ja:
   enums:
     item:
       status:
-        on_sale: 販売中　　
-        not_on_sale: 販売停止中　　
-        back_orderd: 入荷待ち　　
+        on_sale: 販売中
+        not_on_sale: 販売停止中
+        back_ordered: 入荷待ち
