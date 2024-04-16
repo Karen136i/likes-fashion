@@ -236,3 +236,8 @@ a {
   transform-origin: 0 0;
   width: 1.5em; /* 回転した後の幅を調整 */
 }
+
+.horizontal-links {
+  display: flex;
+  justify-content: space-between; /* または適切なスペーシングに調整 */
+}

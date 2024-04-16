@@ -30,6 +30,9 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :items, only: [:index, :show]
+       resource :favorites, only: [:create, :destroy]
+    resources :favorites, only: [:index]
+    resources :reviews, only: [:new, :show, :update, :create, :destroy]
     resources :cart_items, only: [:index, :update, :destroy, :create] do
       get 'cart_items', to: 'cart_items#index'
       post 'cart_items', to: 'cart_items#create' # 追加: cart_items#createを処理するルートを追加
@@ -45,8 +48,6 @@ Rails.application.routes.draw do
 
     resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
     resources :addresses, only: [:index, :edit, :update, :create, :destroy]
-    resources :reviews, only: [:new, :show, :update, :create, :destroy]
-    resources :favorites, only: [:index, :create, :destroy]
     resources :categories, only: [:show]
     get 'orders', to: 'orders#confirm', as: 'order_confirm'
     get 'orders', to: 'orders#thanks', as: 'order_thanks'

@@ -22,10 +22,11 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.new(order_params)
     @order.shipping_cost = 800
     @order.total_payment = calculate_order_total(current_customer.cart_items) + @order.shipping_cost
+
     if @order.save
       create_order_details(@order)
       current_customer.cart_items.destroy_all
-      redirect_to public_order_thanks_path
+      redirect_to thanks_public_orders_path
     else
       @addresses = current_customer.addresses
       render :new

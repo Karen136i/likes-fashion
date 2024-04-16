@@ -25,7 +25,7 @@
 
             <tr>
               <th style="border: none;">税抜価格:</th>
-              <td style="border: none;">￥<%= number_with_delimiter((@item.price).ceil.to_i, delimiter: ',') %></td>
+              <td style="border: none;">¥ <%= number_with_delimiter(@item.price_without_tax) %></td>
             </tr>
 
             <tr>
@@ -38,8 +38,26 @@
             </tr>
 
             <tr>
-              <th style="border: none;">♥お気に入り</th>
-              <td style="border: none; padding-right: 50px;">💬レビュー</td>
+              <th style="border: none;">
+                <!--お気に入りの実装途中-->
+                <div class="card-text">
+                  <% if Favorite.favorited_by?(current_customer, @item) %>
+                    <%= link_to public_favorites_path(item_id: @item.id), method: :delete do %>
+                      <i class="fa-regular fa-heart"></i>
+                      <%= @item.favorites.count %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to public_favorites_path(item_id: @item.id), method: :post do %>
+                      <i class="fas fa-heart" aria-hidden="true"></i>
+                      <%= @item.favorites.count %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </th>
+              
+              <th style="border: none; padding-right: 50px;">
+                <%= link_to '💬レビュー', public_review_path %>
+              </th>
             </tr>
 
           </table>
