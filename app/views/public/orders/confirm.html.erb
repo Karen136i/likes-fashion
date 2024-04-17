@@ -44,11 +44,11 @@
 
           <tr>
             <th class="text-center">商品合計金額(税込)</th>
-            <td class="text-right ">￥<%= number_with_delimiter(@total_payment, delimiter: ',') %></h5>
+            <td class="text-right ">￥<%= number_with_delimiter(@total_payment, delimiter: ',') %></td>
           </tr>
 
           <tr>
-            <th class="text-center">請求金額</th>
+            <th class="text-center">ご請求金額(税込)</th>
             <td class="text-right"><%= number_to_currency(@total_payment + 800, unit: '￥', format: "%u%n") %></td>
           </tr>
           </table>

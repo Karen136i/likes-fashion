@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders.page(params[:page])
+    # @cart_items = current_customer.cart_items  # カートアイテム情報を取得
   end
 
   def new
@@ -39,8 +40,7 @@ class Public::OrdersController < ApplicationController
   end
   
   def show
-    if params[:id] == "thanks"
-      # "thanks" が渡された場合の処理
+    if params[:id] == "thanks"# "thanks" が渡された場合の処理
       render "thanks"
     else
       # 通常の注文の表示処理

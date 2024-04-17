@@ -3,76 +3,78 @@
     <div class="col-12">
       <h3 class="text-center">注文履歴詳細</h3>
       
-      <div style="margin-top: 50px;" class:>
-      <table border="1" >
-        <tr>
-          <td class="active" style="width:200px;">注文日</td>
-          <td style="width:350px;"><%= @order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-        </tr>
-        
-        <tr>
-          <td class="active">配送先</td>
-          <td>
-            <%= @order.postal_code %>
-            <%= @order.address %>
-            <%= @order.customer.last_name %> <%= @order.customer.first_name %>
-          </td>
-        </tr>
-        
-        <tr>
-          <td class="active">支払方法</td>
-          <td><%= t("enums.order.payment_method.#{@order.payment_method}") %></td>
-        </tr>
-        
-        <tr>
-          <td class="active">注文ステータス</td>
-          <td><%= @order.status %></td>
-        </tr>
-        
-        </div>
-      </table>
-      
-      <table border="2">
-        <tr>
-          <th class="active col-xs-6">商品</th>
-          <th class="active">単価（税込）</th>
-          <th class="active">個数</th>
-          <th class="active">小計</th>
-        </tr>
-        
-        <div style="margin-top: 200px;">
-        <tbody>
-          <% @order_details.each do |order_detail| %>
+      <!-- 注文情報のテーブル -->
+      <div style="margin-top: 50px;" class="table-container">
+        <table border="1" style="width: 700px;" class="mx-auto text-center">
           <tr>
-            <td><%= order_detail.item.name %></td>
-            <td>¥<%= (order_detail.price * 1.1).floor.to_s(:delimited) %></td>
-            <td><%= order_detail.amount %></td>
-            <td>¥<%= (order_detail.price * order_detail.amount * 1.1).floor.to_s(:delimited) %></td>
+            <td class="active" style="width:200px;">注文日</td>
+            <td style="width:350px;"><%= @order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
           </tr>
-          <% end %>
-        </tbody>
-        
-      </table>
-      
-      <div style="margin-top: 100px; left: 500px;">
-        <table border="3">
           <tr>
-            <td class="active">商品合計</td>
-            <td>¥<%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %></td>
+            <td class="active">配送先</td>
+            <td>
+              〒<%= current_customer.postal_code %>
+              <%= current_customer.address %><br/>
+              <%= current_customer.last_name %> <%= current_customer.first_name %>
+            </td>
           </tr>
-            
+          <tr>
+            <td class="active">支払方法</td>
+            <td><%= t("enums.order.payment_method.#{@order.payment_method}") %></td>
+          </tr>
+          <tr>
+            <td class="active">注文ステータス</td>
+            <td><%= @order.status %></td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- 注文詳細のテーブル -->
+      <div style="margin-top: 50px;">
+        <table border="1" style="width: 700px;" class="mx-auto text-center">
+          <tr>
+            <th class="active">商品</th>
+            <th class="active">単価（税抜）</th>
+            <th class="active text-center">個数</th>
+            <th class="active">小計</th>
+          </tr>
+          <tbody>
+            <% @order_details.each do |order_detail| %>
+              <tr>
+                <td><%= order_detail.item.name %></td>
+                <td>￥<%= number_with_delimiter(order_detail.item.price, delimiter: ',') %></td>
+                <td><%= order_detail.amount %></td>
+                <td>￥<%= number_with_delimiter(order_detail.subtotal, delimiter: ',') %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- 合計金額のテーブル -->
+      <div style="margin-top: 50px;">
+        <table border="3" style="width: 400px; margin-left: 470px;" class="text-center">
+          <tr>
+            <td class="active">商品合計金額(税込)</td>
+            <td>
+              <% @total_payment = 0 %>
+              <% @order.order_details.each do |order_detail| %>
+              <% subtotal = (order_detail.item.price * order_detail.amount) %>
+              <% @total_payment += (subtotal * 1.1).floor.to_i %>
+              <% end %>
+              <%= number_to_currency(@total_payment, unit: '￥', format: "%u%n") %>
+            </td>
+          </tr>
           <tr>
             <td class="active">配送料</td>
             <td>¥<%= @order.shipping_cost %></td>
           </tr>
-          
           <tr>
-            <td class="active"><b>ご請求額</b></td>
-            <td>¥<%= "#{@order.total_payment.to_s(:delimited)}"%></td>
+            <td class="active"><b>ご請求額(税込)</b></td>
+            <td><%= number_to_currency(@total_payment + 800, unit: '￥', format: "%u%n") %></td>
           </tr>
         </table>
-        
+      </div>
     </div>
   </div>
 </div>
-
