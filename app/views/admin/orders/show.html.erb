@@ -1,2 +1,91 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class="col-sm-13 col-md-11 col-lg-9 px-7 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
+  <h3 class="text-center" style="margin-bottom: 30px;">注文履歴詳細</h3>
+  <table class="order-table table">
+    
+    <div>
+      <p class="customer-name">
+        <strong>購入者</strong>
+        <%= link_to admin_customer_path(@order.customer_id) do %>
+        <%= @order.customer.last_name %><%= @order.customer.first_name %>
+        <% end %>
+      </p>
+    </div>
+    
+    <div>
+      <p class="customer-name">
+        <strong>配送先</strong>
+        〒<%= (@order.customer.postal_code).to_s.insert(3, "-") %>　　<%= @order.customer.address %>
+      </p>
+    </div>
+    
+    <div>
+      <p class="customer-peyment">
+        <strong>支払い方法</strong>
+        <%= t("enums.order.payment_method.#{@order.payment_method}") %>
+      </p>
+    </div>
+      
+    <div>
+      <p class="customer-name">
+        <strong style="display: inline-block;">注文ステータス</strong>
+        <%= form_with model:@order, url: admin_order_path, local: true do |f| %>
+          <%= f.select :status, ["入金待ち", "入金確認","商品準備中","発送済み"], {}, class: "status-select" %>
+          <%= f.submit "更新", class: 'btn btn-primary' %>
+        <% end %>
+      </p>
+    </div>
+    
+    <div style="margin-top: 30px">
+      <table class='order-show-table table'>
+        <thead>
+          <tr>
+            <th class="active">商品名</th>
+            <th class="active">単価（税込）</th>
+            <th class="active">数量</th>
+            <th class="active">小計</th>
+            <th class="active">製作ステータス</th>
+          <tr>
+        </thead>
+        
+      <% @order_details.each do |order_detail| %>
+      <tbody>
+        <tr>
+          <td><%= order_detail.item.name %></td>
+          <td>¥<%= (order_detail.price * 1.1).floor.to_s(:delimited) %></td>
+          <td><%= order_detail.amount %></td>
+          <td class="col-xs-2">¥<%= ((order_detail.price * order_detail.amount * 1.1).floor).to_s(:delimited) %></td>
+          <td>
+            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch, local: true do |f| %>
+            <%= f.select :shipping_status, OrderDetail.shipping_statuses.keys.map { |status| [status.humanize, status] }, selected: order_detail.shipping_status %>
+            <%= f.submit "更新", class: 'btn btn-primary' %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+      </table>
+    </div>
+    
+    <!--<div class="col-xs-4">-->
+    <div class="text-right">
+      <p style="margin-right: 100px;">
+        <strong>商品合計　</strong>
+        ￥<%= (@order.total_payment - @order.shipping_cost).to_s(:delimited)%>
+      </p>
+    </div>
+    
+    <div class="text-right">
+      <p style="margin-right: 100px;">
+        <strong>送料　　</strong>
+        ￥<%= @order.shipping_cost %>
+      </p>
+     </div>
+     
+    <div class="text-right">
+      <p style="margin-right: 100px;">
+         <strong>請求金額合計　</strong>
+         ¥<%= @order.total_payment.to_s(:delimited) %>
+      </p>
+    </div>
+  </div>
+</div>
