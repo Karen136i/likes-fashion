@@ -3,7 +3,7 @@
 
       <!-- ロゴを左中央に配置するための要素 -->
       <div class="text-center">
-        <a class="navbar-brand p-3" href="/"><%= image_tag("Logo1.png", size: "100x100") %></a>
+        <a class="navbar-brand pl-3 pr-3" href="/"><%= image_tag("Logo1.png", size: "100x100") %></a>
       </div>
 
       <!--ハンバーガーのメニュー作成-->
@@ -22,37 +22,37 @@
 
          <!--style: 'margin-right: 10px;'は横に10pxの余白を入れている-->
 
-          <p>
+          <p class="mb-0">
             <%= link_to new_customer_registration_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-user-plus"></i>sign up
             <% end %>
           </p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to new_customer_session_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-arrow-right-to-bracket"></i> log in
             <% end %>
           <p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to public_guest_sign_in_path, class: 'navlink text-black', style: 'margin-right: 10px;', method: :post do %>
             <i class="fa-solid fa-arrow-right-to-bracket"></i> guest login
             <% end %>
           <p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to public_items_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-shirt"></i> items
             <% end %>
           </p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to about_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-house-laptop"></i> about
             <% end %>
           <p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to new_admin_session_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-key"></i> log in
             <% end %>
@@ -65,38 +65,38 @@
           <% if admin_signed_in? %>
 
 
-          <p>
+          <p class="mb-0">
             <%= link_to admin_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-shirt"></i> items
             <% end %>
           </p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to admin_categories_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-list"></i> categorys
             <% end %>
           </p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to admin_customers_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-users"></i> customers
             <% end %>
           </p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to admin_customers_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-comments"></i> reviews
             <% end %>
           </p>
 
 
-          <p>
+          <p class="mb-0">
             <%= link_to admin_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-cart-shopping"></i>orders
             <% end %>
           </p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-right-from-bracket"></i> log out
             <% end %>
@@ -108,31 +108,31 @@
           <!-- 顧客がログインしている場合 -->
           <% if customer_signed_in? %>
 
-          <p>
+          <p class="mb-0">
             <%= link_to public_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-shirt"></i> items
             <% end %>
           </p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to public_cart_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-cart-plus"></i> cart
             <% end %>
           </p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to public_customer_path(current_customer.id),class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-user"></i> my page
             <% end %>
           </p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to public_favorites_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-heart"></i> favorite
             <% end %>
           </p>
 
-          <p>
+          <p class="mb-0">
             <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-right-from-bracket"></i> log out
             <% end %>
@@ -144,8 +144,8 @@
         </ul>
       </div>
   </nav>
-  
-   <div class= "text-right mr-4">
+
+   <div class= "text-right mr-4 pb-3">
         <!-- 顧客も管理者もログインしていない場合の検索ボックス -->
         <% unless admin_signed_in? || customer_signed_in? %>
           <%= form_with url: search_path, method: :get, local: true do |f| %>
@@ -153,7 +153,7 @@
             <%= f.submit "🔍" %>
           <% end %>
         <% end %>
-        
+
         <!-- 顧客がログインしている場合の検索ボックス -->
         <% if customer_signed_in? %>
           <%= form_with url: search_path, method: :get, local: true do |f| %>
@@ -161,7 +161,7 @@
             <%= f.submit "🔍" %>
           <% end %>
         <% end %>
-        
+
         <% if admin_signed_in? %>
           <%= form_with url: search_path, method: :get, local: true do |f| %>
             <%= f.text_field :content %>
@@ -171,7 +171,7 @@
           <% end %>
         <% end %>
       </div>
-      
+
       <div class="mt-5"></div>
-      
+
 </header>

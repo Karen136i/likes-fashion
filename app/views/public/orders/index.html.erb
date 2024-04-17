@@ -27,36 +27,16 @@
           </td>
         
           <td>
-            <table>
-              <% order.order_details.each do |order_detail| %>
-              
-              <tbody>
-                <tr>
-                  <td class="no-border">
-                    <%= order_detail.item.name %>
-                  </td>
-                </tr>
-              </tbody>
-              
-              <% end %>
-            </table>
+            <% order.order_details.each do |order_detail| %>
+            <p ><%= order_detail.item.name %><br></p>
+            <% end %>
           </td>
+    
         
           <td>
-            <table>
-              <% order.order_details.each do |order_detail| %>
-              
-              <tbody>
-                <tr>
-                  <td class="no-border">
-                    
-                    <%= link_to 'レビュー', new_public_review_path(item_id: order_detail.item_id), class: "btn btn-danger btn-sm" %>
-                  </td>
-                </tr>
-              </tbody>
-              
+            <% order.order_details.each do |order_detail| %>
+            <p><%= link_to 'レビュー', new_public_review_path(item_id: order_detail.item_id), class: "btn btn-danger btn-sm" %><br></p>
               <% end %>
-            </table>
           </td>
           
           <td>

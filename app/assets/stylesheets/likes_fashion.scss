@@ -130,18 +130,22 @@ a {
     width: 320px; /* フィールドの幅を100%に設定 */
     height: 120px; /* フィールド内の余白を追加 */
     font-size: 16px; /* フォントサイズを調整 */
+    border-radius: 5px;
   }
 
-.custom-name-field {
+// admin/items
+.custom-field {
   width: 320px;
   padding: 5px;
   font-size: 16px;
+  border-radius: 5px;
 }
 
 .custom-price-field {
-  width: 308px;
+  width: 297px;
   padding: 5px;
   font-size: 16px;
+  border-radius: 5px;
 }
 
 .custom-category-field {
@@ -244,4 +248,8 @@ a {
 
 .navbar {
   align-items: end;
+}
+
+.lab > label {
+  margin-right: 2.0em;
 }

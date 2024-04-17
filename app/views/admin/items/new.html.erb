@@ -23,7 +23,7 @@
 
               <tr class="no-border">
                 <th class="no-border">商品名</th>
-                <td class="no-border"><%= f.text_field :name, class: 'custom-name-field' %></td>
+                <td class="no-border"><%= f.text_field :name, class: 'custom-field' %></td>
               </tr>
 
               <tr class="no-border">
@@ -34,7 +34,7 @@
               <tr class="no-border">
                 <th class="no-border">カテゴリー</th>
                 <td class="no-border">
-                  <%= f.collection_select :category_id, @categories, :id, :name, prompt: "カテゴリーを選択してください", class: 'md-2 mr-3 ' %>
+                  <%= f.collection_select :category_id, @categories, :id, :name, { prompt: "カテゴリーを選択してください" }, { class: 'custom-field' } %>
                 </td>
               </tr>
 
@@ -45,7 +45,7 @@
 
               <tr class="no-border">
                 <th class="no-border">販売ステータス</th>
-                <td class="no-border">
+                <td class="no-border lab > label">
                   <%= f.collection_radio_buttons :status, Item.statuses_i18n, :first, :last %>
                 </td>
               </tr>
