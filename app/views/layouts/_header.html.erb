@@ -3,7 +3,7 @@
 
       <!-- ロゴを左中央に配置するための要素 -->
       <div class="text-center">
-        <a class="navbar-brand p-3" href="/"><%= image_tag("Logo1.png", size: "150x150") %></a>
+        <a class="navbar-brand p-3" href="/"><%= image_tag("Logo1.png", size: "100x100") %></a>
       </div>
 
       <!--ハンバーガーのメニュー作成-->
@@ -141,10 +141,37 @@
           <% end %>
 
           </a>
-
-
         </ul>
       </div>
-    </div>
   </nav>
+  
+   <div class= "text-right mr-4">
+        <!-- 顧客も管理者もログインしていない場合の検索ボックス -->
+        <% unless admin_signed_in? || customer_signed_in? %>
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
+            <%= f.text_field :content, placeholder: "商品名を検索" %>
+            <%= f.submit "🔍" %>
+          <% end %>
+        <% end %>
+        
+        <!-- 顧客がログインしている場合の検索ボックス -->
+        <% if customer_signed_in? %>
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
+            <%= f.text_field :content, placeholder: "商品名を検索" %>
+            <%= f.submit "🔍" %>
+          <% end %>
+        <% end %>
+        
+        <% if admin_signed_in? %>
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
+            <%= f.text_field :content %>
+            <%= f.select :model, options_for_select({"Customer" => "customer", "Item" => "item"}) %>
+            <%= f.select :method, options_for_select({"完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial"}) %>
+            <%= f.submit "🔍" %>
+          <% end %>
+        <% end %>
+      </div>
+      
+      <div class="mt-5"></div>
+      
 </header>
