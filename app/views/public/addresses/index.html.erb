@@ -1,2 +1,66 @@
-<h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+<div class="container mt-3">
+  <h2 class="text-center">配送先一覧</h2>
+  
+  <%= form_with model: @address, url: public_addresses_path, method: :post do |f| %>
+  
+    <% if @address.errors.any? %>
+    <div class="alert alert-danger">
+      <%= @address.errors.count %>件のエラーが発生しました
+      <ul class="mb-0">
+        <% @address.errors.full_messages.each do |message| %>
+        <li><%= message.gsub("postal_code", "郵便番号").gsub("Address", "住所").gsub("Name", "宛名") %></li>
+       <% end %>
+      </ul>
+    </div>
+    <% end %>
+  
+
+    <div class="row justify-content-center">
+      <div style="margin-top: 50px;">
+        <div class="row">
+          <label style="width: 192px; background-color: #db7093; border-radius: 5px; padding: 8px; color: #ffffff #; text-align: center;">郵便番号</label>
+          <div><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class:"form-control", style: "margin-left: 30px;" %></div>
+        </div>
+    
+        <div class="row">
+          <label style="width: 192px; background-color: #db7093; border-radius: 5px; padding: 8px; color: #ffffff #; text-align: center;">住所</label>
+          <div><%= f.text_field :address, autofocus: true, autocomplete: "address", class:"form-control", style: "margin-left: 30px;" %></div>
+        </div>
+    
+        <div class="row">
+          <label style="width: 192px; background-color: #db7093; border-radius: 5px; padding: 8px; color: #ffffff #; text-align: center;">宛名</label>
+          <div><%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control", style: "margin-left: 30px;" %></div>
+        </div>
+        
+        <div class="row">
+           <label></label>
+          <%= f.submit "新規登録", class: "btn btn-success", style: "width: 210px; margin-left: 223px;" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  <table class="table table-bordered my-2" style="overflow: hidden; border-radius: 20px;">
+    <thead>
+      <tr>
+        <th class="table-secondary w-25" style="background-color: #db7093; color: #ffffff; text-align: center;">郵便番号</th>
+        <th class="table-secondary w-25" style="background-color: #db7093; color: #ffffff; text-align: center;">住所</th>
+        <th class="table-secondary w-25" style="background-color: #db7093; color: #ffffff; text-align: center;">宛名</th>
+        <th class="table-secondary w-25" style="background-color: #db7093; color: #ffffff; text-align: center;"></th>
+      </tr>
+      
+      <tbody>
+        <% @addresses.each do |address| %>
+        <tr>
+          <td style="background-color: #eee0ce;"><%= address.postal_code %></td>
+          <td style="background-color: #eee0ce;"><%= address.address %></td>
+          <td style="background-color: #eee0ce;"><%= address.name %></td>
+          <td style="background-color: #eee0ce; text-align: center;">
+            <%= link_to "編集する", edit_public_address_path(address), class: "btn btn-success" %>
+            <%= link_to "削除する", public_address_path(address), method: :delete, class: "btn btn-danger" %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>
