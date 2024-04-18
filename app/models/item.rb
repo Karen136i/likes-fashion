@@ -16,7 +16,20 @@ class Item < ApplicationRecord
     (price * (1 - tax_rate)).round
   end
 
-  scope :search, ->(query) {
-    where("name LIKE ?", "%#{query}%") if query.present?
-  }
+  # 商品の検索を行うメソッド
+  def self.search_for(content, method)
+    case method
+    when "perfect"
+      Item.where(name: content)
+    when "forward"
+      Item.where("name LIKE ?", "#{content}%")
+    when "backward"
+      Item.where("name LIKE ?", "%#{content}")
+    when "partial"
+      Item.where("name LIKE ?", "%#{content}%")
+    else
+      Item.none
+    end
+  end
+  # ここまで
 end

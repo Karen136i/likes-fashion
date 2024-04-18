@@ -4,7 +4,7 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   has_many :favorites, dependent: :destroy
   has_many :cart_items
   has_many :addresses
@@ -33,4 +33,24 @@ class Customer < ApplicationRecord
   def guest_customer?
     email == GUEST_USER_EMAIL
   end
+  # ここまで
+
+
+  # 顧客の検索を行うメソッド
+  def self.search_for(content, method)
+    case method
+    when "perfect"
+      Customer.where(name: content)
+    when "forward"
+      Customer.where("name LIKE ?", "#{content}%")
+    when "backward"
+      Customer.where("name LIKE ?", "%#{content}")
+    when "partial"
+      Customer.where("name LIKE ?", "%#{content}%")
+    else
+      Customer.none
+    end
+  end
+  #ここまで
+
 end

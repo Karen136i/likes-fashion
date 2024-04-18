@@ -29,7 +29,7 @@
       <p class="customer-name">
         <strong style="display: inline-block;">注文ステータス</strong>
         <%= form_with model:@order, url: admin_order_path, local: true do |f| %>
-          <%= f.select :status, ["入金待ち", "入金確認","商品準備中","発送済み"], {}, class: "status-select" %>
+          <%= f.select :status, ["入金待ち", "入金確認", "発送済み"], {}, class: "status-select" %>
           <%= f.submit "更新", class: 'btn btn-primary' %>
         <% end %>
       </p>
@@ -40,10 +40,10 @@
         <thead>
           <tr>
             <th class="active">商品名</th>
-            <th class="active">単価（）</th>
+            <th class="active">単価（税抜）</th>
             <th class="active">数量</th>
             <th class="active">小計</th>
-            <th class="active">製作ステータス</th>
+            <th class="active">発送ステータス</th>
           <tr>
         </thead>
         
@@ -51,13 +51,13 @@
       <tbody>
         <tr>
           <td><%= order_detail.item.name %></td>
-          <td>¥<%= (order_detail.price * 1.1).floor.to_s(:delimited) %></td>
+          <td>¥<%= (order_detail.price).floor.to_s(:delimited) %></td>
           <td><%= order_detail.amount %></td>
-          <td class="col-xs-2">¥<%= ((order_detail.price * order_detail.amount * 1.1).floor).to_s(:delimited) %></td>
+          <td>¥<%= ((order_detail.price * order_detail.amount).floor).to_s(:delimited) %></td>
           <td>
             <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch, local: true do |f| %>
-            <%= f.select :shipping_status, OrderDetail.shipping_statuses.keys.map { |status| [status.humanize, status] }, selected: order_detail.shipping_status %>
-            <%= f.submit "更新", class: 'btn btn-primary' %>
+              <%= f.select :shipping_status, OrderDetail.shipping_statuses.keys.map { |status| [status.humanize, status] }, selected: order_detail.shipping_status %>
+              <%= f.submit "更新", class: 'btn btn-primary' %>
             <% end %>
           </td>
         </tr>
@@ -66,11 +66,11 @@
       </table>
     </div>
     
-    <!--<div class="col-xs-4">-->
-    <div class="text-right">
+    <% total_price_with_tax = @order_details.sum { |order_detail| order_detail.price * order_detail.amount } * 1.1 %>
+   <div class="text-right">
       <p style="margin-right: 100px;">
-        <strong>商品合計　</strong>
-        ￥<%= (@order.total_payment - @order.shipping_cost).to_s(:delimited)%>
+        <strong>商品合計(税込)　</strong>
+        ￥<%= total_price_with_tax.floor.to_s(:delimited) %>
       </p>
     </div>
     
@@ -81,10 +81,11 @@
       </p>
      </div>
      
+    <% total_payment = total_price_with_tax + @order.shipping_cost %>
     <div class="text-right">
       <p style="margin-right: 100px;">
-         <strong>請求金額合計　</strong>
-         ¥<%= @order.total_payment.to_s(:delimited) %>
+        <strong>請求金額合計　</strong>
+        ¥<%= total_payment.floor.to_s(:delimited) %>
       </p>
     </div>
   </div>

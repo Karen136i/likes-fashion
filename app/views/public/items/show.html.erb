@@ -31,7 +31,7 @@
             <tr>
               <th style="border: none;">販売ステータス:</th>
               <td style="border: none;">
-                <p style="<%= 'color:green;' if @item.status == 'on_sale' %> <%= 'color:gray;' if @item.status == 'not_on_sale' %> <%= 'color:blue;' if @item.status == 'back_orderd' %>">
+                <p style="<%= 'color:green;' if @item.status == 'on_sale' %> <%= 'color:gray;' if @item.status == 'not_on_sale' %> <%= 'color:#db7093;' if @item.status == 'back_ordered' %>">
                 <%= @item.status_i18n %>
                 </p>
               </td>

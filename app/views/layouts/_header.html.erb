@@ -161,7 +161,8 @@
             <%= f.submit "🔍" %>
           <% end %>
         <% end %>
-
+        
+        <!--顧客がログインしている場合の検索ボックス-->
         <% if admin_signed_in? %>
           <%= form_with url: search_path, method: :get, local: true do |f| %>
             <%= f.text_field :content %>
@@ -170,6 +171,7 @@
             <%= f.submit "🔍" %>
           <% end %>
         <% end %>
+        
       </div>
 
       <div class="mt-5"></div>
