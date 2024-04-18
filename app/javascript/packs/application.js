@@ -16,3 +16,6 @@ import '../stylesheets/application';
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// レビュー機能実装
+window.$ = window.jQuery = require('jquery');

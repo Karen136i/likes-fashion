@@ -1,7 +1,7 @@
 class Public::ItemsController < ApplicationController
   
   def index
-    @items = Item.page(params[:page]).per(12)
+    @items = Item.where(status:"on_sale").page(params[:page]).per(12)
     @categories = Category.all
     @total_items = @items.total_count
   end

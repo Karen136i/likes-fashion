@@ -167,7 +167,7 @@
           <%= form_with url: search_path, method: :get, local: true do |f| %>
             <%= f.text_field :content %>
             <%= f.select :model, options_for_select({"Customer" => "customer", "Item" => "item"}) %>
-            <%= f.select :method, options_for_select({"完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial"}) %>
+            <%= f.select :method, options_for_select({ "部分一致" => "partial"}) %>
             <%= f.submit "🔍" %>
           <% end %>
         <% end %>

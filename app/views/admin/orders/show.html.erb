@@ -25,10 +25,11 @@
       </p>
     </div>
       
-    <div>
+    <div style="display: inline-flex;">
       <p class="customer-name">
-        <strong style="display: inline-block;">注文ステータス</strong>
+        <strong>注文ステータス</strong>
         <%= form_with model:@order, url: admin_order_path, local: true do |f| %>
+          <%= @order.status %>
           <%= f.select :status, ["入金待ち", "入金確認", "発送済み"], {}, class: "status-select" %>
           <%= f.submit "更新", class: 'btn btn-primary' %>
         <% end %>

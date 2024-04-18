@@ -36,21 +36,28 @@ class Customer < ApplicationRecord
   # ここまで
 
 
+  
   # 顧客の検索を行うメソッド
   def self.search_for(content, method)
     case method
     when "perfect"
-      Customer.where(name: content)
+      # 完全一致
+      Customer.where("CONCAT(last_name, first_name) = ?", content)
     when "forward"
-      Customer.where("name LIKE ?", "#{content}%")
+      # 前方一致
+      Customer.where("CONCAT(last_name, first_name) LIKE ?", "#{content}%")
     when "backward"
-      Customer.where("name LIKE ?", "%#{content}")
+      # 後方一致
+      Customer.where("CONCAT(last_name, first_name) LIKE ?", "%#{content}")
     when "partial"
-      Customer.where("name LIKE ?", "%#{content}%")
+      # 部分一致
+      Customer.where("CONCAT(last_name, first_name) LIKE ?", "%#{content}%")
     else
       Customer.none
     end
   end
+
+
   #ここまで
 
 end

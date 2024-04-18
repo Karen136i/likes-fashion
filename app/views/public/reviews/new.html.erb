@@ -1,3 +1,39 @@
-<h1>Public::Reviews#new</h1>
-<p>Find me in app/views/public/reviews/new.html.erb</p>
-<p><%= @item.name %></p>
+<div class="col-sm-12 col-md-12 col-lg-12 px-5 px-sm-0 mx-auto align-self-center text-center" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8">
+        <div class="table-responsive">
+          <%= form_with model: @review, url: public_reviews_path, method: :post do |f| %>
+          <table class="table table-hover table-inverse">
+
+
+              <h3 class="text-center">レビュー投稿</h3>
+
+              <div style="margin-top: 50px;">
+                <%= f.file_field :image, accept: "image/*", class: "btn btn-outline-secondary" %>
+              </div>
+              
+              <div style="margin-top: 30px;">
+              ニックネーム
+              <%= f.text_field :name, class: "form-control-2" %>
+              </div>
+              
+              <div style="margin-top: 30px;">
+              <p>商品名：<%= @item.name %></p>
+              </div>
+              
+              <div style="margin-top: 30px;">
+              <p>コメント：<%= f.text_area :introduction, class: 'custom-textarea-field' %></p>
+              </div>
+              
+              <div style="margin-top: 30px;">
+              <%= f.submit '新規登録', class: "btn btn-pink custom-btn" %>
+              </div>
+              
+          </table>    
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
