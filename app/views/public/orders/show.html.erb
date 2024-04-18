@@ -42,9 +42,9 @@
             <% @order_details.each do |order_detail| %>
               <tr>
                 <td><%= order_detail.item.name %></td>
-                <td>￥<%= number_with_delimiter(order_detail.item.price, delimiter: ',') %></td>
+                <td>￥<%= number_with_delimiter(order_detail.price, delimiter: ',') %></td>
                 <td><%= order_detail.amount %></td>
-                <td>￥<%= number_with_delimiter(order_detail.subtotal, delimiter: ',') %></td>
+                <td>￥<%= number_with_delimiter(order_detail.price * order_detail.amount, delimiter: ',') %></td>
               </tr>
             <% end %>
           </tbody>
@@ -57,21 +57,20 @@
           <tr>
             <td class="active">商品合計金額(税込)</td>
             <td>
-              <% @total_payment = 0 %>
-              <% @order.order_details.each do |order_detail| %>
-              <% subtotal = (order_detail.item.price * order_detail.amount) %>
-              <% @total_payment += (subtotal * 1.1).floor.to_i %>
-              <% end %>
-              <%= number_to_currency(@total_payment, unit: '￥', format: "%u%n") %>
+              <% subtotal = @order_details.sum { |order_detail| order_detail.price * order_detail.amount } %>
+              <% total_with_tax = (subtotal * 1.1).floor.to_i %>
+              <%= number_to_currency(total_with_tax, unit: '￥', format: "%u%n") %>
             </td>
           </tr>
+          
           <tr>
             <td class="active">配送料</td>
             <td>¥<%= @order.shipping_cost %></td>
           </tr>
+          
           <tr>
             <td class="active"><b>ご請求額(税込)</b></td>
-            <td><%= number_to_currency(@total_payment + 800, unit: '￥', format: "%u%n") %></td>
+            <td><%= number_to_currency(total_with_tax + @order.shipping_cost, unit: '￥', format: "%u%n") %></td>
           </tr>
         </table>
       </div>

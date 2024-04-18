@@ -145,7 +145,7 @@
       </div>
   </nav>
 
-   <div class= "text-right mr-4 pb-3">
+  <div class= "text-right mr-4 pb-3">
         <!-- 顧客も管理者もログインしていない場合の検索ボックス -->
         <% unless admin_signed_in? || customer_signed_in? %>
           <%= form_with url: search_path, method: :get, local: true do |f| %>
