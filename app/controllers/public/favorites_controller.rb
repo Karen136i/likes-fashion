@@ -2,6 +2,7 @@ class Public::FavoritesController < ApplicationController
   before_action :authenticate_customer! #アクセス制限
   
   def index
+    @favorites = current_customer.favorites.includes(:item)
   end
   
   def create
