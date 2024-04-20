@@ -3,35 +3,70 @@
     <div class="row justify-content-center">
       <div class="col-xl-8">
         <div class="table-responsive">
-          <%= form_with model: @review, url: public_reviews_path, method: :post do |f| %>
+         <%= form_with model: @review, url: public_reviews_path, method: :post do |f| %>
           <table class="table table-hover table-inverse">
 
+            <thead>
+              <tr>
+                <th colspan="2" class="no-border">
+                  <h3 class="text-center">レビュー投稿</h3>
+                </th>
+              </tr>
+            </thead>
+            
+              <tr class="no-border">
+                <th class="no-border">商品画像</th>
+                <td class="no-border">
+                  <%= f.file_field :image, accept: "image/*", class: "btn btn-outline-secondary" %>
+                </td>
+              </tr>
 
-              <h3 class="text-center">レビュー投稿</h3>
+              <tr class="no-border">
+                <th class="no-border">商品名</th>
+                <td class="no-border"><%= @item.name %></td>
+              </tr>
 
-              <div style="margin-top: 50px;">
-                <%= f.file_field :image, accept: "image/*", class: "btn btn-outline-secondary" %>
-              </div>
-              
-              <div style="margin-top: 30px;">
-              ニックネーム
-              <%= f.text_field :name, class: "form-control-2" %>
-              </div>
-              
-              <div style="margin-top: 30px;">
-              <p>商品名：<%= @item.name %></p>
-              </div>
-              
-              <div style="margin-top: 30px;">
-              <p>コメント：<%= f.text_area :introduction, class: 'custom-textarea-field' %></p>
-              </div>
-              
-              <div style="margin-top: 30px;">
-              <%= f.submit '新規登録', class: "btn btn-pink custom-btn" %>
-              </div>
-              
-          </table>    
-          <% end %>
+              <tr class="no-border">
+                <th class="no-border">ニックネーム</th>
+                <td class="no-border"><%= f.text_field :name, class: 'custom-field' %></td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border">星評価</th>
+                <td class="no-border">
+                  <div class="form-group row" id="star">
+                    <%= f.hidden_field :star, id: :review_star %>
+                　</div>
+                  <script>
+                　　　　$('#star').empty();
+                  $('#star').raty({
+                    size     : 36,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn : '<%= asset_path('star-on.png') %>',
+                 　 　　　scoreName  'item[star]',
+                    half: false,
+                  });
+                  </script>
+                </td>
+              </tr>
+
+
+              <tr class="no-border">
+                <th class="no-border">コメント</th>
+                <td class="no-border"><%= f.text_area :introduction, class: 'custom-textarea-field' %></td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border"></th>
+                <td class="text-center no-border">
+                <%= f.submit '新規登録', class: "btn btn-pink custom-btn" %>
+                </td>
+              </tr>
+
+
+           <% end %>
+
+          </table>
         </div>
       </div>
     </div>
