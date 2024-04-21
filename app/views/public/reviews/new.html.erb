@@ -14,39 +14,41 @@
               </tr>
             </thead>
             
-              <tr class="no-border">
-                <th class="no-border">商品画像</th>
-                <td class="no-border">
-                  <%= f.file_field :image, accept: "image/*", class: "btn btn-outline-secondary" %>
-                </td>
-              </tr>
-
+            
+            
               <tr class="no-border">
                 <th class="no-border">商品名</th>
-                <td class="no-border"><%= @item.name %></td>
+                <td class="no-border" style="font^size:20px;"><%= @item.name %></td>
               </tr>
 
               <tr class="no-border">
                 <th class="no-border">ニックネーム</th>
                 <td class="no-border"><%= f.text_field :name, class: 'custom-field' %></td>
               </tr>
-
+              
+              <!--レビュー機能の実装-->
               <tr class="no-border">
                 <th class="no-border">星評価</th>
                 <td class="no-border">
-                  <div class="form-group row" id="star">
-                    <%= f.hidden_field :star, id: :review_star %>
-                　</div>
+                  <div id="post_raty"></div>
                   <script>
-                　　　　$('#star').empty();
-                  $('#star').raty({
-                    size     : 36,
-                    starOff:  '<%= asset_path('star-off.png') %>',
-                    starOn : '<%= asset_path('star-on.png') %>',
-                 　 　　　scoreName  'item[star]',
-                    half: false,
-                  });
+                    // 星評価の設定
+                    $('#post_raty').raty({
+                      // 星の画像パスの設定
+                      starOn: 'star-on.png',
+                      starOff: 'star-off.png',
+                      starHalf: 'star-half.png',
+                      // 星の最大数
+                      number: 5,
+                      // レビューコメントを入力できるようにする
+                      hints: ['1', '2', '3', '4', '5'],
+                      // クリックで評価を変更できるようにする
+                      click: function(score, evt) {
+                        alert('評価: ' + score);
+                      }
+                    });
                   </script>
+                  </div>
                 </td>
               </tr>
 

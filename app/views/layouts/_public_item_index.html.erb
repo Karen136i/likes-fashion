@@ -1,72 +1,49 @@
-<div class="row">
-  <!-- 左ののカテゴリー一覧 -->
-  <div class="col-2 d-flex justify-content-center">
-    <div class="container" style="margin-top: 150px;">
-      <div class="categories">
-        <h4 class="text-center">カテゴリー</h4>
-        <% categories.each do |category| %>
-          <div class="category text-center", style= "font-size: 18px; font-color: #ffc0cb;" >
-            <%= link_to public_category_path(category) do %>
-              <%= category.name %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+<div class="col-12">
+  <div class="container">
+    <div class="row justify-content-center mt-2">
+      <h1 class="text-center" style="margin-bottom: 50px;">items</h1>
+      <h4 class="text-center mt-3">　(全<%= total_items %>件)</h4>
     </div>
   </div>
 
-  <div class="col-10">
-    <div class="container">
-      <div class="row justify-content-center mt-2">
-        <h1 class="text-center" style="margin-bottom: 50px;">items</h1>
-        <h4 class="text-center mt-3">　(全<%= total_items %>件)</h4>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row row-cols-1 row-cols-md-3">
-        <% items.each do |item| %>
-        <div class="col mb-4">
-          <div class="card h-200">
-            <% if item.image.attached? %>
-              <%= link_to public_item_path(item) do %>
-              <%= image_tag url_for(item.image), class: 'card-img-top' %>
-              <% end %>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3">
+      <% items.each do |item| %>
+      <div class="col mb-4">
+        <div class="card h-200">
+          <% if item.image.attached? %>
+            <%= link_to public_item_path(item) do %>
+            <%= image_tag url_for(item.image), class: 'card-img-top' %>
             <% end %>
+          <% end %>
 
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to item.name, public_item_path(item) %></h5>
-              <div class="horizontal-links">
-                <div class="card-text">¥<%= number_with_delimiter(item.price_without_tax) %></div>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to item.name, public_item_path(item) %></h5>
+            <div class="horizontal-links">
+              <div class="card-text">¥<%= number_with_delimiter(item.price_without_tax) %></div>
 
-                <div class="card-text"><%= link_to '💬 reviews', public_reviews_path %></div>
+              <div class="card-text"><%= link_to '💬 reviews', public_reviews_path %></div>
 
-                <!--お気に入りの実装途中-->
-                <div class="card-text">
-                  <% if Favorite.favorited_by?(current_customer, item) %>
-                    <%= link_to public_favorites_path(item_id: item.id), method: :delete, remote: true do %>
-                    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-                    <%= item.favorites.count %>
-                    <% end %>
-                  <% else %>
-                    <%= link_to public_favorites_path(item_id: item.id), method: :post, remote: true do %>
-                    <i class="fa-regular fa-heart"></i>
-                    <%= item.favorites.count %>
-                    <% end %>
+              <!--お気に入りの実装途中-->
+              <div class="card-text">
+                <% if Favorite.favorited_by?(current_customer, item) %>
+                  <%= link_to public_favorites_path(item_id: item.id), method: :delete, remote: true do %>
+                  <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                  <%= item.favorites.count %>
                   <% end %>
-                </div>
-
+                <% else %>
+                  <%= link_to public_favorites_path(item_id: item.id), method: :post, remote: true do %>
+                  <i class="fa-regular fa-heart"></i>
+                  <%= item.favorites.count %>
+                  <% end %>
+                <% end %>
               </div>
+
             </div>
           </div>
         </div>
-        <% end %>
       </div>
+      <% end %>
     </div>
-
-    <div class="d-flex justify-content-center" style="margin-top: 20px; margin-bottom: 20px;">
-      <%= paginate items %>
-    </div>
-
   </div>
 </div>

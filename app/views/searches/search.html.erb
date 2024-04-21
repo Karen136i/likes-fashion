@@ -1,29 +1,19 @@
+<h2>検索結果: "<%= @content %>"</h2>
 
-<!-- 顧客も管理者もログインしていない場合　検索結果の表示 -->
-<% unless admin_signed_in? || customer_signed_in? %>
-  <%= form_with url: search_path, method: :get, local: true do |f| %>
-  <h3>"<%= @content %>の検索結果"</h3>
-  <%= render 'layouts/public_item_index', items: @records, categories: @categories, total_items: @total_items %>
-  <% end %>
-<% end %>
-
-<!-- 顧客がログインしている場合　検索結果の表示 -->
-<% if customer_signed_in? %>
-  <%= form_with url: search_path, method: :get, local: true do |f| %>
-  <h3>"<%= @content %>の検索結果"</h3>
-  <%= render 'layouts/public_item_index', items: @records, categories: @categories, total_items: @total_items %>
-  <% end %>
-<% end %>
-
-<!--顧客がログインしている場合　検索結果の表示-->
 <% if admin_signed_in? %>
-  <%= form_with url: search_path, method: :get, local: true do |f| %>
-    <% if @model == 'customer' %>
-      <h3>Customers search for "<%= @content %>の検索結果"</h3>
-      <%= render 'layouts/admin_customer_index', customers: @records %>
-    <% elsif @model == 'item' %>
-      <h3>Items search for "<%= @content %>の検索結果"</h3>
-      <%= render 'layouts/admin_item_index', items: @records, categories: @categories, total_items: @total_items %>
-    <% end %>
+  <!-- 管理者側の検索結果 -->
+  <% if @customers %>
+    <%= render 'layouts/admin_customer_index', customers: @customers %>
+  <% elsif @items %>
+    <%= render 'layouts/admin_item_index', items: @items %>
+  <% else %>
+    <p>該当する結果がありません。</p>
+  <% end %>
+<% else %>
+  <!-- ユーザー側の検索結果 -->
+  <% if @items.present? %>
+    <%= render 'layouts/public_item_index', items: @items, total_items: @total_items %>
+  <% else %>
+    <p>該当する商品がありません。</p>
   <% end %>
 <% end %>

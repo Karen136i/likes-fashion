@@ -1,46 +1,35 @@
 <div class='container' style="margin-top: 100px; margin-bottom: 100px;">
   <div class='row justify-content-center'>
     <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto align-self-center text-start">
-      <h3 class="text-center"><%= @item.name %>のレビュー</h3>
+      <% if @item.present? %>
+        <h3 class="text-center"><%= @item.name %>のレビュー</h3>
 
-      <div class="row">
-        <div class="col-md-6">
-          <table class="table" style="border: none;">
-            <tr>
-              <td rowspan="5" style="border: none;" class="text-start">
-                <div class="text-center mb-3">
-                  <%= image_tag @item.image, size: "100x100", class: "img-fluid" %>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <!-- 商品詳細 -->
-        <div class="col-md-6">
-          <table class="table" style="border: none;">
-            
-            <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;">商品名</th>
-              <td style="border: none;"><%= @item.name %></td>
-            </tr>
-            
-            <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;">商品説明</th>
-              <td style="border: none; white-space: normal;"><%= @review.introduction %></td>
-            </tr>
-          </table>
-
-          <div class="text-center">
-            <%= link_to '編集する', edit_admin_item_path(@item), class: "btn btn-success" %>
-            <div style="display: inline-block; width: 60px;"></div>
-            <%= link_to "削除する", admin_item_path(@item), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+        <div class="row">
+          <div class="col-md-6">
+            <table class="table" style="border: none;">
+              <tr>
+                <td rowspan="5" style="border: none;" class="text-start">
+                  <div class="text-center mb-3">
+                    <%= image_tag @item.image, size: "100x100", class: "img-fluid" %>
+                  </div>
+                </td>
+              </tr>
+            </table>
           </div>
-        </div>
-      </div>
+          <!-- 商品詳細 -->
+          <div class="col-md-6">
+            <table class="table" style="border: none;">
+              
+              <tr>
+                <th class="text-end" style="border: none; white-space: nowrap;">商品名</th>
+                <td style="border: none;"><%= @item.name %></td>
+              </tr>
+              
+              <tr>
+                <th class="text-end" style="border: none; white-space: nowrap;">商品説明</th>
+                <td style="border: none; white-space: normal;"><%= @review.introduction %></td>
+              </tr>
+            </table>
     </div>
   </div>
 </div>
-         
-
-<h1></h1>
-
