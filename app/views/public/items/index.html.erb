@@ -39,7 +39,10 @@
               <div class="horizontal-links">
                 <div class="card-text">¥<%= number_with_delimiter(item.price_without_tax) %></div>
 
-                <div class="card-text"><%= link_to '💬 reviews', public_reviews_path(@review) %></div>
+                <div class="card-text">
+                  <%= link_to '💬', public_reviews_path(item_id: item.id) %>
+                  <%= item.reviews.count %>
+                </div>
 
                 <div class="card-text">
                   <% if Favorite.favorited_by?(current_customer, item) %>

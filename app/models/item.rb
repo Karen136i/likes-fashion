@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   belongs_to :category
   has_many :cart_items
   has_many :favorites, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   validates :category, presence: { message: "を選択してください" }
   validates :price, presence: true

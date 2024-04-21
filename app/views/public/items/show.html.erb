@@ -56,7 +56,8 @@
               </th>
 
               <th style="border: none; padding-right: 50px;">
-                <%= link_to '💬レビュー', public_review_path(review) %>
+                <%= link_to '💬', public_reviews_path(item_id: @item.id) %>
+                <%= @item.reviews.count %>
               </th>
             </tr>
 

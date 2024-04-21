@@ -1,0 +1,55 @@
+<div class='container' style="margin-top: 50px; margin-bottom: 100px;">
+  <div class='row justify-content-center'>
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto align-self-center text-start">
+      <h3 class="text-center"><%= @item.name %>のレビュー</h3>
+        <% @reviews.each do |review| %>
+
+        <div style="margin-top: 50px;" class="text-center">
+
+          <!-- レビュー一覧 -->
+          <div>
+            ニックネーム ：<span style="margin-right: 300px;"><%= review.nickname %></span>
+            <%= review.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d ") %>
+          </div>
+
+          <div style="margin-top: 20px; margin-right: 379px;">
+            評価：
+            <span class="star-rating">
+              <% 5.times do |i| %>
+                <% if i < review.star %>
+                  <span class="star">&#9733;</span> <!-- filled star -->
+                <% else %>
+                  <span class="star">&#9734;</span> <!-- empty star -->
+                <% end %>
+              <% end %>
+            </span>
+          </div>
+
+          <div style="margin-top: 20px; ">
+            コメント ：<%= review.review_content %>
+
+            <!--レビューに対するお気に入り機能実装-->
+              <!--<!% if ReviewFavorite.favorited_by?(current_customer, review) %>-->
+              <!--  <!%= link_to public_review_favorites_path(review_id: review.id), method: :delete, remote: true, class: "favorite-link", data: { review_id: review.id } do %>-->
+              <!--    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>-->
+              <!--    <span class="favorite-count"><!%= item.favorites.count %></span>-->
+              <!--  <!% end %>-->
+              <!--<!% else %>-->
+              <!--  <!%= link_to public_review_favorites_path(review_id: review.id), method: :post, remote: true, class: "favorite-link", data: { review_id: review.id } do %>-->
+              <!--    <i class="fa-regular fa-heart"></i>-->
+              <!--    <span class="favorite-count"><!%= review.favorites.count %></span>-->
+              <!--  <!% end %>-->
+              <!--<!% end %>-->
+          </div>
+
+        </div>
+
+       <% end %>
+       
+      <!--<div class="d-flex justify-content-center" style="margin-top: 20px; margin-bottom: 20px;">-->
+      <!--  <!%= paginate @reviews %>-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>
+

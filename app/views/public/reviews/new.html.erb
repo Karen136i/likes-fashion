@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-xl-8">
         <div class="table-responsive">
-         <%= form_with model: @review, url: public_reviews_path, method: :post do |f| %>
+         <%= form_with model: @review, url: public_reviews_path(item_id: @item.id), method: :post do |f| %>
           <table class="table table-hover table-inverse">
 
             <thead>
@@ -23,7 +23,7 @@
 
               <tr class="no-border">
                 <th class="no-border">ニックネーム</th>
-                <td class="no-border"><%= f.text_field :name, class: 'custom-field' %></td>
+                <td class="no-border"><%= f.text_field :nickname, class: 'custom-field' %></td>
               </tr>
 
               <!--レビュー機能の実装-->
@@ -51,7 +51,7 @@
 
               <tr class="no-border">
                 <th class="no-border">コメント</th>
-                <td class="no-border"><%= f.text_area :introduction, class: 'custom-textarea-field' %></td>
+                <td class="no-border"><%= f.text_area :review_content, class: 'custom-textarea-field' %></td>
               </tr>
 
               <tr class="no-border">

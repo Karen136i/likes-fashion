@@ -32,5 +32,5 @@ class Admin::OrdersController < ApplicationController
   def update_order_details_shipping_status
     @order.order_details.update_all(shipping_status: :"商品準備中")
   end
-  
+
 end

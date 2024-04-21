@@ -1,7 +1,7 @@
 <div class='container' style="margin-top: 100px; margin-bottom: 100px;">
   <div class='row justify-content-center'>
     <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto align-self-center text-start">
-      <h3 class="text-center"><%= @review.name %>のレビュー</h3>
+      <h3 class="text-center"><%= @review.nickname %>のレビュー</h3>
 
       <div class="row">
         <div class="col-md-6">
@@ -30,7 +30,7 @@
 
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">コメント</th>
-              <td style="border: none; white-space: normal;"><%= @review.introduction %></td>
+              <td style="border: none; white-space: normal;"><%= @review.review_content %></td>
             </tr>
           </table>
         </div>
