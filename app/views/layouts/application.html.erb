@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- jQueryのCDNを読み込む -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <!-- jQuery RatyのCDNを読み込む -->
-  　<script src="https://cdnjs.cloudflare.com/ajax/libs/raty/2.9.0/jquery.raty.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raty/2.9.0/jquery.raty.min.js"></script>
     <script src="https://kit.fontawesome.com/e5fd4ead5a.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-     
+
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> <!--Bootstrap導入-->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
     <!--CSSでしかレイアウト調整できなかった場合はこれ使う-->
     <%= stylesheet_link_tag 'likes_fashion', media: 'all' %>
   </head>
@@ -22,15 +24,15 @@
 
   <body>
     <%= render 'layouts/header' %>
-    
+
     <main>
       <% flash.each do |message_type, message| %>
         <div class="flash-message <%= message_type %>"><%= message %></div>
       <% end %>
     <%= yield %>
     </main>
-    
-    
+
+
     <%= render 'layouts/footer' %>
   </body>
 </html>

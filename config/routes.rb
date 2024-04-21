@@ -24,16 +24,18 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update] 
     resources :categories, only: [:index, :create, :edit, :update, :destroy]
     resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :reviews, only: [:index, :create, :show, :destroy]
     resources :sessions, only: [:new, :create, :destroy]
     resources :homes, only: [:top]
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
+    
   end
 
   namespace :public do
     resources :items, only: [:index, :show]
        resource :favorites, only: [:create, :destroy]
     resources :favorites, only: [:index]
-    resources :reviews, only: [:new, :show, :update, :create, :destroy]
+    resources :reviews, only: [:index, :new, :show, :update, :create, :destroy]
     resources :cart_items, only: [:index, :update, :destroy, :create] do
       get 'cart_items', to: 'cart_items#index'
       post 'cart_items', to: 'cart_items#create' # 追加: cart_items#createを処理するルートを追加

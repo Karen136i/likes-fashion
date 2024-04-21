@@ -13,9 +13,9 @@
                 </th>
               </tr>
             </thead>
-            
-            
-            
+
+
+
               <tr class="no-border">
                 <th class="no-border">商品名</th>
                 <td class="no-border" style="font^size:20px;"><%= @item.name %></td>
@@ -25,30 +25,26 @@
                 <th class="no-border">ニックネーム</th>
                 <td class="no-border"><%= f.text_field :name, class: 'custom-field' %></td>
               </tr>
-              
+
               <!--レビュー機能の実装-->
               <tr class="no-border">
                 <th class="no-border">星評価</th>
                 <td class="no-border">
                   <div id="post_raty"></div>
+                  <input type="hidden" name="review[star]" id="review_star">
                   <script>
-                    // 星評価の設定
                     $('#post_raty').raty({
-                      // 星の画像パスの設定
-                      starOn: 'star-on.png',
-                      starOff: 'star-off.png',
-                      starHalf: 'star-half.png',
-                      // 星の最大数
+                      starOn: "<%= asset_path('star-on.png') %>",
+                      starOff: "<%= asset_path('star-off.png') %>",
+                      starHalf: "<%= asset_path('star-half.png') %>",
                       number: 5,
-                      // レビューコメントを入力できるようにする
                       hints: ['1', '2', '3', '4', '5'],
-                      // クリックで評価を変更できるようにする
                       click: function(score, evt) {
+                        $('#review_star').val(score);
                         alert('評価: ' + score);
                       }
                     });
                   </script>
-                  </div>
                 </td>
               </tr>
 

@@ -17,11 +17,13 @@ class Public::ReviewsController < ApplicationController
   end 
 
   def show
+    @review = Review.find(params[:id])
   end
   
   private
   
   def review_params
     params.require(:review).permit(:name, :introduction, :star)
-  end 
+  end
+  
 end
