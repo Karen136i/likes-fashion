@@ -43,9 +43,14 @@ class Admin::ItemsController < ApplicationController
   end
 
   def destroy
-  item = Item.find(params[:id])
-  item.destroy
-  redirect_to admin_items_path
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to admin_items_path
+  end
+  
+  def reviews
+    @item = Item.find(params[:id])
+    @reviews = @item.reviews.includes(:customer).page(params[:page]).per(10)
   end
 
   private

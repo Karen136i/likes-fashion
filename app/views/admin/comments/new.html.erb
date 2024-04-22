@@ -1,22 +1,43 @@
-
 <div class="col-sm-12 col-md-12 col-lg-12 px-5 px-sm-0 mx-auto align-self-center text-center" style="margin-top: 50px; margin-bottom: 50px;">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-8">
         <div class="table-responsive">
          <%= form_with model: @comment, url: admin_review_comments_path(review_id: @review.id), method: :post, local: true do |f| %>
-          <table class="table table-hover table-inverse">
 
-            <thead>
-              <tr>
-                <th colspan="2" class="no-border">
-                  <h3 class="text-center">レビューのお礼コメント</h3>
-                </th>
-              </tr>
-            </thead>
-            
+            <% if @comment.errors.any? %>
+              <div class="alert alert-danger">
+                <ul>
+                  <% @comment.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <table class="table table-hover table-inverse">
+
+              <thead>
+                <tr>
+                  <th colspan="2" class="no-border">
+                    <h3 class="text-center" style="margin-bottom: 30px;">レビューのお礼コメント</h3>
+                  </th>
+                </tr>
+              </thead>
+
               <tr class="no-border">
-                <th class="no-border"><%= @review.nickname %>
+                <th class="no-border text-left">ニックネーム <%= @review.nickname %></th>
+                <td class="no-border text-right"><%= @review.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d ") %></td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border text-left">商品名</th>
+                <td class="no-border" style="font^size:20px;"><%= @item.name %></td>
+              </tr>
+
+              <tr class="no-border">
+                <th class="no-border text-left">評価</th>
+                <td class="no-border" style="font^size:20px;">
                   <span class="star-rating">
                     <% 5.times do |i| %>
                       <% if i < @review.star %>
@@ -25,25 +46,18 @@
                         <span class="star">&#9734;</span> <!-- empty star -->
                       <% end %>
                     <% end %>
-                  </span>
-                </th>
-                <td class="no-border"><%= @review.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d ") %></td>
-              </tr>
-              
-              <tr class="no-border">
-                <th class="no-border">商品名</th>
-                <td class="no-border" style="font^size:20px;"><%= @item.name %></td>
+                </span>
+                </td>
               </tr>
 
-
               <tr class="no-border">
-                <th class="no-border">コメント</th>
+                <th class="no-border text-left">コメント</th>
                 <td class="no-border"><%= @review.review_content %>
               </tr>
-              
+
               <tr class="no-border">
                 <th class="no-border"></th>
-                <td class="no-border"><%= f.text_area :review_content, class: 'custom-textarea-field' %></td>
+                <td class="no-border"><%= f.text_area :content, class: 'custom-textarea-field-1' %></td>
               </tr>
 
               <tr class="no-border">

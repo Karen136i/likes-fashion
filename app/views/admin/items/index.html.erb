@@ -2,61 +2,62 @@
   <div class="d-flex justify-content-around">
     <h2 style="margin-left: 230px;">items</h2>
     <%= link_to '+', new_admin_item_path, class: "btn btn-pink-1" %>
-    </div>
-    <div style="margin-top: 5px; margin-bottom: 5px;"></div>
+  </div>
 
-    <div>
-    <table class='table table-hover table-inverse'>
+  <div style="margin-top: 5px; margin-bottom: 5px;"></div>
 
-      <thead>
+  <div>
+  <table class='table table-hover table-inverse'>
+
+    <thead>
+      <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>カテゴリー</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @items.each do|item| %>
         <tr>
-          <th>商品ID</th>
-          <th>商品名</th>
-          <th>税抜価格</th>
-          <th>カテゴリー</th>
-          <th>ステータス</th>
+          <td>
+            <%= item.id %>
+          </td>
+
+          <td>
+            <%= link_to admin_item_path(item) do %>
+            <%= item.name %>
+            <% end %>
+          </td>
+
+          <td>
+            <%= number_with_delimiter(item.price) %>
+          </td>
+
+          <td>
+            <% if item.category.present? %>
+              <%= item.category.name %>
+            <% else %>
+              カテゴリー未設定
+            <% end %>
+          </td>
+
+          <td style="<%= 'color:green;' if item.status == 'on_sale' %> <%= 'color:gray;' if item.status == 'not_on_sale' %> <%= 'color:#db7093;' if item.status == 'back_ordered' %>">
+           <%= item.status_i18n %>
+          </td>
+
         </tr>
-      </thead>
 
-      <tbody>
-        <% @items.each do|item| %>
-          <tr>
-            <td>
-              <%= item.id %>
-            </td>
+      <% end %>
+    </tbody>
 
-            <td>
-              <%= link_to admin_item_path(item) do %>
-              <%= item.name %>
-              <% end %>
-            </td>
+  </table>
+  </div>
 
-            <td>
-              <%= number_with_delimiter(item.price) %>
-            </td>
-
-            <td>
-              <% if item.category.present? %>
-                <%= item.category.name %>
-              <% else %>
-                カテゴリー未設定
-              <% end %>
-            </td>
-
-            <td style="<%= 'color:green;' if item.status == 'on_sale' %> <%= 'color:gray;' if item.status == 'not_on_sale' %> <%= 'color:#db7093;' if item.status == 'back_ordered' %>">
-             <%= item.status_i18n %>
-            </td>
-
-          </tr>
-
-        <% end %>
-      </tbody>
-     </div>
-
-    </table>
-
-    <div class="d-flex justify-content-center" style="margin-top: 50px;">
-      <%= paginate @items %>
-    </div>
+  <div class="d-flex justify-content-center" style="margin-top: 50px;">
+    <%= paginate @items %>
+  </div>
 
 </div>

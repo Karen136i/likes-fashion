@@ -23,13 +23,15 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :categories, only: [:index, :create, :edit, :update, :destroy]
-    resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :reviews, only: [:index, :create, :show, :destroy] do 
-      resources :comments,only:[:new, :create]
+    resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+      resources :reviews, only: [:show]  # 商品ごとのレビュー詳細ページ
+    end
+      resources :reviews, only: [:index, :create, :show, :destroy] do 
+      resources :comments,only:[:new, :create, :edit, :update, :destroy]
     end
     resources :sessions, only: [:new, :create, :destroy]
     resources :homes, only: [:top]
-    resources :comments, only: [:edit, :update, :destroy]
+    resources :comments, only: []
 
   end
 

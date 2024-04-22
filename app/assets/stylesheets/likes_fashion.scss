@@ -132,6 +132,13 @@ a {
     font-size: 16px; /* フォントサイズを調整 */
     border-radius: 5px;
   }
+  
+  .custom-textarea-field-1 {
+    width: 400px; /* フィールドの幅を100%に設定 */
+    height: 180px; /* フィールド内の余白を追加 */
+    font-size: 16px; /* フォントサイズを調整 */
+    border-radius: 5px;
+  }
 
 // admin/items
 .custom-field {
