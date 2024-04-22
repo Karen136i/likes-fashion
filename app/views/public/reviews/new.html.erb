@@ -17,19 +17,19 @@
 
 
               <tr class="no-border">
-                <th class="no-border">商品名</th>
-                <td class="no-border" style="font^size:20px;"><%= @item.name %></td>
+                <th class="no-border" style="padding-left: 120px;">商品名</th>
+                <td class="no-border" style="font^size:20px; padding-right: 30px;"><%= @item.name %></td>
               </tr>
 
               <tr class="no-border">
-                <th class="no-border">ニックネーム</th>
-                <td class="no-border"><%= f.text_field :nickname, class: 'custom-field' %></td>
+                <th class="no-border" style="padding-left: 120px;">ニックネーム</th>
+                <td class="no-border" style="padding-right: 30px;"><%= f.text_field :nickname, class: 'custom-field' %></td>
               </tr>
 
               <!--レビュー機能の実装-->
               <tr class="no-border">
-                <th class="no-border">星評価</th>
-                <td class="no-border">
+                <th class="no-border" style="padding-left: 120px;">星評価</th>
+                <td class="no-border" style="padding-right: 30px;">
                   <div id="post_raty"></div>
                   <input type="hidden" name="review[star]" id="review_star">
                   <script>
@@ -50,13 +50,13 @@
 
 
               <tr class="no-border">
-                <th class="no-border">コメント</th>
-                <td class="no-border"><%= f.text_area :review_content, class: 'custom-textarea-field' %></td>
+                <th class="no-border" style="padding-left: 120px;">コメント</th>
+                <td class="no-border" style="padding-right: 30px;"><%= f.text_area :review_content, class: 'custom-textarea-field' %></td>
               </tr>
 
               <tr class="no-border">
                 <th class="no-border"></th>
-                <td class="text-center no-border">
+                <td class="text-center no-border" style="padding-right: 30px;">
                 <%= f.submit '新規登録', class: "btn btn-pink custom-btn" %>
                 </td>
               </tr>
