@@ -8,6 +8,18 @@ class Public::ReviewsController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @reviews = @item.reviews.page(params[:page]).per(10)
+    # ソート機能の実装
+    case params[:sort]
+    when "latest"
+      @reviews = @reviews.order(created_at: :desc)
+    when "oldest"
+      @reviews = @reviews.order(created_at: :asc)
+    when "highest_rated"
+      @reviews = @reviews.left_joins(:reviews).group(:id).order('AVG(reviews.star) DESC')
+    else
+      @reviews = @reviews.order(created_at: :desc)
+    end
+    # ここまで
   end
 
   def create
@@ -21,10 +33,6 @@ class Public::ReviewsController < ApplicationController
       flash.now[:alert] = "Reviewの追加に失敗しました。"
       render :new
     end
-  end
-
-  def show
-    @review = Review.find(params[:id])
   end
 
   private

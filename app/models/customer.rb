@@ -6,7 +6,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :favorites, dependent: :destroy
-  has_many :review_favorites, dependent: :destroy
+  has_many :review_favorites, dependent: :destroy #レビューに対するいいね機能
   has_many :cart_items
   has_many :addresses
   has_many :orders
@@ -32,7 +32,7 @@ class Customer < ApplicationRecord
     end
   end
 
-  def guest_customer?
+  def guest?
     email == GUEST_USER_EMAIL
   end
   # ここまで

@@ -28,17 +28,16 @@ class Public::OrdersController < ApplicationController
     if @order.save
       create_order_details(@order)
       current_customer.cart_items.destroy_all
-      redirect_to public_orders_thanks_path
+      redirect_to thanks_public_orders_path
     else
       @addresses = current_customer.addresses
       render :new
     end
   end
-  
+
   def thanks
-    @order = Order.find(params[:order_id])
   end
-  
+
   def show
     if params[:id] == "thanks"# "thanks" が渡された場合の処理
       render "thanks"

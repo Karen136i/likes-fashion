@@ -1,11 +1,15 @@
 <div class="col-sm-13 col-md-11 col-lg-9 px-6 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
   <div class="container mt-5">
     <h1 class="text-center"><i class="fa-solid fa-user"></i> my page</h1>
-
+    
     <h4 class="my-3 mt-5 ml-5">登録情報</h4>
-    <%= link_to "編集する", edit_public_customer_path, class: "btn btn-success mr-2" %>
-    <%= link_to "退会する", unsubscribe_public_customer_path, class: "btn btn-danger" %>
-
+    <% unless current_customer.guest? %>
+      <%= link_to "編集する", edit_public_customer_path, class: "btn btn-success mr-2" %>
+      <%= link_to "退会する", unsubscribe_public_customer_path, class: "btn btn-danger" %>
+    <% else %>
+      <%= link_to "編集する", "#", class: "btn btn-success mr-2", onclick: "alert('ゲストユーザーはこの操作を実行できません。');" %>
+      <%= link_to "退会する", "#", class: "btn btn-danger", onclick: "alert('ゲストユーザーの退会はできません。');" %>
+    <% end %>
 
    <div style="border-radius: 20px; overflow: hidden;">
     <table class="table table-bordered my-2" style="table-layout: fixed;">

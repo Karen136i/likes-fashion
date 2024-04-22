@@ -1,6 +1,6 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer! #アクセス制限
-  
+
   def index
     @cart_items = current_customer.cart_items
   end
@@ -12,7 +12,7 @@ class Public::CartItemsController < ApplicationController
 
   def create
     existing_cart_item = current_customer.cart_items.find_by(item_id: cart_item_params[:item_id])
-  
+
     if existing_cart_item
       existing_cart_item.amount += cart_item_params[:amount].to_i
       if existing_cart_item.save
@@ -32,7 +32,7 @@ class Public::CartItemsController < ApplicationController
       end
     end
   end
-  
+
   def update
     @cart_item = CartItem.find(params[:id])
     if @cart_item.update(cart_item_params)
@@ -42,19 +42,19 @@ class Public::CartItemsController < ApplicationController
       redirect_to public_cart_items_path, alert: 'カートの商品数量を更新できませんでした。'
     end
   end
-  
+
   def destroy
-    @cart_item = CartItem.find(params[:id])
-    @cart_item.destroy
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
     redirect_to public_cart_items_path
   end
-  
+
   def destroy_all
     current_customer.cart_items.destroy_all
     redirect_to public_cart_items_all_destroy_path, notice: 'カート内のすべての商品が削除されました'
   end
-  
-  
+
+
   private
 
   def cart_item_params

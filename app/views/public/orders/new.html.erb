@@ -1,6 +1,6 @@
 <div class="col-sm-15 col-md-12 col-lg-9 px-7 px-sm-0 mx-auto align-self-center text-start justify-content-center" style="margin-top: 90px; margin-bottom: 50px;">
   <div class="container">
-  <%= form_with model: @order, url: public_orders_confirm_path, local: true, class: "needs-validation", novalidate: true do |f| %>
+  <%= form_with model: @order, url: confirm_public_orders_path, method: :get, local: true, class: "needs-validation", novalidate: true do |f| %>
 
     <% if @order.errors.any? %>
     <div class="alert alert-danger">

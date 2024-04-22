@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
       resources :reviews, only: [:show]  # 商品ごとのレビュー詳細ページ
     end
-      resources :reviews, only: [:index, :create, :show, :destroy] do 
+    resources :reviews, only: [:index, :create, :show, :destroy] do
       resources :comments,only:[:new, :create, :edit, :update, :destroy]
     end
     resources :sessions, only: [:new, :create, :destroy]
@@ -37,30 +37,32 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :items, only: [:index, :show]
-       resource :favorites, only: [:create, :destroy]
-    resources :favorites, only: [:index]
-    resources :reviews, only: [:index, :new, :show, :update, :create, :destroy] 
-       resource :review_favorites, only: [:create, :destroy]
-    resources :cart_items, only: [:index, :update, :destroy, :create] do
-      get 'cart_items', to: 'cart_items#index'
-      post 'cart_items', to: 'cart_items#create' # 追加: cart_items#createを処理するルートを追加
+    resource :favorites, only: [:create, :destroy, :show]
+    resources :reviews, only: [:index, :new, :show, :update, :create, :destroy] do
+      resource :review_favorites, only: [:create, :destroy]
     end
+    resources :cart_items, only: [:index, :update, :destroy, :create]
     delete 'cart_items', to: 'cart_items#destroy_all', as: "cart_items_all_destroy"
 
     resources :customers, only: [:show, :edit, :update] do
       member do
         get :unsubscribe
-        delete :withdraw
+        patch :withdraw
       end
     end
 
-    resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
+    resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show] do
+      collection do
+        get :confirm
+        post :confirm
+        get :thanks
+
+      end
+    end
     resources :addresses, only: [:index, :edit, :update, :create, :destroy]
     resources :categories, only: [:show]
     get 'orders/confirm', to: 'orders#confirm'
     post 'orders/confirm', to: 'orders#confirm'
     get 'orders/thanks', to: 'orders#thanks'
-    get 'orders/:id', to: 'orders#show'
-
   end
 end
