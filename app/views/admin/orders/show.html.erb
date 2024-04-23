@@ -25,16 +25,15 @@
       </p>
     </div>
       
-    <div style="display: inline-flex;">
-      <p class="customer-name">
-        <strong>注文ステータス</strong>
-        <%= form_with model:@order, url: admin_order_path, local: true do |f| %>
-          <%= @order.status %>
-          <%= f.select :status, ["入金待ち", "入金確認", "発送済み"], {}, class: "status-select" %>
-          <%= f.submit "更新", class: 'btn btn-primary' %>
-        <% end %>
-      </p>
-    </div>
+    <div style="display: flex; align-items: center;">
+  <p class="customer-name" style="margin-bottom: 0;">
+    <%= form_with model:@order, url: admin_order_path, local: true do |f| %>
+      <strong><%= f.label :status, "注文ステータス", class: "form-label", style: "margin-right: -63px;" %></strong>
+      <%= f.select :status, ["入金待ち", "入金確認", "発送済み"], {}, class: "status-select" %>
+      <%= f.submit "更新", class: 'btn btn-primary' %>
+    <% end %>
+  </p>
+</div>
     
     <div style="margin-top: 30px">
       <table class='order-show-table table'>

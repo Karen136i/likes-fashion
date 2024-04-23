@@ -23,13 +23,9 @@ class Admin::OrderDetailsController < ApplicationController
 
   def update_order_status
     @order = @order_detail.order
-    if @order.order_details.exists?(shipping_status: "商品準備中")
-      @order.update(status: "発送待ち")
-    else
-      @order.update(status: "入金確認")
-    end
-    if @order.order_details.all? { |order_detail| order_detail.shipping_status == "商品準備完了" }
+    if @order.order_details.all? { |detail| detail.shipping_status == "商品準備完了" }
       @order.update(status: "発送済み")
     end
   end
+  
 end

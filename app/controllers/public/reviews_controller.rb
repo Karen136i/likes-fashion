@@ -3,6 +3,7 @@ class Public::ReviewsController < ApplicationController
 
   def new
     @review = Review.new
+    @reviews = Review.includes(:comment).all
     @item = Item.find(params[:item_id])
   end
 

@@ -13,8 +13,9 @@ class Admin::OrdersController < ApplicationController
   def update
     if @order.update(order_params)
       update_order_details_shipping_status if @order.status == "入金確認"
-      redirect_to admin_order_path(@order)
+      redirect_to admin_order_path(@order), notice: '注文ステータスが正常に更新されました。'
     else
+      flash[:error] = '注文ステータスの更新に失敗しました。'
       render :show
     end
   end
@@ -30,7 +31,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update_order_details_shipping_status
-    @order.order_details.update_all(shipping_status: :"商品準備中")
+    @order.order_details.update_all(shipping_status: '商品準備中')
   end
 
 end

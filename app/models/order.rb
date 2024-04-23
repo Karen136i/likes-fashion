@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   validates :postal_code , presence: true
   validates :address, presence: true
   
-  #  enum導入
+  # enum導入
   enum payment_method: { credit_card: 0, transfer: 1 }
   
   enum status: { 入金待ち: 0, 入金確認: 1, 発送済み: 2 }
@@ -23,11 +23,11 @@ class Order < ApplicationRecord
     when "入金確認"
       self.shipping_status = :商品準備中
     when "発送済み"
-      self.shipping_status = :発送済み
+      self.shipping_status = :商品準備完了
     end
 
     self.save if self.shipping_status_changed?
   end
-  
-end 
+end
+
   
