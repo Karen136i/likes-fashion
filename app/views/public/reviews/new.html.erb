@@ -1,5 +1,6 @@
 <div class="col-sm-12 col-md-12 col-lg-12 px-5 px-sm-0 mx-auto align-self-center text-center" style="margin-top: 50px; margin-bottom: 50px;">
   <div class="container">
+    <%= render 'public/shared/error_messages', resource: @review %>
     <div class="row justify-content-center">
       <div class="col-xl-8">
         <div class="table-responsive">
@@ -14,11 +15,9 @@
               </tr>
             </thead>
 
-
-
               <tr class="no-border">
                 <th class="no-border" style="padding-left: 120px;">商品名</th>
-                <td class="no-border" style="font^size:20px; padding-right: 30px;"><%= @item.name %></td>
+                <td class="no-border" style="font-size:20px; padding-right: 30px;"><%= @item.name %></td>
               </tr>
 
               <tr class="no-border">
@@ -33,6 +32,7 @@
                   <div id="post_raty"></div>
                   <input type="hidden" name="review[star]" id="review_star">
                   <script>
+                  $(document).ready(function() {
                     $('#post_raty').raty({
                       starOn: "<%= asset_path('star-on.png') %>",
                       starOff: "<%= asset_path('star-off.png') %>",
@@ -41,9 +41,9 @@
                       hints: ['1', '2', '3', '4', '5'],
                       click: function(score, evt) {
                         $('#review_star').val(score);
-                        alert('評価: ' + score);
                       }
                     });
+                  });
                   </script>
                 </td>
               </tr>

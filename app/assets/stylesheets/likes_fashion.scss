@@ -204,11 +204,11 @@ a {
 .pagination a {
   color: #FF69B4; /* ピンク色に変更 */
   text-decoration: none;
-  padding: 8px 12px; /* パディングを少し増やす */
+  padding: 5px 14px; /* パディングを少し増やす */
   border: 2px solid #FF69B4; /* 枠線を少し太くして色を合わせる */
   border-radius: 50px; /* 角の丸みを強調 */
   transition: all 0.3s ease; /* 背景色とサイズの変化も滑らかに */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* ソフトな影を追加 */
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.1); /* ソフトな影を追加 */
 }
 
 /* アクティブなページのスタイル */

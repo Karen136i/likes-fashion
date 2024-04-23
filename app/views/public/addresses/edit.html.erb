@@ -2,16 +2,7 @@
  <h2 class="mb-4 text-center">配送先一覧</h2>
   <%= form_with model: @address, url: public_address_path(@address), method: :patch do |f| %>
   
-    <% if @address.errors.any? %>
-    <div class="alert alert-danger">
-      <%= @address.errors.count %>件のエラーが発生しました
-      <ul class="mb-0">
-        <% @address.errors.full_messages.each do |message| %>
-        <li><%= message.gsub("postal_code", "郵便番号").gsub("Address", "住所").gsub("Name", "宛名") %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
+    <%= render 'public/shared/error_messages', resource: @address %>
     
     <div class="row justify-content-center">
       <div style="margin-top: 50px;">

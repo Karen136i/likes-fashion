@@ -5,6 +5,7 @@ class Review < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :review_favorites, dependent: :destroy #レビューに対するいいね機能
   
+  validates :nickname, presence: true
   validates :review_content, presence: true
   validates :star, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }
 
