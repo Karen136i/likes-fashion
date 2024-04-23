@@ -2,16 +2,17 @@
   <div class='row justify-content-center'>
     <div class="col-sm-8 col-md-7 col-lg-6 px-5 px-sm-0 mx-auto align-self-center text-start">
       <h3 class="text-center"><%= @item.name %>のレビュー</h3>
+      <% @reviews.each do |review| %>
 
       <!--ソート機能実装-->
       <p class="text-center sort-links" style="margin-top: 20px; color: red;">
-        <%= link_to '新しい順', public_items_path(sort: "latest") %>　
-        |　 <%= link_to '古い順', public_items_path(sort: "oldest") %>　
-        | 　<%= link_to '評価の高い順', public_items_path(sort: "highest_rated") %>　
+        <%= link_to '新しい順', public_reviews_path(item_id: @item.id, sort: "latest") %>　
+        |　<%= link_to '古い順', public_reviews_path(item_id: @item.id, sort: "oldest") %>　
+        |　<%= link_to '評価の高い順', public_reviews_path(item_id: @item.id, sort: "highest_rated") %>
       </p>
       <!--ここまで-->
 
-      <% @reviews.each do |review| %>
+      
         <div style="margin-top: 65px;" class="text-center">
 
           <!-- レビュー一覧 -->

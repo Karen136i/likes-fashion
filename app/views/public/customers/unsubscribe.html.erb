@@ -3,21 +3,21 @@
     <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto align-self-center text-start">
       <h3 class="text-center">本当に退会しますか？</h3>
       <p></p>
-      
+
       <h5 class='text-center' style='margin-top: 30px;'>
         退会すると、会員登録情報や<br>
         これまでの購入履などが閲覧できなくなります。<br>
         退会をする場合は、「退会する」ボタンをクリックしてください。
       </h5>
-      
+
       <div class='d-flex justify-content-center mt-5'>
         <%= link_to "退会しない", public_customer_path(current_customer.id), class: "btn btn-primary btn-lg mr-5" %>
         <%= link_to "退会する", withdraw_public_customer_path, method: :patch, class: "btn btn-danger btn-lg", data: { confirm: "本当に退会しますか？"} %>
       </div>
-      
+
     </div>
   </div>
 </div>
-    
+
 
 

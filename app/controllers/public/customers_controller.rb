@@ -20,13 +20,14 @@ class Public::CustomersController < ApplicationController
   end
 
   def unsubscribe
+    # 退会確認ページ（もしあれば内容を記載）
   end
 
   def withdraw
     @customer = Customer.find(current_customer.id)
-    @customer.update(is_active: false)
+    @customer.update(is_deleted: true)
     reset_session
-    redirect_to root_path, notice: "退会処理が完了しました。"
+    redirect_to root_path, notice: "ありがとうございました。またのご利用を心よりお待ちしております。"
   end
 
   private
@@ -40,5 +41,5 @@ class Public::CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :password, :password_confirmation)
   end
+  
 end
-

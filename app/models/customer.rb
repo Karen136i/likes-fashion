@@ -1,4 +1,12 @@
 class Customer < ApplicationRecord
+  
+   # is_deletedがfalseならtrueを返すようにしている
+  def active_for_authentication?
+    # デバッグ出力
+    Rails.logger.info "Called active_for_authentication?: is_deleted = #{is_deleted}"
+    super && !is_deleted
+  end
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -58,8 +66,6 @@ class Customer < ApplicationRecord
       Customer.none
     end
   end
-
-
   #ここまで
 
 end

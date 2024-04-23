@@ -22,19 +22,20 @@ class Public::ReviewsController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @reviews = @item.reviews.page(params[:page]).per(10)
-    # ソート機能の実装
+  
     case params[:sort]
     when "latest"
-      @reviews = @reviews.order(created_at: :desc)
+      @reviews = @reviews.reorder(created_at: :desc)
     when "oldest"
-      @reviews = @reviews.order(created_at: :asc)
+      @reviews = @reviews.reorder(created_at: :asc)
     when "highest_rated"
-      @reviews = @reviews.left_joins(:review_favorites).group(:id).order('AVG(reviews.star) DESC')
+      @reviews = @reviews.left_joins(:review_favorites).group('reviews.id').reorder('AVG(reviews.star) DESC')
     else
-      @reviews = @reviews.order(created_at: :desc)
+      @reviews = @reviews.reorder(created_at: :desc)
     end
-    # ここまで
   end
+
+
 
   private
 
