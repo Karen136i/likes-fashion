@@ -3,7 +3,7 @@
 
       <!-- ロゴを左中央に配置するための要素 -->
       <div class="text-center">
-        <a class="navbar-brand pl-3 pr-3" href="/"><%= image_tag("Logo1.png", size: "100x100") %></a>
+        <a><%= image_tag("logo1.png", style: "width: 150px; height: 120px;") %></a>
       </div>
 
       <!--ハンバーガーのメニュー作成-->
@@ -16,7 +16,6 @@
         <ul class="navbar-nav ml-auto">
 
           <a>
-
           <!-- 顧客も管理者もログインしていない場合 -->
           <% unless admin_signed_in? || customer_signed_in? %>
 
