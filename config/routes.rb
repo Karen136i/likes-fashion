@@ -36,13 +36,15 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
-    resources :items, only: [:index, :show]
-    resource :favorites, only: [:create, :destroy, :show]
+    resources :items, only: [:index, :show] do
+      resource :favorites, only: [:create, :destroy]
+    end 
+    resource :favorites, only: [:show]
     resources :reviews, only: [:index, :new, :show, :update, :create, :destroy] do
       resource :review_favorites, only: [:create, :destroy]
     end
     resources :cart_items, only: [:index, :update, :destroy, :create]
-    delete 'cart_items', to: 'cart_items#destroy_all', as: "cart_items_all_destroy"
+      delete 'cart_items', to: 'cart_items#destroy_all', as: "cart_items_all_destroy"
 
     resources :customers, only: [:show, :edit, :update] do
       member do

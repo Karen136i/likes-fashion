@@ -1,0 +1,7 @@
+// app/views/review_favorites/create.js.erb
+<% new_link = link_to public_review_review_favorites_path(@review), method: :delete, remote: true, class: "favorite-link", data: { review_id: @review.id } do %>
+  <i class='fas fa-heart' aria-hidden='true' style='color: red;'></i>
+  <span class='favorite-count'><%= @review.review_favorites.count %></span>
+<% end %>
+
+$(".favorite-link[data-review-id='<%= @review.id %>']").replaceWith('<%= j new_link %>');

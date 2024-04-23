@@ -4,19 +4,19 @@
       <h3 class="text-center"><%= @item.name %>のレビュー</h3>
 
       <!--ソート機能実装-->
-      <p class="text-right">
-        <%= link_to '新しい順', public_items_path(sort: "latest") %>
-      | <%= link_to '古い順', public_items_path(sort: "oldest") %>
-      | <%= link_to '評価の高い順', public_items_path(sort: "highest_rated") %>
+      <p class="text-center sort-links" style="margin-top: 20px; color: red;">
+        <%= link_to '新しい順', public_items_path(sort: "latest") %>　
+        |　 <%= link_to '古い順', public_items_path(sort: "oldest") %>　
+        | 　<%= link_to '評価の高い順', public_items_path(sort: "highest_rated") %>　
       </p>
       <!--ここまで-->
-        <% @reviews.each do |review| %>
 
+      <% @reviews.each do |review| %>
         <div style="margin-top: 65px;" class="text-center">
 
           <!-- レビュー一覧 -->
           <div class="text-left">
-            ニックネーム ：<span style="margin-right: 300px;"><%= review.nickname %></span>
+            ニックネーム：<span style="margin-right: 300px;"><%= review.nickname %></span>
             <%= review.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d ") %>
           </div>
 
@@ -34,34 +34,29 @@
           </div>
 
           <div style="margin-top: 20px;" class="text-left">
-            コメント ：<%= review.review_content %>
-
-            <!--レビューに対するお気に入り機能実装-->
-            <p class="text-right">
-              <% @reviews.each do |review| %>
-                <% if ReviewFavorite.favorited_by?(current_customer, review) %>
-                  <%= link_to public_review_review_favorites_path(review), method: :delete, remote: true, class: "favorite-link", data: { review_id: review.id } do %>
-                    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-                    <span class="favorite-count"><%= review.review_favorites.count %></span>
-                  <% end %>
-                <% else %>
-                  <%= link_to public_review_review_favorites_path(review), method: :post, remote: true, class: "favorite-link", data: { review_id: review.id } do %>
-                    <i class="fa-regular fa-heart"></i>
-                    <span class="favorite-count"><%= review.review_favorites.count %></span>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </p>
+            コメント：<%= review.review_content %>
           </div>
 
+          <!--レビューに対するお気に入り機能実装-->
+          <div class="text-right">
+            <% if ReviewFavorite.favorited_by?(current_customer, review) %>
+              <%= link_to public_review_review_favorites_path(review), method: :delete, remote: true, class: "favorite-link", data: { review_id: review.id } do %>
+                <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                <span class="favorite-count"><%= review.review_favorites.count %></span>
+              <% end %>
+            <% else %>
+              <%= link_to public_review_review_favorites_path(review), method: :post, remote: true, class: "favorite-link", data: { review_id: review.id } do %>
+                <i class="fa-regular fa-heart"></i>
+                <span class="favorite-count"><%= review.review_favorites.count %></span>
+              <% end %>
+            <% end %>
+          </div>
         </div>
-
-       <% end %>
+      <% end %>
 
       <div class="d-flex justify-content-center" style="margin-top: 20px; margin-bottom: 20px;">
-        <!%= paginate @reviews %>
+        <%= paginate @reviews %>
       </div>
     </div>
   </div>
 </div>
-

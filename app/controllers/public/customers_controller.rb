@@ -1,7 +1,7 @@
 class Public::CustomersController < ApplicationController
-  before_action :authenticate_customer! #アクセス制限
-  before_action :ensure_guest_user, only: [:edit]
-  
+  before_action :authenticate_customer!
+  before_action :ensure_guest_user, only: [:edit, :update, :destroy]
+
   def show
     @customer = Customer.find(current_customer.id)
   end
@@ -23,34 +23,22 @@ class Public::CustomersController < ApplicationController
   end
 
   def withdraw
-    @customer = Customer.find(params[:id])
-    # 退会処理のロジックをここに記述
+    @customer = Customer.find(current_customer.id)
     @customer.update(is_active: false)
-    reset_session  # セッションのリセット（ログアウト）
+    reset_session
     redirect_to root_path, notice: "退会処理が完了しました。"
   end
 
   private
 
-  def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :password, :password_confirmation)
-  end
-
-  # ゲストログインの記述
-  def prevent_guest_access(action_name, message)
+  def ensure_guest_user
     if current_customer.guest?
-      redirect_to public_customer_path(current_customer), alert: message
+      redirect_to public_customer_path(current_customer), alert: "ゲストユーザーはこの操作を実行できません。"
     end
   end
 
-  # アクションごとに異なる制限を設定
-  def edit
-    prevent_guest_access('edit', 'ゲストユーザーはプロフィール編集画面へ遷移できません。')
-    # 編集に関する処理
-  end
-
-  def withdraw
-    prevent_guest_access('withdraw', 'ゲストユーザーの退会はできません。')
-    # 退会に関する処理
+  def customer_params
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :password, :password_confirmation)
   end
 end
+

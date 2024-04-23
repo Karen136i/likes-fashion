@@ -1,0 +1,2 @@
+// お気に入りボタンのアイコンを変更
+$(".favorite-link[data-item-id=<%= @item.id %>]").html('<i class="fas fa-heart" aria-hidden="true" style="color: red;"></i> <span class="favorite-count"><%= @item.favorites.count %></span>');
