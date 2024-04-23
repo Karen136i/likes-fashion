@@ -9,12 +9,14 @@ class Admin::CommentsController < ApplicationController
   
   def create
     @review = Review.find(params[:review_id])
+    @item = @review.item  # レビューに関連付けられたアイテムをロード
     @comment = @review.comments.new(comment_params)
     @comment.admin_id = current_admin.id
   
     if @comment.save
-      redirect_to admin_item_review_path(item_id: @review.item_id, id: @review.id), notice: 'コメントが追加されました。'
+      redirect_to admin_item_review_path(item_id: @review.item_id, id: @review.id), notice: 'お礼コメントが追加されました。'
     else
+      flash.now[:alert] = "お礼コメントを追加できませんでした。"
       render :new
     end
   end
@@ -27,10 +29,12 @@ class Admin::CommentsController < ApplicationController
   
   def update
     @review = Review.find(params[:review_id])
+    @item = @review.item  # レビューに関連付けられたアイテムをロード
     @comment = @review.comments.find(params[:id])
     if @comment.update(comment_params)
       redirect_to admin_review_path(@review), notice: 'コメントを更新しました。'
     else
+      flash.now[:alert] = "お礼コメントを編集できませんでした。"
       render :edit
     end
   end

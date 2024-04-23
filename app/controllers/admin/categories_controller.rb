@@ -8,15 +8,15 @@ class Admin::CategoriesController < ApplicationController
   
   def create
     @category = Category.new(category_params)
-    @categories = Category.all
     if @category.save
-      flash[notice] = "カテゴリーを追加しました。"
+      flash[:notice] = "カテゴリーを追加しました。"
       redirect_to admin_categories_path
     else 
+      @categories = Category.page(params[:page])  # ここを修正
       flash.now[:alert] = "カテゴリーの追加に失敗しました。"
       render :index
     end 
-  end  
+  end
 
   def edit
     @category = Category.find(params[:id])

@@ -5,16 +5,6 @@
         <div class="table-responsive">
          <%= form_with model: [@review, @comment], url: admin_review_comment_path(@review, @comment), method: :patch, local: true do |f| %>
 
-            <% if @comment.errors.any? %>
-              <div class="alert alert-danger">
-                <ul>
-                  <% @comment.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
-
             <table class="table table-hover table-inverse">
 
               <thead>
@@ -66,7 +56,6 @@
                 <%= f.submit '保存', class: "btn btn-pink custom-btn" %>
                 </td>
               </tr>
-
 
            <% end %>
 

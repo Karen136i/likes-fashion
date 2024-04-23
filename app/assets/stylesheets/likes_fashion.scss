@@ -132,7 +132,7 @@ a {
     font-size: 16px; /* フォントサイズを調整 */
     border-radius: 5px;
   }
-  
+
   .custom-textarea-field-1 {
     width: 400px; /* フィールドの幅を100%に設定 */
     height: 180px; /* フィールド内の余白を追加 */
@@ -186,6 +186,8 @@ a {
   border-radius: 5px;
 }
 
+
+/* ページネーションの基本スタイル */
 .pagination {
   display: flex;
   justify-content: center;
@@ -195,24 +197,34 @@ a {
 
 /* ページネーションアイテムのスタイル */
 .pagination li {
-  margin: 0 5px; /* アイテムの間のマージン */
+  margin: 0 5px;
 }
 
-/* ページネーションリンクのスタイル */
+/* ページネーションリンクの基本スタイル */
 .pagination a {
-  color: #333; /* リンクの色 */
-  text-decoration: none; /* 下線を非表示 */
-  padding: 5px 10px; /* リンクのパディング */
-  border: 1px solid #ccc; /* 枠線 */
-  border-radius: 5px; /* 枠線の角を丸くする */
-  transition: background-color 0.3s ease; /* 背景色の変化を滑らかにする */
+  color: #FF69B4; /* ピンク色に変更 */
+  text-decoration: none;
+  padding: 8px 12px; /* パディングを少し増やす */
+  border: 2px solid #FF69B4; /* 枠線を少し太くして色を合わせる */
+  border-radius: 50px; /* 角の丸みを強調 */
+  transition: all 0.3s ease; /* 背景色とサイズの変化も滑らかに */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* ソフトな影を追加 */
+}
+
+/* アクティブなページのスタイル */
+.pagination a.active {
+  background-color: #FFB6C1; /* アクティブなリンクの背景色を変更 */
+  color: white;
 }
 
 /* ページネーションリンクのホバー時のスタイル */
 .pagination a:hover {
-  background-color: #f0f0f0; /* ホバー時の背景色 */
+  background-color: #FFB6C1; /* ホバー時の背景色を変更 */
+  color: white;
+  transform: scale(1.1); /* ホバー時に少し大きくする */
 }
 
+// ここまで
 
 // カテゴリーのCSS
 .categories {

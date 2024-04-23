@@ -6,7 +6,6 @@ class Item < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
-  validates :category, presence: { message: "を選択してください" }
   validates :price, presence: true
   validates :name, presence: true, length: { maximum: 20 }
   validates :image, presence: true

@@ -1,32 +1,31 @@
 <div class="col-sm-10 col-md-7 col-lg-5 px-5 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
   <div class="container">
+    <p><%= render 'admin/shared/error_messages', resource: @category %></p>
     <div class="row">
-      <div class="col text-center"> <!-- タイトルを真ん中に揃える -->
-        <h3>カテゴリー 追加・一覧</h3>
-      </div>
+      <div class="col text-center"><h3>カテゴリー 追加・一覧</h3></div>
     </div>
 
-    <div class="text-center"> <!-- テーブルを真ん中に揃える -->
+    <div class="text-center">
       <table class="table table-hover table-inverse">
-
+        <%= form_with url: admin_categories_path, model: @category do |f| %>
         <tbody>
           <tr class="col text-center">
-                <%= form_with url: admin_categories_path, model: @category do |f| %>
-                
-                <div class="form-group">
-                  <%= f.text_field :name, class: 'form-control-1', placeholder: 'カテゴリー名' %>
-                </div>
-                
-                <div class="text-center">
-                <%= f.submit '新規登録', class: "btn btn-pink", style: "width: 400px;" %>
-                <% end %>
-                </div>
+            <div class="form-group">
+              <%= f.text_field :name, class: 'form-control-1', placeholder: 'カテゴリー名' %>
+            </div>
+
+            <div class="text-center">
+            <%= f.submit '新規登録', class: "btn btn-pink", style: "width: 400px;" %>
+            </div>
           </tr>
 
           <tr class="no-border">
             <td class="no-border"></td>
           </tr>
-
+        </tbody>
+        <% end %>
+        
+        <tbody class="no-border">
           <% @categories.each do |category| %>
             <div class="no-border">
               <tr class="text-center no-border">
