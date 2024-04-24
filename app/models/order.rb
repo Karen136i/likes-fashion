@@ -28,6 +28,5 @@ class Order < ApplicationRecord
 
     self.save if self.shipping_status_changed?
   end
-end
-
   
+end
