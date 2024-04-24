@@ -1,6 +1,8 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_customer! #アクセス制限
-
+  before_action :check_purchase, only: [:new, :create]
+  before_action :check_existing_review, only: [:new, :create]
+  
   def new
     @review = Review.new
     @reviews = Review.includes(:comment).all
@@ -22,27 +24,57 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @item = Item.find(params[:item_id])
-    @reviews = @item.reviews.page(params[:page]).per(10)
-  
-    case params[:sort]
-    when "latest"
-      @reviews = @reviews.reorder(created_at: :desc)
-    when "oldest"
-      @reviews = @reviews.reorder(created_at: :asc)
-    when "highest_rated"
-      @reviews = @reviews.left_joins(:review_favorites).group('reviews.id').reorder('AVG(reviews.star) DESC')
+    if params[:item_id].present?
+      @item = Item.find(params[:item_id])
+      @reviews = @item.reviews.page(params[:page]).per(10)
+
+      case params[:sort]
+      when "latest"
+        @reviews = @reviews.reorder(created_at: :desc)
+      when "oldest"
+        @reviews = @reviews.reorder(created_at: :asc)
+      when "highest_rated"
+        @reviews = @reviews.left_joins(:review_favorites).group('reviews.id').reorder('AVG(reviews.star) DESC')
+      else
+        @reviews = @reviews.reorder(created_at: :desc)
+      end
     else
-      @reviews = @reviews.reorder(created_at: :desc)
+      redirect_to root_path, alert: "アイテムが指定されていません。"
+    end 
+  end
+  
+  def destroy
+    @review = Review.find(params[:id])
+    item_id = @review.item_id  # 削除するレビューに関連するアイテムのIDを保存
+    if @review.customer_id == current_customer.id
+      @review.destroy
+      redirect_to public_reviews_path(item_id: item_id), notice: "レビューを削除しました。"
+    else
+      redirect_to public_reviews_path(item_id: item_id), alert: "この操作は許可されていません。"
     end
   end
-
-
 
   private
 
   def review_params
     params.require(:review).permit(:nickname, :review_content, :star)
   end
+  
+  def check_purchase
+    @item = Item.find(params[:item_id])
+    # 現在の顧客がこのアイテムを含む注文詳細を持っているかどうかを確認
+    purchased_item = current_customer.orders.joins(:order_details).where(order_details: { item_id: @item.id }).exists?
+    unless purchased_item
+      redirect_to public_items_path, alert: "この商品のレビューを書くためには購入が必要です。"
+    end
+  end
 
+  def check_existing_review
+    @item = Item.find(params[:item_id])
+    existing_review = Review.find_by(customer_id: current_customer.id, item_id: @item.id)
+    if existing_review
+      redirect_to public_item_path(@item), alert: "この商品に対するレビューは既に投稿済みです。"
+    end
+  end
+ 
 end

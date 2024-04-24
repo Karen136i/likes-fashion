@@ -47,7 +47,7 @@ class Public::CustomersController < ApplicationController
   def is_matching_login_customer
     @customer = Customer.find(params[:id])
     unless @customer.id == current_customer.id
-      redirect_to public_customer_path(current_customer.id)
+      redirect_to public_customer_path(current_customer.id), alert: "このページを表示する権限がありません"
     end
   end
 

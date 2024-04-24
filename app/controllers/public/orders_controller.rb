@@ -1,6 +1,7 @@
 # app/controllers/public/orders_controller.rb
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :is_matching_login_customer, only: [:show]
 
   def index
     @orders = current_customer.orders.page(params[:page])
@@ -88,4 +89,12 @@ class Public::OrdersController < ApplicationController
       order.customer_id = current_customer.id
     end
   end
+  
+  def is_matching_login_customer
+    @order = Order.find(params[:id])
+    unless @order.customer_id == current_customer.id
+      redirect_to public_orders_path, alert: "このページを表示する権限がありません"
+    end
+  end
+  
 end

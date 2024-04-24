@@ -37,9 +37,10 @@
           <div style="margin-top: 20px;" class="text-left">
             コメント：<%= review.review_content %>
           </div>
-
-          <!--レビューに対するお気に入り機能実装-->
+   
+         
           <div class="text-right">
+             <!--レビューに対するお気に入り機能実装-->
             <% if ReviewFavorite.favorited_by?(current_customer, review) %>
               <%= link_to public_review_review_favorites_path(review), method: :delete, remote: true, class: "favorite-link", data: { review_id: review.id } do %>
                 <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
@@ -50,6 +51,11 @@
                 <i class="fa-regular fa-heart"></i>
                 <span class="favorite-count"><%= review.review_favorites.count %></span>
               <% end %>
+            <% end %>
+            
+            <!--投稿したレビューを投稿した人だけが削除できるボタン-->
+             <% if review.customer_id == current_customer.id %>
+              <%= link_to '削除', public_review_path(review), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm ml-3" %>
             <% end %>
           </div>
 
