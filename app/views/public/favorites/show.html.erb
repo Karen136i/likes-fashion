@@ -17,7 +17,7 @@
             <div class="horizontal-links">
               <div class="card-text">¥<%= number_with_delimiter(item.price_without_tax) %></div>
               <div class="card-text"><%= link_to '💬 reviews', public_reviews_path %></div>
-              
+
               <!-- いいね機能の実装 -->
               <div class="card-text">
                 <%= link_to public_item_favorites_path(item_id: item.id), method: :delete, remote: true do %>
@@ -25,7 +25,7 @@
                   <%= item.favorites.count %>
                 <% end %>
               </div>
-              
+
             </div>
           </div>
         </div>

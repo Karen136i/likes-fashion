@@ -30,7 +30,7 @@
       </p>
       <!--ここまで-->
     </div>
-    
+
     <div class="container">
       <div class="row row-cols-1 row-cols-md-3">
         <% @items.each do |item| %>
@@ -51,7 +51,7 @@
                   <%= link_to '💬', public_reviews_path(item_id: item.id) %>
                   <%= item.reviews.count %>
                 </div>
-                
+
                 <!--いいね機能の実装-->
                 <div class="card-text">
                   <% if Favorite.favorited_by?(current_customer, item) %>

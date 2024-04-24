@@ -20,7 +20,7 @@
             <% @total_payment = 0 %>
             <% @cart_items.each do |cart_item| %>
               <% subtotal = (cart_item.item.price * cart_item.amount)%>
-              
+
 
               <tr>
                 <td><%= link_to cart_item.item.name, public_item_path(cart_item.item) %></td><!--商品名-->
@@ -54,11 +54,11 @@
             <h5 class="text-right mt-2">合計金額(税込)： ￥<%= number_with_delimiter(@total_payment, delimiter: ',') %></h5>
           </div>
         </div>
-        
+
         <div class="text-center" style="margin-top: 50px;">
           <%= link_to '注文の情報入力に進む', new_public_order_path, class: "btn btn-pink" %>
         </div>
-        
+
       <% else %>
         <p class="text-center">カートに商品がありません。</p>
       <% end %>

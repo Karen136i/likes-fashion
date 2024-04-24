@@ -2,14 +2,16 @@
   <div class="row">
     <div class="col-12">
       <h3 class="text-center">注文履歴詳細</h3>
-      
+
       <!-- 注文情報のテーブル -->
       <div style="margin-top: 50px;" class="table-container">
         <table border="1" style="width: 700px;" class="mx-auto text-center">
+
           <tr>
             <td class="active" style="width:200px;">注文日</td>
             <td style="width:350px;"><%= @order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
           </tr>
+
           <tr>
             <td class="active">配送先</td>
             <td>
@@ -18,17 +20,20 @@
               <%= current_customer.last_name %> <%= current_customer.first_name %>
             </td>
           </tr>
+
           <tr>
             <td class="active">支払方法</td>
             <td><%= t("enums.order.payment_method.#{@order.payment_method}") %></td>
           </tr>
+
           <tr>
             <td class="active">注文ステータス</td>
             <td><%= @order.status %></td>
           </tr>
+
         </table>
       </div>
-      
+
       <!-- 注文詳細のテーブル -->
       <div style="margin-top: 50px;">
         <table border="1" style="width: 700px;" class="mx-auto text-center">
@@ -50,10 +55,15 @@
           </tbody>
         </table>
       </div>
-      
+
       <!-- 合計金額のテーブル -->
       <div style="margin-top: 50px;">
-        <table border="3" style="width: 400px; margin-left: 470px;" class="text-center">
+        <table border="3" style="width: 400px; margin-left: auto; margin-right: auto;" class="text-center">
+          <tr>
+            <td class="active">配送料</td>
+            <td>¥<%= @order.shipping_cost %></td>
+          </tr>
+          
           <tr>
             <td class="active">商品合計金額(税込)</td>
             <td>
@@ -61,11 +71,6 @@
               <% total_with_tax = (subtotal * 1.1).floor.to_i %>
               <%= number_to_currency(total_with_tax, unit: '￥', format: "%u%n") %>
             </td>
-          </tr>
-          
-          <tr>
-            <td class="active">配送料</td>
-            <td>¥<%= @order.shipping_cost %></td>
           </tr>
           
           <tr>

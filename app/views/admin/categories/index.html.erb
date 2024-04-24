@@ -4,27 +4,21 @@
     <div class="row">
       <div class="col text-center"><h3>カテゴリー 追加・一覧</h3></div>
     </div>
-    
+
     <div class="text-center">
+      <%= form_with url: admin_categories_path, model: @category do |f| %>
+
+        <div class="form-group">
+          <%= f.text_field :name, class: 'form-control-1', placeholder: 'カテゴリー名' %>
+        </div>
+
+        <div class="text-center mb-3">
+        <%= f.submit '新規登録', class: "btn btn-pink", style: "width: 400px;" %>
+        </div>
+
+      <% end %>
+
       <table class="table table-hover table-inverse">
-        <%= form_with url: admin_categories_path, model: @category do |f| %>
-        <tbody>
-          <tr class="col text-center">
-            <div class="form-group">
-              <%= f.text_field :name, class: 'form-control-1', placeholder: 'カテゴリー名' %>
-            </div>
-
-            <div class="text-center">
-            <%= f.submit '新規登録', class: "btn btn-pink", style: "width: 400px;" %>
-            </div>
-          </tr>
-
-          <tr class="no-border">
-            <td class="no-border"></td>
-          </tr>
-        </tbody>
-        <% end %>
-        
         <tbody class="no-border">
           <% @categories.each do |category| %>
             <div class="no-border">
@@ -40,11 +34,9 @@
           <% end %>
         </tbody>
       </table>
-
       <div class="d-flex justify-content-center" style="margin-top: 50px;">
       <%= paginate @categories %>
       </div>
-
     </div>
   </div>
 </div>

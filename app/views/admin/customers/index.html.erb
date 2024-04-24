@@ -5,10 +5,10 @@
         <h3>会員一覧</h3>
       </div>
     </div>
-    
+
     <div class="row justify-content-center">
       <table class="table table-hover table-inverse">
-        
+
         <thead>
           <tr class="text-center">
           <th>会員ID</th>
@@ -17,7 +17,7 @@
           <th>ステータス</th>
           </tr>
         </thead>
-        
+
         <tbody>
           <% @customers.each do |customer| %>
           <tr class="text-center font-size 18px;">
@@ -34,17 +34,15 @@
               <span class='text-secondary'>退会</span>
               <% end %>
             </td>
-
           </tr>
           <% end %>
         </tbody>
 
-        </table>
+      </table>
 
-        <div class="d-flex justify-content-center" style="margin-top: 50px;">
-        <%= paginate @customers %>
-        </div>
-
+      <div class="d-flex justify-content-center" style="margin-top: 50px;">
+      <%= paginate @customers %>
+      </div>
     </div>
   </div>
 </div>

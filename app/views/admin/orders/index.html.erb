@@ -1,7 +1,8 @@
 <div class="col-sm-9 col-md-7 col-lg-5 px-5 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
   <h2>注文履歴一覧</h2>
-   <div class="d-flex justify-content-around">
+  <div class="d-flex justify-content-around">
     <table class="table table-bordered">
+
       <thead>
         <tr>
           <th>購入日時</th>
@@ -10,7 +11,8 @@
           <th>注文ステータス</th>
         </tr>
       </thead>
-       <tbody>
+
+      <tbody>
         <% @orders.each do |order| %>
           <tr>
             <td><%= link_to order.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M "), admin_order_path(order) %></td>
@@ -21,6 +23,6 @@
         <% end %>
       </tbody>
 
-  </table>
- </div>
+    </table>
+  </div>
 </div>

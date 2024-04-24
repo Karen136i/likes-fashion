@@ -41,19 +41,17 @@
             <th class="text-end" style="border: none; white-space: nowrap;">コメント:</th>
             <td style="border: none; white-space: normal;"><%= @review.review_content %></td>
           </tr>
-          
+
           <tr>
             <th class="text-end" style="border: none; white-space: nowrap;">お礼コメント:</th>
             <td style="border: none; white-space: normal;">
               <% @review.comments.each do |comment| %>
                 <div class="comment-container">
                   <p><%= comment.content %></p>
-                   <!-- 削除ボタン -->
                   <%= link_to '削除', admin_review_comment_path(review_id: @review.id, id: comment.id),
                               method: :delete,
                               data: { confirm: 'このコメントを削除してよろしいですか？' },
                               class: 'btn btn-danger btn-sm' %>
-                  <!-- 編集ボタン -->
                   <%= link_to '編集', edit_admin_review_comment_path(review_id: @review.id, id: comment.id), class: 'btn btn-primary btn-sm' %>
                 </div>
               <% end %>

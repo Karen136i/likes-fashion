@@ -18,27 +18,27 @@
         <!-- 商品詳細 -->
         <div class="col-md-6">
           <table class="table" style="border: none;">
-            
+
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">商品名</th>
               <td style="border: none;"><%= @item.name %></td>
             </tr>
-            
+
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">商品説明</th>
               <td style="border: none; white-space: normal;"><%= @item.introduction %></td>
             </tr>
-            
+
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">税込価格:</th>
               <td style="border: none; white-space: normal;">￥<%= number_with_delimiter((@item.price * 1.1).round, delimiter: ',') %> (税込)</td>
             </tr>
-            
+
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">税抜価格:</th>
               <td style="border: none; white-space: normal;">￥<%= number_with_delimiter((@item.price).ceil.to_i, delimiter: ',') %> (税抜)</td>
             </tr>
-            
+
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">カテゴリー</th>
               <td style="border: none; white-space: normal;">
@@ -49,7 +49,7 @@
                 <% end %>
               </td>
             </tr>
-            
+
             <tr>
               <th class="text-end" style="border: none; white-space: nowrap;">販売ステータス</th>
               <td style="border: none; white-space: normal;">
@@ -58,7 +58,7 @@
                 </p>
               </td>
             </tr>
-            
+
           </table>
 
           <div class="text-center">

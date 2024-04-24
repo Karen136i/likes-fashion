@@ -5,65 +5,65 @@
       <div style="margin-bottom: 30px;"></div>
 
       <div class='row justify-content-center offset-md-3'>
-          <table class="table" style="border: none;">
+        <table class="table" style="border: none;">
 
-            <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;">会員ID</th>
-              <td style="border: none;"><%= @customer.id %></td>
-            </tr>
+          <tr>
+            <th class="text-end" style="border: none; white-space: nowrap;">会員ID</th>
+            <td style="border: none;"><%= @customer.id %></td>
+          </tr>
 
-            <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;">氏名</th>
-              <td style="border: none;"><%= "#{@customer.last_name} #{@customer.first_name}" %></td>
-            </tr>
+          <tr>
+            <th class="text-end" style="border: none; white-space: nowrap;">氏名</th>
+            <td style="border: none;"><%= "#{@customer.last_name} #{@customer.first_name}" %></td>
+          </tr>
 
-            <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;">フリガナ</th>
-              <td style="border: none;"><%= "#{@customer.last_name_kana} #{@customer.first_name_kana}" %></td>
-            </tr>
+          <tr>
+            <th class="text-end" style="border: none; white-space: nowrap;">フリガナ</th>
+            <td style="border: none;"><%= "#{@customer.last_name_kana} #{@customer.first_name_kana}" %></td>
+          </tr>
 
-            <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;">郵便番号</th>
-              <td style="border: none;"><%= @customer.postal_code %></td>
-            </tr>
+          <tr>
+            <th class="text-end" style="border: none; white-space: nowrap;">郵便番号</th>
+            <td style="border: none;"><%= @customer.postal_code %></td>
+          </tr>
 
-            <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;">住所</th>
-              <td style="border: none;"><%= @customer.address %></td>
-            </tr>
+          <tr>
+            <th class="text-end" style="border: none; white-space: nowrap;">住所</th>
+            <td style="border: none;"><%= @customer.address %></td>
+          </tr>
 
-            <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;">電話番号</th>
-              <td style="border: none;"><%= @customer.telephone_number %></td>
-            </tr>
+          <tr>
+            <th class="text-end" style="border: none; white-space: nowrap;">電話番号</th>
+            <td style="border: none;"><%= @customer.telephone_number %></td>
+          </tr>
 
-            <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;">メールアドレス</th>
-              <td style="border: none;"><%= @customer.email %></td>
-            </tr>
+          <tr>
+            <th class="text-end" style="border: none; white-space: nowrap;">メールアドレス</th>
+            <td style="border: none;"><%= @customer.email %></td>
+          </tr>
 
-            <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;">会員ステータス</th>
-              <td style="border: none;">
-                <% if @customer.is_active %>
-                <span class='text-success'>有効</span>
-                <% else %>
-                <span class='text-secondary'>退会</span>
-                <% end %>
-              </td>
-            </tr>
+          <tr>
+            <th class="text-end" style="border: none; white-space: nowrap;">会員ステータス</th>
+            <td style="border: none;">
+              <% if @customer.is_active %>
+              <span class='text-success'>有効</span>
+              <% else %>
+              <span class='text-secondary'>退会</span>
+              <% end %>
+            </td>
+          </tr>
 
-            <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;"></th>
-              <td style="border: none;"><%= link_to '編集する', edit_admin_customer_path(@customer.id), class: "btn btn-success btn-sm", style: "width: 144px; height: 31px;" %></td>
-              <td style="border: none;">
-                <%= link_to '注文履歴一覧を見る', admin_order_path(@customer.id), class: "btn btn-primary btn-sm" %>
-              </td>
-            </tr>
+          <tr>
+            <th class="text-end" style="border: none; white-space: nowrap;"></th>
+            <td style="border: none;"><%= link_to '編集する', edit_admin_customer_path(@customer.id), class: "btn btn-success btn-sm", style: "width: 144px; height: 31px;" %></td>
+            <td style="border: none;">
+              <%= link_to '注文履歴一覧を見る', admin_order_path(@customer.id), class: "btn btn-primary btn-sm" %>
+            </td>
+          </tr>
 
-          </table>
-        </div>
+        </table>
       </div>
     </div>
   </div>
 </div>
+

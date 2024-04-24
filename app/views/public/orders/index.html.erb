@@ -16,49 +16,48 @@
 
     <% @orders.each do |order| %>
     <tbody>
+      <tr>
+        <td><%= order.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M ") %></td>
 
-        <tr>
-          <td><%= order.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M ") %></td>
+        <td>
+          〒<%= current_customer.postal_code %><br/>
+          <%= current_customer.address %><br/>
+          <%= current_customer.last_name %> <%= current_customer.first_name %>
+        </td>
 
-          <td>
-            〒<%= current_customer.postal_code %><br/>
-            <%= current_customer.address %><br/>
-            <%= current_customer.last_name %> <%= current_customer.first_name %>
-          </td>
+        <td>
+          <% order.order_details.each do |order_detail| %>
+          <p ><%= order_detail.item.name %><br></p>
+          <% end %>
+        </td>
 
-          <td>
-            <% order.order_details.each do |order_detail| %>
-            <p ><%= order_detail.item.name %><br></p>
+
+        <td>
+          <% order.order_details.each do |order_detail| %>
+          <p><%= link_to 'レビュー', new_public_review_path(item_id: order_detail.item_id), class: "btn btn-danger btn-sm" %><br></p>
             <% end %>
-          </td>
+        </td>
 
+        <td>
+          <% @total_payment = 0 %>
+          <% order.order_details.each do |order_detail| %>
+            <% subtotal = (order_detail.item.price * order_detail.amount) %>
+            <% @total_payment += (subtotal * 1.1).floor.to_i %>
+          <% end %>
+          <%= number_to_currency(@total_payment + 800, unit: '￥', format: "%u%n") %>
+        </td>
 
-          <td>
-            <% order.order_details.each do |order_detail| %>
-            <p><%= link_to 'レビュー', new_public_review_path(item_id: order_detail.item_id), class: "btn btn-danger btn-sm" %><br></p>
-              <% end %>
-          </td>
+        <td><%= order.status %></td>
 
-          <td>
-            <% @total_payment = 0 %>
-            <% order.order_details.each do |order_detail| %>
-              <% subtotal = (order_detail.item.price * order_detail.amount) %>
-              <% @total_payment += (subtotal * 1.1).floor.to_i %>
-            <% end %>
-            <%= number_to_currency(@total_payment + 800, unit: '￥', format: "%u%n") %>
-          </td>
-
-          <td><%= order.status %></td>
-
-          <td>
-            <div style="margin-top: 15px;">
-              <%= link_to '表示する', public_order_path(order.id), class: "btn btn-primary" %>
-            </div>
-          </td>
+        <td>
+          <div style="margin-top: 15px;">
+            <%= link_to '表示する', public_order_path(order.id), class: "btn btn-primary" %>
+          </div>
+        </td>
     </tbody>
     <% end %>
   </table>
-
-  <%= paginate @orders %>
-
+    <div class="d-flex justify-content-center" style="margin-top: 50px;">
+      <%= paginate @orders %>
+    </div>
 </div>

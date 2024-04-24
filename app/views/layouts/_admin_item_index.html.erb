@@ -2,12 +2,11 @@
   <div class="d-flex justify-content-around">
     <h2 style="margin-left: 230px;">items</h2>
     <%= link_to '+', new_admin_item_path, class: "btn btn-pink-1" %>
-    </div>
-    <div style="margin-top: 5px; margin-bottom: 5px;"></div>
+  </div>
+  <div style="margin-top: 5px; margin-bottom: 5px;"></div>
 
-    <div>
+  <div>
     <table class='table table-hover table-inverse'>
-
       <thead>
         <tr>
           <th>商品ID</th>
@@ -46,13 +45,11 @@
             <td style="<%= 'color:green;' if item.status == 'on_sale' %> <%= 'color:gray;' if item.status == 'not_on_sale' %> <%= 'color:#db7093;' if item.status == 'back_ordered' %>">
              <%= item.status_i18n %>
             </td>
-
           </tr>
 
         <% end %>
       </tbody>
-     </div>
 
     </table>
-
+  </div>
 </div>

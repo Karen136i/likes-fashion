@@ -14,7 +14,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="col-10">
     <div class="container">
       <div class="row justify-content-center mt-2">
@@ -22,7 +22,7 @@
         <h4 class="text-center mt-3">　(全<%= @total_items %>件)</h4>
       </div>
     </div>
-    
+
     <div class="container">
       <div class="row row-cols-1 row-cols-md-3">
         <% @items.each do |item| %>
@@ -33,13 +33,13 @@
               <%= image_tag url_for(item.image), class: 'card-img-top' %>
               <% end %>
             <% end %>
-            
+
             <div class="card-body">
               <h5 class="card-title"><%= link_to item.name, public_item_path(item) %></h5>
               <div class="horizontal-links">
                 <div class="card-text">¥<%= number_with_delimiter(item.price_without_tax) %></div>
                 <div class="card-text"><%= link_to '💬 reviews', public_reviews_path %></div>
-                
+
                  <!--お気に入りの実装-->
                 <div class="card-text">
                   <% if Favorite.favorited_by?(current_customer, item) %>
@@ -56,7 +56,7 @@
                 </div>
               </div>
             </div>
-            
+
           </div>
         </div>
         <% end %>

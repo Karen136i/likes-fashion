@@ -24,7 +24,7 @@
 
               <div class="card-text"><%= link_to '💬 reviews', public_reviews_path %></div>
 
-              <!--お気に入りの実装途中-->
+              <!--お気に入りの実装-->
               <div class="card-text">
                 <% if Favorite.favorited_by?(current_customer, item) %>
                   <%= link_to public_favorites_path(item_id: item.id), method: :delete, remote: true do %>
@@ -38,7 +38,6 @@
                   <% end %>
                 <% end %>
               </div>
-
             </div>
           </div>
         </div>
