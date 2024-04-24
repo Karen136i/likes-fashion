@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :categories, only: [:index, :create, :edit, :update, :destroy]
     resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+      member do
+      get :reviews
+     end
       resources :reviews, only: [:show]  # 商品ごとのレビュー詳細ページ
     end
     resources :reviews, only: [:index, :create, :show, :destroy] do
@@ -38,7 +41,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :items, only: [:index, :show] do
       resource :favorites, only: [:create, :destroy]
-    end 
+    end
     resource :favorites, only: [:show]
     resources :reviews, only: [:index, :new, :show, :update, :create, :destroy] do
       resource :review_favorites, only: [:create, :destroy]

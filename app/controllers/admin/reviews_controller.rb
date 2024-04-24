@@ -3,6 +3,7 @@ class Admin::ReviewsController < ApplicationController
 
   def index
     @reviews = Review.includes(:customer, :item).page(params[:page]).per(5)
+    @items = Item.all 
   end
 
   def show

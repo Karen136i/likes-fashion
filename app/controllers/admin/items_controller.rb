@@ -24,6 +24,12 @@ class Admin::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
   end
+  
+  def reviews
+    @item = Item.find(params[:id])
+    @reviews = @item.reviews.includes(:customer).order(created_at: :desc)
+    # アイテムに紐づくレビューを表示するためのデータを取得
+  end
 
   def edit
     @item = Item.find(params[:id])

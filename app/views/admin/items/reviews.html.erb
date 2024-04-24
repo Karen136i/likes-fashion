@@ -2,14 +2,14 @@
 <div class='container' style="margin-top: 40px; margin-bottom: 50px;">
   <div class='row justify-content-center'>
     <div class="col-sm-10 col-md-9 col-lg-8 px-6 px-sm-0 mx-auto align-self-center text-start">
-      <h3 class="text-center" style="margin-bottom: 40px;">全商品のレビュー一覧</h3>
+      <h3 class="text-center" style="margin-bottom: 40px;"><%= @item.name %>のレビュー一覧</h3>
       <% @reviews.each do |review| %>
         <div class="card mb-5 card-pink">
           <div class="card-header">
             <%= link_to "#{review.customer.last_name} #{review.customer.first_name}", admin_customer_path(review.customer.id) %> (<%= review.nickname %>)
           </div>
           <div class="card-body">
-            <h5 class="card-title">商品名: <%= link_to review.item.name, reviews_admin_item_path(review.item) %></h5>
+            <h5 class="card-title">商品名: <%= review.item.name %></h5>
             <p class="card-text"><strong>コメント:</strong> <%= review.review_content %></p>
             <p class="card-text"><strong>評価:</strong>
               <span class="star-rating">
@@ -25,7 +25,7 @@
             <p class="card-text"><small class="text-muted">投稿日時: <%= review.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d ") %></small></p>
           </div>
           <% if review.comments.any? %>
-            <div class="card-footer">
+            <div class="card-footer card-footer-custom">
               <% review.comments.each do |comment| %>
                 <div class="comment-container">
                   <p><%= comment.content %></p>
