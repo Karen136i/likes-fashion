@@ -1,6 +1,11 @@
 # Likes fashion
 
 ## サイト概要
+![スクリーンショット 2024-04-25 134218](https://github.com/Karen136i/likes-fashion/assets/156569903/9c18691b-71c0-4e4b-a982-f0509988360a)
+
+
+
+![スクリーンショット 2024-04-25 134622](https://github.com/Karen136i/likes-fashion/assets/156569903/3b207b25-a81d-480c-8888-07bd98987549)
 ### サイトテーマ
 「女性向けの洋服サイト」―  このサイトでは、ECサイトも兼ねており、購入したり、購入した商品をレビューしたりできます。
 
@@ -23,7 +28,14 @@
 ・トレンドやスタイリングのアイデアを探したいとき
 
 ## 設計書
-作成途中のワイヤーフレーム：URL(https://docs.google.com/presentation/d/1IxOWVBMh6LwjHhfAgDvC-X-mBCWLOGIElXxPTXCa1zo/edit#slide=id.p)
+
+### UIフロー(ユーザー)
+
+
+### UIフロー(管理者)
+
+
+### ER図
 
 
 ## 開発環境
