@@ -42,16 +42,14 @@
 ![スクリーンショット 2024-04-25 144504](https://github.com/Karen136i/likes-fashion/assets/156569903/c909503c-e910-4dd3-97fe-473897f116d8)
 
 ## 使用技術
+![image](https://img.shields.io/badge/Ruby-e60033?style=plastic&logo=Ruby&logoColor=white)
+![image](https://img.shields.io/badge/Ruby%20on%20Rails-e60033?style=plastic&logo=Ruby%20on%20Rails&logoColor=white)
+![image](https://img.shields.io/badge/JavaScript-ffd700?style=plastic&logo=JavaScript&logoColor=white)
+![image](https://img.shields.io/badge/HTML5-ed6d35?style=plastic&logo=HTML5&logoColor=white)
+![image](https://img.shields.io/badge/CSS3-0095d9?style=plastic&logo=CSS3&logoColor=white)
+![image](https://img.shields.io/badge/Bootstrap-674598?style=plastic&logo=Bootstrap&logoColor=white)
+![image](https://img.shields.io/badge/GitHub-262626?style=plastic&logo=GitHub&logoColor=white)
 
-![image](https://github.com/webcamp-Jump/nagano_cake/assets/9004618/20f0ab96-f3ef-400c-a475-5afa6c44d465)
-![image](https://github.com/webcamp-Jump/nagano_cake/assets/9004618/c5376540-d329-4dae-b997-eb4a6d164489)
-![image](https://github.com/webcamp-Jump/nagano_cake/assets/9004618/820ad9e9-4c2f-489a-8434-ff6e81f02db2)
-![image](https://github.com/webcamp-Jump/nagano_cake/assets/9004618/21570ae0-f3ed-4179-a330-9c16da6b62e6)
-![image](https://github.com/webcamp-Jump/nagano_cake/assets/9004618/20407384-322d-446c-93b5-bb02c840d805)
-![image](https://github.com/webcamp-Jump/nagano_cake/assets/9004618/f1c3fa28-1a9e-4ee9-8d41-3887f1dbd55c)
-![image](https://github.com/webcamp-Jump/nagano_cake/assets/9004618/0cfad73c-915a-434c-b503-0ddba352ddc6)
-![image](https://github.com/webcamp-Jump/nagano_cake/assets/9004618/f10b9e02-8159-4f18-909b-b5e8ca52bf1e)
-<img src="https://img.shields.io/badge/-Bootstrap-563D7C.svg?logo=bootstrap&style=flat">
 
 
 ## 開発環境
