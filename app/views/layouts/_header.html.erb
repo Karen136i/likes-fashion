@@ -131,33 +131,82 @@
       </div>
   </nav>
 
-  <div class= "text-right mr-4 pb-3">
+  <div class="text-right mr-3 pb-2 search-container">
     <!-- 顧客も管理者もログインしていない場合の検索ボックス -->
     <% unless admin_signed_in? || customer_signed_in? %>
-      <%= form_with url: search_path, method: :get, local: true do |f| %>
-        <%= f.text_field :content, placeholder: "商品名を検索" %>
-        <%= f.submit "🔍" %>
+      <%= form_with url: search_path, method: :get, local: true, class: 'form-style' do |f| %>
+        <%= f.text_field :content, placeholder: "商品名を検索", class: 'input-style' %>
+        <%= f.submit "🔍", class: 'submit-style' %>
       <% end %>
     <% end %>
-
+  
     <!-- 顧客がログインしている場合の検索ボックス -->
     <% if customer_signed_in? %>
-      <%= form_with url: search_path, method: :get, local: true do |f| %>
-        <%= f.text_field :content, placeholder: "商品名を検索" %>
-        <%= f.submit "🔍" %>
+      <%= form_with url: search_path, method: :get, local: true, class: 'form-style' do |f| %>
+        <%= f.text_field :content, placeholder: "商品名を検索", class: 'input-style' %>
+        <%= f.submit "🔍", class: 'submit-style' %>
       <% end %>
     <% end %>
-
-    <!--顧客がログインしている場合の検索ボックス-->
+  
+    <!-- 管理者がログインしている場合の検索ボックス -->
     <% if admin_signed_in? %>
-      <%= form_with url: search_path, method: :get, local: true do |f| %>
-        <%= f.text_field :content, placeholder: "検索キーワードを入力" %>
-        <%= f.select :model, options_for_select({"Customer" => "customer", "Item" => "item"}, selected: params[:model]) %>
-        <%= f.select :method, options_for_select({"部分一致" => "partial"}, selected: params[:method]) %>
-        <%= f.submit "🔍" %>
+      <%= form_with url: search_path, method: :get, local: true, class: 'form-style' do |f| %>
+        <%= f.text_field :content, placeholder: "検索キーワードを入力", class: 'input-style' %>
+        <%= f.select :model, options_for_select({"Customer" => "customer", "Item" => "item"}, selected: params[:model]), class: 'select-style' %>
+        <%= f.hidden_field :method, value: "partial" %>
+        <%= f.submit "🔍", class: 'submit-style' %>
       <% end %>
     <% end %>
   </div>
+
   <div class="mt-5"></div>
+  
+  <style>
+  .search-container {
+    text-align: right;
+    margin-right: 16px;
+    padding-bottom: 12px;
+  }
+
+  .form-style {
+    display: inline-block;
+    background-color: #fff;
+    border: 2px solid #ffcccc; /* ライトピンク */
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 4px 10px;
+  }
+
+  .input-style[type="text"] {
+    border: 2px solid #ffcccc; /* ライトピンク */
+    border-radius: 20px;
+    padding: 6px;
+    outline: none;
+    width: 200px; /* フィールドの幅を調整可能 */
+  }
+
+  .select-style {
+    border: 2px solid #ffcccc; /* ライトピンク */
+    border-radius: 20px;
+    padding: 8px;
+    background: white;
+    color: #666;
+    outline: none;
+  }
+
+  .submit-style {
+    background-color: #ffcccc; /* ライトピンク */
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .submit-style:hover {
+    background-color: #ff99aa; /* より明るいピンク */
+  }
+</style>
 
 </header>

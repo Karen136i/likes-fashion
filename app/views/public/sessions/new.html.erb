@@ -31,14 +31,13 @@
           <div class="col-md-8">
             <%= f.submit "ログイン", class: "btn btn-primary btn-block" %>
           </div>
-            <% end %>
         </div>
+      <% end %>
 
-        <h5 style="margin-top: 50px;">会員登録がお済みでない方</h5>
-        <p class="text-left mt-2 md-3 ">
-        <%= link_to "こちら", new_customer_registration_path, style: "color: #0000ff;" %> から新規登録を行ってください。
-        </p>
+      <h5 style="margin-top: 50px;">会員登録がお済みでない方</h5>
+      <p class="text-left mt-2 md-3 ">
+        <%= link_to "こちら", new_customer_registration_path, class: "link-style" %>
+      </p>
     </div>
   </div>
 </div>
-
