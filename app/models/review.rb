@@ -4,6 +4,7 @@ class Review < ApplicationRecord
   belongs_to :customer
   has_many :comments, dependent: :destroy
   has_many :review_favorites, dependent: :destroy #レビューに対するいいね機能
+  has_many_attached :images
   
   validates :nickname, presence: true
   validates :review_content, presence: true

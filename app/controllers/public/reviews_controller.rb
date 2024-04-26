@@ -1,8 +1,8 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_customer! #アクセス制限
   before_action :check_purchase, only: [:new, :create]
-  before_action :check_existing_review, only: [:new, :create]
-  
+  before_action :check_review_capacity, only: [:new, :create] 
+
   def new
     @review = Review.new
     @reviews = Review.includes(:comment).all
@@ -40,9 +40,9 @@ class Public::ReviewsController < ApplicationController
       end
     else
       redirect_to root_path, alert: "アイテムが指定されていません。"
-    end 
+    end
   end
-  
+
   def destroy
     @review = Review.find(params[:id])
     item_id = @review.item_id  # 削除するレビューに関連するアイテムのIDを保存
@@ -57,24 +57,34 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:nickname, :review_content, :star)
+    params.require(:review).permit(:nickname, :review_content, :star, images: [])
   end
-  
+
   def check_purchase
     @item = Item.find(params[:item_id])
-    # 現在の顧客がこのアイテムを含む注文詳細を持っているかどうかを確認
-    purchased_item = current_customer.orders.joins(:order_details).where(order_details: { item_id: @item.id }).exists?
-    unless purchased_item
+    unless current_customer.orders.joins(:order_details).where(order_details: { item_id: @item.id }).exists?
       redirect_to public_items_path, alert: "この商品のレビューを書くためには購入が必要です。"
     end
   end
 
-  def check_existing_review
+  def check_review_capacity
     @item = Item.find(params[:item_id])
-    existing_review = Review.find_by(customer_id: current_customer.id, item_id: @item.id)
-    if existing_review
-      redirect_to public_item_path(@item), alert: "この商品に対するレビューは既に投稿済みです。"
+    purchased_quantity = total_purchased_quantity(@item.id)
+    written_reviews = total_reviews_written(@item.id)
+
+    if written_reviews >= purchased_quantity
+      redirect_to public_item_path(@item), alert: "この商品のレビュー可能数を超えています。"
     end
   end
- 
+
+  def total_purchased_quantity(item_id)
+    current_customer.orders.joins(:order_details)
+                    .where(order_details: { item_id: item_id })
+                    .sum("order_details.amount")
+  end
+
+  def total_reviews_written(item_id)
+    Review.where(customer_id: current_customer.id, item_id: item_id).count
+  end
+
 end

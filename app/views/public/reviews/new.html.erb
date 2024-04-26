@@ -19,10 +19,21 @@
                 <th class="no-border" style="padding-left: 120px;">商品名</th>
                 <td class="no-border" style="font-size:20px; padding-right: 30px;"><%= @item.name %></td>
               </tr>
+              
+              <tr class="no-border">
+                <th class="no-border" style="padding-left: 120px;">画像アップロード(任意)</th>
+                <td class="no-border" style="padding-right: 30px;">
+                  <%= f.file_field :images, multiple: true, accept: 'image/jpeg,image/gif,image/png' %>
+                  <p style="font-size: 12px; color: grey; margin-top: 5px;">※画像は任意です。</p>
+                </td>
+              </tr>
 
               <tr class="no-border">
                 <th class="no-border" style="padding-left: 120px;">ニックネーム</th>
-                <td class="no-border" style="padding-right: 30px;"><%= f.text_field :nickname, class: 'custom-field' %></td>
+                <td class="no-border" style="padding-right: 30px;">
+                  <%= f.text_field :nickname, class: 'custom-field' %>
+                  <p style="font-size: 12px; color: red; margin-top: 5px;">※ニックネームは公開されますのでご注意ください</p>
+                </td>
               </tr>
 
               <!--レビュー機能の実装-->
@@ -47,7 +58,6 @@
                   </script>
                 </td>
               </tr>
-
 
               <tr class="no-border">
                 <th class="no-border" style="padding-left: 120px;">コメント</th>

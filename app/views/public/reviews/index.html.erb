@@ -30,6 +30,14 @@
                 <% end %>
               </span>
             </h5>
+            <% if review.images.attached? %>
+              <div class="review-images">
+                <% review.images.each do |image| %>
+                  <%= image_tag image, class: "img-fluid", style: "max-height: 300px; margin-bottom: 10px;" %>
+                <% end %>
+              </div>
+            <% end %>
+            
             <p class="card-text">コメント：<%= review.review_content %></p>
 
             <!-- レビューに対するお気に入り機能実装 -->

@@ -10,6 +10,13 @@
           </div>
           <div class="card-body">
             <h5 class="card-title">商品名: <%= review.item.name %></h5>
+            <% if review.images.attached? %>
+              <div class="review-images">
+                <% review.images.each do |image| %>
+                  <%= image_tag image, class: "img-fluid", style: "max-height: 300px; margin-bottom: 10px;" %>
+                <% end %>
+              </div>
+            <% end %>
             <p class="card-text"><strong>コメント:</strong> <%= review.review_content %></p>
             <p class="card-text"><strong>評価:</strong>
               <span class="star-rating">
