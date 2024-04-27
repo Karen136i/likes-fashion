@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="text-center mb-5">今日のおすすめ商品</h2>
+  <h2 class="text-center mt-5 mb-5">今日のおすすめ商品</h2>
   <div class="row">
     <% @random_items.each do |item| %>
       <div class="col-md-3 mb-4">
@@ -57,9 +57,8 @@
       <%= image_tag 'top4.jpeg', style: "width: 1200px; height: 800px;" %>
     </div>
   </div>
+  
 </div>
-<!-- スライドコントロール -->
-
 
 <style>
 
@@ -99,17 +98,17 @@
     let slides = document.querySelectorAll('.slider-item');
     let currentSlide = 0;
     let slideInterval = setInterval(nextSlide, 3000);
-  
+
     function nextSlide() {
       slides[currentSlide].style.display = 'none';
       currentSlide = (currentSlide+1)%slides.length;
       slides[currentSlide].style.display = 'block';
     }
-  
+
     document.getElementById('pause').onclick = function() {
       clearInterval(slideInterval);
     };
-  
+
     document.getElementById('play').onclick = function() {
       slideInterval = setInterval(nextSlide, 3000);
     };
