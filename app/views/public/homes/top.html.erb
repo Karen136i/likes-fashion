@@ -1,56 +1,117 @@
-<div class="col-sm-12 col-md-12 col-lg-12 px-5 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-12">
-        <table class="table table-hover table-inverse">
+<div class="container">
+  <h2 class="text-center mb-5">今日のおすすめ商品</h2>
+  <div class="row">
+    <% @random_items.each do |item| %>
+      <div class="col-md-3 mb-4">
+        <div class="card h-200">
+            <% if item.image.attached? %>
+              <%= link_to public_item_path(item) do %>
+                <%= image_tag url_for(item.image), class: 'card-img-top' %>
+              <% end %>
+            <% end %>
 
-        <style>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to item.name, public_item_path(item) %></h5>
+            <div class="horizontal-links">
+              <div class="card-text">¥<%= number_with_delimiter(item.price_without_tax) %></div>
 
-          .slider {
-            max-width: 100%;
-            max-height: 100%;
-            display: flex;
-            overflow: hidden;
-            margin: 0 auto;
-          }
+              <div class="card-text">
+                <%= link_to '💬', public_reviews_path(item_id: item.id) %>
+                <span class="mr-3"><%= item.reviews.count %></span>
+              </div>
 
-          .slider > :first-child {
-            animation: scroll 30s infinite linear;
-          }
+              <!--いいね機能の実装-->
+              <div class="card-text">
+                <% if Favorite.favorited_by?(current_customer, item) %>
+                  <%= link_to public_item_favorites_path(item_id: item.id), method: :delete, remote: true, class: "favorite-link", data: { item_id: item.id } do %>
+                    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                    <span class="favorite-count"><%= item.favorites.count %></span>
+                  <% end %>
+                <% else %>
+                  <%= link_to public_item_favorites_path(item_id: item.id), method: :post, remote: true, class: "favorite-link", data: { item_id: item.id } do %>
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="favorite-count"><%= item.favorites.count %></span>
+                  <% end %>
+                <% end %>
+              </div>
 
-          @keyframes scroll {
-            0% { margin-left: 0; }
-            20% { margin-left: -100%; }
-            50% { margin-left: -200%; }
-            70% { margin-left: -300%; }
-            100% { margin-left: -400%; }
-          }
-
-        </style>
-
-        <body>
-          <div class="slider">
-            <div class="slider-item">
-              <%= image_tag 'top1.jpg', style: "width: 1200px; height: 800px;" %>
             </div>
-
-            <div class="slider-item">
-              <%= image_tag 'top2.jpg', style: "width: 1200px; height: 800px;" %>
-            </div>
-
-            <div class="slider-item">
-              <%= image_tag 'top3.jpeg', style: "width: 1200px; height: 800px;" %>
-            </div>
-
-            <div class="slider-item">
-              <%= image_tag 'top4.jpeg', style: "width: 1200px; height: 800px;" %>
-            </div>
-
           </div>
-        </body>
-
-        </table>
+        </div>
       </div>
+    <% end %>
+  </div>
+
+   <!-- スライドショー部分 -->
+  <div class="slider mb-4">
+    <div class="slider-item">
+      <%= image_tag 'top1.jpg', style: "width: 1200px; height: 800px;" %>
+    </div>
+    <div class="slider-item">
+      <%= image_tag 'top2.jpg', style: "width: 1200px; height: 800px;" %>
+    </div>
+    <div class="slider-item">
+      <%= image_tag 'top3.jpeg', style: "width: 1200px; height: 800px;" %>
+    </div>
+    <div class="slider-item">
+      <%= image_tag 'top4.jpeg', style: "width: 1200px; height: 800px;" %>
     </div>
   </div>
 </div>
+<!-- スライドコントロール -->
+
+
+<style>
+
+    .slider {
+    max-width: 100%;
+    display: flex;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .slider-item {
+    flex: 0 0 100%;
+    transition: transform 1s ease-in-out;
+  }
+
+  .slider-controls {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  @keyframes scroll {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-100%); }
+    50% { transform: translateX(-200%); }
+    75% { transform: translateX(-300%); }
+  }
+
+  .slider:hover .slider-item {
+    animation-play-state: paused; /* Hoverでアニメーションを一時停止 */
+  }
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  let slides = document.querySelectorAll('.slider-item');
+  let currentSlide = 0;
+  let slideInterval = setInterval(nextSlide, 3000);
+
+  function nextSlide() {
+    slides[currentSlide].style.display = 'none';
+    currentSlide = (currentSlide+1)%slides.length;
+    slides[currentSlide].style.display = 'block';
+  }
+
+  document.getElementById('pause').onclick = function() {
+    clearInterval(slideInterval);
+  };
+
+  document.getElementById('play').onclick = function() {
+    slideInterval = setInterval(nextSlide, 3000);
+  };
+});
+</script>

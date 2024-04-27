@@ -139,7 +139,7 @@
         <%= f.submit "🔍", class: 'submit-style' %>
       <% end %>
     <% end %>
-  
+
     <!-- 顧客がログインしている場合の検索ボックス -->
     <% if customer_signed_in? %>
       <%= form_with url: search_path, method: :get, local: true, class: 'form-style' do |f| %>
@@ -147,7 +147,7 @@
         <%= f.submit "🔍", class: 'submit-style' %>
       <% end %>
     <% end %>
-  
+
     <!-- 管理者がログインしている場合の検索ボックス -->
     <% if admin_signed_in? %>
       <%= form_with url: search_path, method: :get, local: true, class: 'form-style' do |f| %>
@@ -160,7 +160,7 @@
   </div>
 
   <div class="mt-5"></div>
-  
+
   <style>
   .search-container {
     text-align: right;
