@@ -17,15 +17,16 @@
 
   <div class="col-10">
     <div class="container">
-      <div class="row justify-content-center mt-2">
-        <h1 class="text-center" style="margin-bottom: 50px;"><%= @category.name %></h1>
-        <h4 class="text-center mt-3">　(全<%= @total_items %>件)</h4>
+      <div class="row justify-content-center mt-5">
+        <h2 class="text-center"><%= @category.name %></h2>
+        <h3 class="text-center">　(全<%= @total_items %>件)</h3>
       </div>
     </div>
 
     <div class="container">
       <div class="row row-cols-1 row-cols-md-3">
         <% @items.each do |item| %>
+        <% next unless item.status == "on_sale" %>
         <div class="col mb-4">
           <div class="card h-200">
             <% if item.image.attached? %>

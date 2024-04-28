@@ -3,6 +3,7 @@ class Public::CategoriesController < ApplicationController
   
   def show
     @category = Category.find(params[:id])
+    @items = @category.items.where(status: "on_sale")
     @items = @category.items # カテゴリーに関連するアイテムを取得するためのコード。必要に応じて調整してください。
     @categories = Category.all # すべてのカテゴリーを取得
     @total_items = @category.items.count
