@@ -43,14 +43,14 @@
                  <!--お気に入りの実装-->
                 <div class="card-text">
                   <% if Favorite.favorited_by?(current_customer, item) %>
-                    <%= link_to public_favorites_path(item_id: item.id), method: :delete, remote: true do %>
-                    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-                    <%= item.favorites.count %>
+                    <%= link_to public_item_favorites_path(item_id: item.id), method: :delete do %>
+                      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                      <%= item.favorites.count %>
                     <% end %>
                   <% else %>
-                    <%= link_to public_favorites_path(item_id: item.id), method: :post, remote: true do %>
-                    <i class="fa-regular fa-heart"></i>
-                    <%= item.favorites.count %>
+                    <%= link_to public_item_favorites_path(item_id: item.id), method: :post do %>
+                      <i class="fa-regular fa-heart"></i>
+                      <%= item.favorites.count %>
                     <% end %>
                   <% end %>
                 </div>
