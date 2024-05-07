@@ -45,37 +45,39 @@
 
    <!-- スライドショー部分 -->
   <div class="slider mb-4">
-    <div class="slider-item">
-      <%= image_tag 'top1.jpg', style: "width: 1200px; height: 800px;" %>
+    <div class="slider-item" style="display: block;">
+      <%= image_tag 'top1.jpg', class: "slider-img" %>
     </div>
     <div class="slider-item">
-      <%= image_tag 'top2.jpg', style: "width: 1200px; height: 800px;" %>
+      <%= image_tag 'top2.jpg', class: "slider-img" %>
     </div>
     <div class="slider-item">
-      <%= image_tag 'top3.jpeg', style: "width: 1200px; height: 800px;" %>
+      <%= image_tag 'top3.jpeg', class: "slider-img" %>
     </div>
     <div class="slider-item">
-      <%= image_tag 'top4.jpeg', style: "width: 1200px; height: 800px;" %>
+      <%= image_tag 'top4.jpeg', class: "slider-img" %>
     </div>
   </div>
-  
+
 </div>
 
 <style>
-
-    .slider {
+  .slider {
     max-width: 100%;
-    display: flex;
     overflow: hidden;
-    margin: 0 auto;
     position: relative;
   }
-
+  
   .slider-item {
-    flex: 0 0 100%;
-    transition: transform 1s ease-in-out;
+    display: none;  /* 最初はすべてのスライドを非表示に */
+    width: 100%;
   }
-
+  
+  .slider-img {
+    width: 100%;
+    height: auto;
+  }
+  
   .slider-controls {
     text-align: center;
     margin-top: 20px;
@@ -91,27 +93,20 @@
   .slider:hover .slider-item {
     animation-play-state: paused; /* Hoverでアニメーションを一時停止 */
   }
-
 </style>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    let slides = document.querySelectorAll('.slider-item');
-    let currentSlide = 0;
-    let slideInterval = setInterval(nextSlide, 3000);
+  const slides = document.querySelectorAll('.slider-item');
+  let currentSlide = 0;
 
-    function nextSlide() {
-      slides[currentSlide].style.display = 'none';
-      currentSlide = (currentSlide+1)%slides.length;
-      slides[currentSlide].style.display = 'block';
-    }
+  slides[currentSlide].style.display = 'block';  // 最初のスライドだけ表示
 
-    document.getElementById('pause').onclick = function() {
-      clearInterval(slideInterval);
-    };
-
-    document.getElementById('play').onclick = function() {
-      slideInterval = setInterval(nextSlide, 3000);
-    };
-  });
+  setInterval(function() {
+    slides[currentSlide].style.display = 'none';  // 現在のスライドを非表示
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].style.display = 'block';  // 次のスライドを表示
+  }, 3000);  // 3秒ごとにスライドを切り替え
+});
 </script>
