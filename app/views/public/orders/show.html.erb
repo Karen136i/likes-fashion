@@ -4,8 +4,8 @@
       <h3 class="text-center">注文履歴詳細</h3>
 
       <!-- 注文情報のテーブル -->
-      <div style="margin-top: 50px;" class="table-container">
-        <table border="1" style="width: 700px;" class="mx-auto text-center">
+      <div class="table-responsive" style="margin-top: 50px;">
+        <table class="table mx-auto text-center">
 
           <tr>
             <td class="active" style="width:200px;">注文日</td>
@@ -35,11 +35,11 @@
       </div>
 
       <!-- 注文詳細のテーブル -->
-      <div style="margin-top: 50px;">
-        <table border="1" style="width: 700px;" class="mx-auto text-center">
+      <div class="table-responsive" style="margin-top: 50px;">
+        <table class="table mx-auto text-center">
           <tr>
             <th class="active">商品</th>
-            <th class="active">単価（税抜）</th>
+            <th class="active">単価(税抜)</th>
             <th class="active text-center">個数</th>
             <th class="active">小計</th>
           </tr>
@@ -82,3 +82,26 @@
     </div>
   </div>
 </div>
+
+<style>
+  @media (max-width: 768px) {
+    .table {
+      font-size: 14px; /* テーブル内のフォントサイズを小さく調整 */
+    }
+  
+    .px-5 {
+      padding-left: 1rem; /* 左右のパディングを調整 */
+      padding-right: 1rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .table {
+      font-size: 12px; /* 更に小さなデバイスでフォントサイズを小さく */
+    }
+  
+    h3 {
+      font-size: 16px; /* タイトルのフォントサイズ調整 */
+    }
+  }
+</style>

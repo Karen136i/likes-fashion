@@ -35,7 +35,6 @@
                   <% end %>
                 <% end %>
               </div>
-
             </div>
           </div>
         </div>
@@ -44,21 +43,33 @@
   </div>
 
    <!-- スライドショー部分 -->
-  <div class="slider mb-4">
-    <div class="slider-item" style="display: block;">
-      <%= image_tag 'top1.jpg', class: "slider-img" %>
-    </div>
-    <div class="slider-item">
-      <%= image_tag 'top2.jpg', class: "slider-img" %>
-    </div>
-    <div class="slider-item">
-      <%= image_tag 'top3.jpeg', class: "slider-img" %>
-    </div>
-    <div class="slider-item">
-      <%= image_tag 'top4.jpeg', class: "slider-img" %>
-    </div>
+ <div class="slider mb-4">
+  <!-- スライダーコントロール（前後ボタン） -->
+  <button class="slider-btn prev-btn">&#10094;</button>
+  <button class="slider-btn next-btn">&#10095;</button>
+
+  <!-- スライダーアイテム -->
+  <div class="slider-item">
+    <%= image_tag 'top1.jpg', class: "slider-img" %>
+  </div>
+  <div class="slider-item">
+    <%= image_tag 'top2.jpg', class: "slider-img" %>
+  </div>
+  <div class="slider-item">
+    <%= image_tag 'top3.jpeg', class: "slider-img" %>
+  </div>
+  <div class="slider-item">
+    <%= image_tag 'top4.jpeg', class: "slider-img" %>
   </div>
 
+  <!-- インジケーター（ドット） -->
+  <div class="slider-indicators">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+  
 </div>
 
 <style>
@@ -69,8 +80,15 @@
   }
   
   .slider-item {
-    display: none;  /* 最初はすべてのスライドを非表示に */
+    display: none;
     width: 100%;
+    transition: opacity 0.5s ease-in-out; /* トランジション追加 */
+    opacity: 0; /* 透明度を0に */
+  }
+  
+  .slider-item.active {
+    display: block;
+    opacity: 1; /* アクティブなアイテムは完全に不透明 */
   }
   
   .slider-img {
@@ -78,35 +96,80 @@
     height: auto;
   }
   
-  .slider-controls {
+  .slider-controls, .slider-indicators {
+    position: absolute;
+    width: 100%;
     text-align: center;
-    margin-top: 20px;
+    z-index: 10;
   }
-
-  @keyframes scroll {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-100%); }
-    50% { transform: translateX(-200%); }
-    75% { transform: translateX(-300%); }
+  
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
   }
-
-  .slider:hover .slider-item {
-    animation-play-state: paused; /* Hoverでアニメーションを一時停止 */
+  
+  .prev-btn { left: 10px; }
+  .next-btn { right: 10px; }
+  
+  .dot {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
   }
+  
+  .dot.active { background-color: #717171; }
 </style>
-
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-  const slides = document.querySelectorAll('.slider-item');
-  let currentSlide = 0;
-
-  slides[currentSlide].style.display = 'block';  // 最初のスライドだけ表示
-
-  setInterval(function() {
-    slides[currentSlide].style.display = 'none';  // 現在のスライドを非表示
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].style.display = 'block';  // 次のスライドを表示
-  }, 3000);  // 3秒ごとにスライドを切り替え
-});
+    const slides = document.querySelectorAll('.slider-item');
+    const dots = document.querySelectorAll('.dot');
+    const prevButton = document.querySelector('.prev-btn');
+    const nextButton = document.querySelector('.next-btn');
+    let currentSlide = 0;
+  
+    function showSlide(n) {
+      slides.forEach((slide, index) => {
+        slide.style.display = 'none';
+        slide.classList.remove('active');
+        dots[index].classList.remove('active');
+      });
+      slides[n].style.display = 'block';
+      slides[n].classList.add('active');
+      dots[n].classList.add('active');
+    }
+  
+    showSlide(currentSlide);
+  
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+  
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+  
+    nextButton.onclick = nextSlide;
+    prevButton.onclick = prevSlide;
+  
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        showSlide(index);
+      });
+    });
+  
+    setInterval(nextSlide, 10000);  // 10秒ごとに次のスライドへ自動切り替え
+  });
 </script>

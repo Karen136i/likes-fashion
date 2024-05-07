@@ -1,4 +1,4 @@
-<div class="col-sm-13 col-md-11 col-lg-9 px-7 px-sm-0 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
+<div class="col-xs-12 col-sm-12 col-md-11 col-lg-9 px-md-7 px-3 mx-auto align-self-center text-start" style="margin-top: 50px; margin-bottom: 50px;">
   <h3 class="text-center" style="margin-bottom: 30px;">注文履歴詳細</h3>
   <div style="font-size: 18px;">
     <p class="customer-name">
@@ -34,58 +34,81 @@
   </div>
 
   <div style="margin-top: 30px">
-    <table class='order-show-table table'>
-      <thead>
-        <tr>
-          <th class="active">商品名</th>
-          <th class="active">単価（税抜）</th>
-          <th class="active">数量</th>
-          <th class="active">小計</th>
-          <th class="active">発送ステータス</th>
-        </tr>
-      </thead>
+    <div class="table-responsive">
+      <table class='order-show-table table'>
+        <thead>
+          <tr>
+            <th class="active">商品名</th>
+            <th class="active">単価（税抜）</th>
+            <th class="active">数量</th>
+            <th class="active">小計</th>
+            <th class="active">発送ステータス</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <% @order_details.each do |order_detail| %>
-        <tr>
-          <td><%= order_detail.item.name %></td>
-          <td>¥<%= (order_detail.price).floor.to_s(:delimited) %></td>
-          <td><%= order_detail.amount %></td>
-          <td>¥<%= ((order_detail.price * order_detail.amount).floor).to_s(:delimited) %></td>
-          <td>
-            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch, local: true do |f| %>
-              <%= f.select :shipping_status, OrderDetail.shipping_statuses.keys.map { |status| [status.humanize, status] }, selected: order_detail.shipping_status %>
-              <%= f.submit "更新", class: 'btn btn-primary' %>
-            <% end %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+        <tbody>
+          <% @order_details.each do |order_detail| %>
+          <tr>
+            <td><%= order_detail.item.name %></td>
+            <td>¥<%= (order_detail.price).floor.to_s(:delimited) %></td>
+            <td><%= order_detail.amount %></td>
+            <td>¥<%= ((order_detail.price * order_detail.amount).floor).to_s(:delimited) %></td>
+            <td>
+              <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch, local: true do |f| %>
+                <%= f.select :shipping_status, OrderDetail.shipping_statuses.keys.map { |status| [status.humanize, status] }, selected: order_detail.shipping_status %>
+                <%= f.submit "更新", class: 'btn btn-primary' %>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-    <div style="margin-top: 50px; font-size: 20px;">
-      <% total_price_with_tax = @order_details.sum { |order_detail| order_detail.price * order_detail.amount } * 1.1 %>
-      <div class="text-right">
-        <p style="margin-right: 100px;">
-          <strong>商品合計(税込)　</strong>
-          ￥<%= total_price_with_tax.floor.to_s(:delimited) %>
-        </p>
-      </div>
-
-      <div class="text-right">
-        <p style="margin-right: 100px;">
-          <strong>送料　　</strong>
-          ￥<%= @order.shipping_cost %>
-        </p>
-      </div>
-
-      <% total_payment = total_price_with_tax + @order.shipping_cost %>
-      <div class="text-right">
-        <p style="margin-right: 100px;">
-          <strong>請求金額合計　</strong>
-          ¥<%= total_payment.floor.to_s(:delimited) %>
-        </p>
+      <div style="margin-top: 50px; font-size: 20px;">
+        <% total_price_with_tax = @order_details.sum { |order_detail| order_detail.price * order_detail.amount } * 1.1 %>
+        <div class="text-right">
+          <p style="margin-right: 100px;">
+            <strong>商品合計(税込)　</strong>
+            ￥<%= total_price_with_tax.floor.to_s(:delimited) %>
+          </p>
+        </div>
+  
+        <div class="text-right">
+          <p style="margin-right: 100px;">
+            <strong>送料　　</strong>
+            ￥<%= @order.shipping_cost %>
+          </p>
+        </div>
+  
+        <% total_payment = total_price_with_tax + @order.shipping_cost %>
+        <div class="text-right">
+          <p style="margin-right: 100px;">
+            <strong>請求金額合計　</strong>
+            ¥<%= total_payment.floor.to_s(:delimited) %>
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  @media (max-width: 768px) {
+    .order-show-table th, .order-show-table td {
+      padding: 8px;  /* テーブルのパディングを小さくする */
+      font-size: 14px; /* フォントサイズの調整 */
+    }
+    .form-label, .status-select, .btn {
+      font-size: 12px; /* フォーム関連要素のフォントサイズ調整 */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .order-show-table {
+      font-size: 12px; /* より小さな画面でのフォントサイズ */
+    }
+    .customer-name, .customer-peyment {
+      font-size: 16px; /* 顧客情報のフォントサイズ調整 */
+    }
+  }
+</style>
