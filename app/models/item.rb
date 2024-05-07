@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   has_many :cart_items
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
-
+  
   validates :price, presence: true
   validates :name, presence: true, length: { maximum: 20 }
   validates :image, presence: true
@@ -37,6 +37,12 @@ class Item < ApplicationRecord
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
   scope :star_count, -> {order(star: :desc)}
+  # ここまで
+  
+  # レビュー(★)の平均を求める
+  def average_rating
+    reviews.average(:star).to_f.round(2)
+  end
   # ここまで
 
 end

@@ -3,15 +3,23 @@
   <div class='row justify-content-center'>
     <div class="col-sm-8 col-md-7 col-lg-6 px-5 px-sm-0 mx-auto align-self-center text-start">
       <h3 class="text-center"><%= @item.name %>のレビュー</h3>
+      <div class="review-summary text-center">
+        ★評価：<h2 style="display: inline;"><%= @item.average_rating %></h2>
+        <span>/ <%= @item.reviews.count %> レビュー</span>
+      </div>
 
       <!--ソート機能実装-->
-      <p class="text-center sort-links" style="margin-top: 20px; color: red;">
-        <%= link_to '新しい順', public_reviews_path(item_id: @item.id, sort: "latest") %>
-        |　<%= link_to '古い順', public_reviews_path(item_id: @item.id, sort: "oldest") %>
-        |　<%= link_to '評価の高い順', public_reviews_path(item_id: @item.id, sort: "highest_rated") %>
-      </p>
+      <% if @reviews.any? %>
+      <div class="text-right" style="margin-top: 30px; margin-bottom: 20px;">
+        <select onchange="location = this.value;">
+          <option value="<%= public_reviews_path(item_id: @item.id, sort: 'latest') %>" <%= 'selected' if params[:sort] == 'latest' %>>新しい順</option>
+          <option value="<%= public_reviews_path(item_id: @item.id, sort: 'oldest') %>" <%= 'selected' if params[:sort] == 'oldest' %>>古い順</option>
+          <option value="<%= public_reviews_path(item_id: @item.id, sort: 'highest_rated') %>" <%= 'selected' if params[:sort] == 'highest_rated' %>>評価の高い順</option>
+        </select>
+      </div>
       <!--ここまで-->
-
+      
+      <!--レビュー一覧-->
       <% @reviews.each do |review| %>
         <div class="card mb-4">
           <div class="card-header-1">
@@ -73,6 +81,22 @@
       <div class="d-flex justify-content-center" style="margin-top: 20px; margin-bottom: 20px;">
         <%= paginate @reviews %>
       </div>
+      <% else %>
+        <p class="text-center" style="margin-top: 50px;"><%= image_tag 'review.png', style: "width: 300px; height: 220px;" %></p>
+      <% end %>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var selectElement = document.getElementById('sort-reviews');
+      if (selectElement) {
+          selectElement.addEventListener('change', function() {
+              window.location.href = this.value;
+          });
+      } else {
+          console.log('Element with ID `sort-reviews` not found.');
+      }
+  });
+</script>

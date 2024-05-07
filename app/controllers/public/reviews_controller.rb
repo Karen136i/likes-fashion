@@ -27,14 +27,14 @@ class Public::ReviewsController < ApplicationController
     if params[:item_id].present?
       @item = Item.find(params[:item_id])
       @reviews = @item.reviews.page(params[:page]).per(10)
-
+  
       case params[:sort]
       when "latest"
         @reviews = @reviews.reorder(created_at: :desc)
       when "oldest"
         @reviews = @reviews.reorder(created_at: :asc)
       when "highest_rated"
-        @reviews = @reviews.left_joins(:review_favorites).group('reviews.id').reorder('AVG(reviews.star) DESC')
+        @reviews = @reviews.reorder(star: :desc)
       else
         @reviews = @reviews.reorder(created_at: :desc)
       end
@@ -42,6 +42,7 @@ class Public::ReviewsController < ApplicationController
       redirect_to root_path, alert: "アイテムが指定されていません。"
     end
   end
+
 
   def destroy
     @review = Review.find(params[:id])

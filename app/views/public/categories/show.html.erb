@@ -16,9 +16,10 @@
       </div>
       <!-- モバイル用プルダウンメニュー -->
       <select class="form-control-4 d-md-none" onchange="location = this.value;">
-        <option selected disabled>カテゴリーを選択</option>
+        <option disabled>カテゴリーを選択</option>
         <% @categories.each do |category| %>
-          <option value="<%= public_category_path(category) %>"><%= category.name %></option>
+          <% selected = "selected" if params[:id].to_i == category.id %>
+          <option value="<%= public_category_path(category) %>" <%= selected %>><%= category.name %></option>
         <% end %>
       </select>
     </div>
