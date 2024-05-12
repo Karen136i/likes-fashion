@@ -14,43 +14,6 @@
       <!--ナビゲーションメニューの作成-->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-
-          <a>
-          <!-- 顧客も管理者もログインしていない場合 -->
-          <% unless admin_signed_in? || customer_signed_in? %>
-
-          <p class="mb-0">
-            <%= link_to new_customer_registration_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
-            <i class="fa-solid fa-user-plus"></i>sign up
-            <% end %>
-          </p>
-
-          <p class="mb-0">
-            <%= link_to new_customer_session_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
-            <i class="fa-solid fa-arrow-right-to-bracket"></i> log in
-            <% end %>
-          <p>
-
-          <p class="mb-0">
-            <%= link_to public_guest_sign_in_path, class: 'navlink text-black', style: 'margin-right: 10px;', method: :post do %>
-            <i class="fa-solid fa-arrow-right-to-bracket"></i> guest login
-            <% end %>
-          <p>
-
-          <p class="mb-0">
-            <%= link_to public_items_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
-            <i class="fa-solid fa-shirt"></i> items
-            <% end %>
-          </p>
-
-          <p class="mb-0">
-            <%= link_to about_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
-            <i class="fa-solid fa-house-laptop"></i> about
-            <% end %>
-          <p>
-
-          <% end %>
-
           <!-- 管理者がログインしている場合 -->
           <% if admin_signed_in? %>
 
@@ -89,12 +52,10 @@
             <i class="fa-solid fa-right-from-bracket"></i> log out
             <% end %>
           </p>
-
-          <% end %>
-
+          
+          <% elsif customer_signed_in? %> 
+          
           <!-- 顧客がログインしている場合 -->
-          <% if customer_signed_in? %>
-
           <p class="mb-0">
             <%= link_to public_items_path,class: 'nav-link text-black', style: 'margin-right: 10px;' do %>
             <i class="fa-solid fa-shirt"></i> items
@@ -124,39 +85,67 @@
             <i class="fa-solid fa-right-from-bracket"></i> log out
             <% end %>
           </p>
+          <% else %><!-- どちらでもログインしていないとき-->
+          
+          <!-- 顧客も管理者もログインしていない場合 -->
+          <p class="my-2">
+            <%= link_to new_customer_registration_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-user-plus"></i>sign up
+            <% end %>
+          </p>
 
+          <p class="my-2">
+            <%= link_to new_customer_session_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> log in
+            <% end %>
+          </p>
+
+          <p class="my-2">
+            <%= link_to public_guest_sign_in_path, class: 'navlink text-black', style: 'margin-right: 10px;', method: :post do %>
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> guest login
+            <% end %>
+          </p>
+
+          <p class="my-2">
+            <%= link_to public_items_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-shirt"></i> items
+            <% end %>
+          </p>
+
+          <p class="my-2">
+            <%= link_to about_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <i class="fa-solid fa-house-laptop"></i> about
+            <% end %>
+          </p>
           <% end %>
-          </a>
         </ul>
       </div>
   </nav>
 
   <div class="text-right mr-3 pb-2 search-container">
-    <!-- 顧客も管理者もログインしていない場合の検索ボックス -->
-    <% unless admin_signed_in? || customer_signed_in? %>
-      <%= form_with url: search_path, method: :get, local: true, class: 'form-style' do |f| %>
-        <%= f.text_field :content, placeholder: "商品名を検索", class: 'input-style' %>
-        <%= f.submit "🔍", class: 'submit-style' %>
-      <% end %>
-    <% end %>
-
-    <!-- 顧客がログインしている場合の検索ボックス -->
-    <% if customer_signed_in? %>
-      <%= form_with url: search_path, method: :get, local: true, class: 'form-style' do |f| %>
-        <%= f.text_field :content, placeholder: "商品名を検索", class: 'input-style' %>
-        <%= f.submit "🔍", class: 'submit-style' %>
-      <% end %>
-    <% end %>
-
     <!-- 管理者がログインしている場合の検索ボックス -->
-    <% if admin_signed_in? %>
+     <% if admin_signed_in? %>
       <%= form_with url: search_path, method: :get, local: true, class: 'form-style' do |f| %>
         <%= f.text_field :content, placeholder: "検索キーワードを入力", class: 'input-style' %>
         <%= f.select :model, options_for_select({"Customer" => "customer", "Item" => "item"}, selected: params[:model]), class: 'select-style' %>
         <%= f.hidden_field :method, value: "partial" %>
         <%= f.submit "🔍", class: 'submit-style' %>
       <% end %>
+      <!-- 顧客がログインしている場合の検索ボックス -->
+      <% elsif customer_signed_in? %> 
+      <%= form_with url: search_path, method: :get, local: true, class: 'form-style' do |f| %>
+        <%= f.text_field :content, placeholder: "商品名を検索", class: 'input-style' %>
+        <%= f.submit "🔍", class: 'submit-style' %>
+      <% end %>
+      <!-- 顧客も管理者もログインしていない場合の検索ボックス --> 
+      <% else %><!-- どちらでもログインしていないとき-->
+      <%= form_with url: search_path, method: :get, local: true, class: 'form-style' do |f| %>
+        <%= f.text_field :content, placeholder: "商品名を検索", class: 'input-style' %>
+        <%= f.submit "🔍", class: 'submit-style' %>
+      <% end %>
+      
     <% end %>
+   
   </div>
 
   <style>

@@ -57,7 +57,7 @@
             <th class="text-end" style="border: none; white-space: nowrap;"></th>
             <td style="border: none;"><%= link_to '編集する', edit_admin_customer_path(@customer.id), class: "btn btn-success btn-sm", style: "width: 144px; height: 31px;" %></td>
             <td style="border: none;">
-              <%= link_to '注文履歴一覧を見る', admin_order_path(@customer.id), class: "btn btn-primary btn-sm" %>
+              <%= link_to '注文履歴一覧を見る', admin_orders_path(customer_id: @customer), class: "btn btn-primary btn-sm" %>
             </td>
           </tr>
 

@@ -3,7 +3,12 @@ class Admin::OrdersController < ApplicationController
   before_action :set_order, only: [:show, :update]
 
   def index
-    @orders = Order.all.page(params[:page]).per(10).order(created_at: :desc)
+    if params[:customer_id].present?
+      @customer = Customer.find(params[:customer_id])
+      @orders = @customer.orders .page(params[:page]).per(10).order(created_at: :desc)
+    else
+      @orders = Order.all.page(params[:page]).per(10).order(created_at: :desc)
+    end 
   end
 
   def show

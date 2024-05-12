@@ -2,7 +2,6 @@
   <h2 class="text-center mt-5 mb-5">今日のおすすめ商品</h2>
   <div class="row">
     <% @random_items.each do |item| %>
-      <% next if item.status != "on_sale" %>
       <div class="col-md-3 mb-4">
         <div class="card h-200">
             <% if item.image.attached? %>
