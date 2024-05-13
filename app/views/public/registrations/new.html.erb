@@ -1,110 +1,68 @@
-<div class="col-sm-15 col-md-13 col-lg-11 px-9 px-sm-5 mx-auto align-self-center text-start justify-content-center" style="margin-top: 50px; margin-bottom: 50px;">
+<div class="container mt-5 mb-5">
   <div class="row justify-content-center">
-    <div class="col-md-5">
-      <h2 class="text-center mt-4 ">sign up</h2>
-      <p class="mt-4"></p>
+    <div class="col-md-8 col-lg-6">
+      <div class="card p-4" style="background-color: #ffc1cc;">
+        <h3 class="text-center mb-4" style="color: white;">新規登録</h3>
 
-      <h5 class="text-center mt-5">
-        <div style= "margin-bottom: 30px;">
-          新規会員の方はお手数ですがフォームの入力をお願いいたします。
+        <div class="justify-content-center">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <div>
+              <%= render "public/shared/error_messages", resource: resource %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :last_name, "名前", class: "text-white", style: "margin-left: 95px;" %>
+              <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control mb-3", placeholder: ' 姓', style: "margin: auto;" %>
+              <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control", placeholder: ' 名', style: "margin: auto;" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :last_name_kana, "名前", class: "text-white", style: "margin-left: 95px;" %>
+              <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class: "form-control mb-3", placeholder: ' セイ', style: "margin: auto;" %>
+              <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "form-control", placeholder: ' メイ', style: "margin: auto;" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :email, "メールアドレス", class: "text-white", style: "margin-left: 95px;" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: ' sample@gmail.com', style: "margin: auto;" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :postal_code, "郵便番号（ハイフンなし）", class: "text-white", style: "margin-left: 95px;" %>
+              <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "form-control", placeholder: ' 1230001', style: "margin: auto;" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :address, "住所", class: "text-white", style: "margin-left: 95px;" %>
+              <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control", placeholder: ' 東京都品川区2-3', style: "margin: auto;" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :telephone_number, "電話番号（ハイフンなし）", class: "text-white", style: "margin-left: 95px;" %>
+              <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class: "form-control", placeholder: ' 05044531111', style: "margin: auto;" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password, "パスワード", class: "text-white", style: "margin-left: 95px;" %>
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: ' 6文字以上の半角英数字', style: "margin: auto;" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password_confirmation, "確認用パスワード", class: "text-white", style: "margin-left: 95px;" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: ' 再入力をお願いします', style: "margin: auto; margin-bottom: 30px;" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.submit "新規登録", class: "btn btn-lavenderblush btn-block", style: "width: 200px; margin: auto; margin-bottom: 30px;" %>
+            </div>
+          <% end %>
+
+          <h6 class="text-center mt-5" style="color: #000000;">既に登録済みの方</h6>
+          <p class="text-center">
+            <%= link_to "こちら", new_customer_session_path, class: "link-style", style: "color: #ffffff;" %> からログインしてください。
+          </p>
         </div>
-      </h5>
-
-      <p class="md-5"></p>
-
-
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <div>
-        <%= render "public/shared/error_messages", resource: resource %>
-        </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-              <tr>
-                <td class="mb-2 mt-5">名前</td>
-                <td class="field">
-                  <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "mb-2 mx-5", placeholder: ' 姓' %>
-                </td>
-
-                <td class="field">
-                  <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "mb-2 mx-1", placeholder: ' 名' %>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="mb-2">フリガナ</td>
-                <td class="field">
-                  <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class: "mb-2 mx-5", placeholder: ' セイ' %>
-                </td>
-
-                <td class="mb-2"="field">
-                  <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "mb-2 mx-1", placeholder: ' メイ' %>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="mb-2">メールアドレス</td>
-                <td class="field">
-                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mb-2 mx-5", placeholder: ' sample@gmail.com' %>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="mb-2">郵便番号<br>(ハイフンなし)</td>
-                <td class="field">
-                  <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "mb-2 mx-5", placeholder: ' 1230001' %>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="mb-2">住所</td>
-                <td class="field">
-                  <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "mb-2 mx-5", placeholder: ' 東京都品川区2-3' %>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="mb-2">電話番号<br>(ハイフンなし)</td>
-                <td class="field">
-                  <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class: "mb-2 mx-5", placeholder: ' 05044531111' %>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="mb-2">パスワード</td>
-                <td class="field">
-                  <%= f.password_field :password, autocomplete: "new-password", class: "mb-2 mx-5", placeholder: ' 6文字以上の半角英数字' %>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="mb-2">確認用パスワード</td>
-                <td class="field">
-                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mb-2 mx-5" %>
-                </td>
-              </tr>
-
-               <tr>
-                 <td class="mb-2"></td>
-                 <td style="margin-top: 20px;">
-                   <%= f.submit "新規登録", class: "btn btn-primary btn-block mb-3 mx-5 w-75", style: "margin-top: 20px;" %>
-                 </td>
-               </tr>
-
-          </tbody>
-        </table>
-      <% end %>
-
-      <h5 style="margin-top: 20px;">既に登録済みの方</h5>
-      <p><%= link_to "こちら", new_customer_session_path, style: "color: #0000ff;" %> からログインしてください。</p>
-
+      </div>
     </div>
   </div>
 </div>

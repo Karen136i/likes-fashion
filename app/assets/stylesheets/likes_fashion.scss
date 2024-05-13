@@ -112,6 +112,12 @@ a {
     width: 50px;
 }
 
+.btn-lavenderblush {
+    color: #808080;
+    background-color: #fff0f5;
+    border-color: #fff0f5;
+}
+
 .custom-btn {
     width: 200px;
   }
@@ -140,199 +146,200 @@ a {
     border-radius: 5px;
   }
 
-// admin/items
-.custom-field {
-  width: 320px;
-  padding: 5px;
-  font-size: 16px;
-  border-radius: 5px;
-}
-
-.custom-price-field {
-  width: 297px;
-  padding: 5px;
-  font-size: 16px;
-  border-radius: 5px;
-}
-
-.custom-category-field {
-  width: 100%; /* フィールドの幅を設定 */
-  padding: 8px; /* フィールド内の余白を追加 */
-  font-size: 16px; /* フォントサイズを調整 */
-  background-position: right 8px center; /* アイコンの位置を調整 */
-}
-
-.form-control {
-  width: 300px;
-  padding: 8px;
-  font-size: 16px;
-}
-
-.form-control-1 {
-  width: 400px;
-  padding: 8px;
-  font-size: 16px;
-}
-
-.form-control-2 {
-  width: 150px;
-  padding: 8px;
-  border-radius: 5px;
-}
-
-.form-control-3 {
-  width: 300px;
-  padding: 8px;
-  border-radius: 5px;
-}
-
-.form-control-4 {
-  width: 170px;
-  padding: 8px;
-  border-radius: 5px;
-}
-
-
-/* ページネーションの基本スタイル */
-.pagination {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  padding: 0;
-}
-
-/* ページネーションアイテムのスタイル */
-.pagination li {
-  margin: 0 5px;
-}
-
-/* ページネーションリンクの基本スタイル */
-.pagination a {
-  color: #FF69B4; /* ピンク色に変更 */
-  text-decoration: none;
-  padding: 5px 14px; /* パディングを少し増やす */
-  border: 2px solid #FF69B4; /* 枠線を少し太くして色を合わせる */
-  border-radius: 50px; /* 角の丸みを強調 */
-  transition: all 0.3s ease; /* 背景色とサイズの変化も滑らかに */
-  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.1); /* ソフトな影を追加 */
-}
-
-/* アクティブなページのスタイル */
-.pagination a.active {
-  background-color: #FFB6C1; /* アクティブなリンクの背景色を変更 */
-  color: white;
-}
-
-/* ページネーションリンクのホバー時のスタイル */
-.pagination a:hover {
-  background-color: #FFB6C1; /* ホバー時の背景色を変更 */
-  color: white;
-  transform: scale(1.1); /* ホバー時に少し大きくする */
-}
-
-// ここまで
-
-// カテゴリーのCSS
-.categories {
-  display: flex;
-  flex-direction: column;
-}
-
-.category {
-  margin-bottom: 10px; /* カテゴリー間のマージンを追加 */
-}
-
-.card-img-top {
-    width: 100%;
-    height: 300px;
-    object-fit: contain; /* 画像を完全にカバーするように調整 */
-}
-
-.img-top {
-    width: 100%;
-    height: 300px;
-    object-fit: contain; /* 画像を完全にカバーするように調整 */
-}
-
-.custom-gap {
-  margin-left: 50px; /* または他の値 */
-}
-
-.rotate {
-  display: inline-block;
-  transform: rotate(-360deg);
-  white-space: nowrap; /* テキストが折り返されないように */
-  transform-origin: 0 0;
-  width: 1.5em; /* 回転した後の幅を調整 */
-}
-
-.horizontal-links {
-  display: flex;
-  justify-content: space-between; /* または適切なスペーシングに調整 */
-}
-
-.navbar {
-  align-items: end;
-}
-
-.lab > label {
-  margin-right: 2.0em;
-}
-
-.customer-name {
-  margin-bottom: 16px;
-}
-
-.customer-name strong {
-  margin-right: 130px; /* 適切な間隔に調整してください */
-  margin-bottom: 20px;
-}
-
-.customer-peyment strong {
-  margin-right: 100px;
-}
-
-.heart-icon {
-  color: red;
-}
-
-.thank-you-message {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #ffffff;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-// 管理者側のレビューカードのレイアウトの実装
-.card-pink {
-    color: #000000; // 黒
-}
-
-
-.card-pink .card-header,
-.card-pink .card-footer {
-    background-color: #FFF0F5;
-    color: #000000; // 黒
-}
-
-// お礼コメントの背景色
-.comment-container {
-    background-color: #FFFFFF; /* 薄ピンク */
-    color: #4a4a4a; /* 暗めのグレー */
-    padding: 10px;
-    margin-top: 5px;
+  // admin/items
+  .custom-field {
+    width: 320px;
+    padding: 5px;
+    font-size: 16px;
     border-radius: 5px;
-}
-
-.card-footer-custom {
-    background-color: #FFFFFF; /* より濃いピンク */
-    color: #ffffff;
-}
-
-// 会員側の実装
-
-.card-header-1 {
-  padding: 10px;
-  background-color: #ffb6c1;
-}
+  }
+  
+  .custom-price-field {
+    width: 297px;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .custom-category-field {
+    width: 100%; /* フィールドの幅を設定 */
+    padding: 8px; /* フィールド内の余白を追加 */
+    font-size: 16px; /* フォントサイズを調整 */
+    background-position: right 8px center; /* アイコンの位置を調整 */
+  }
+  
+  .form-control {
+    width: 300px;
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  .form-control-1 {
+    width: 400px;
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  .form-control-2 {
+    width: 150px;
+    padding: 8px;
+    border-radius: 5px;
+  }
+  
+  .form-control-3 {
+    width: 300px;
+    padding: 8px;
+    border-radius: 5px;
+  }
+  
+  .form-control-4 {
+    width: 150px;
+    height: 38px;
+    padding: 8px;
+    border-radius: 5px;
+  }
+  
+  
+  /* ページネーションの基本スタイル */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* ページネーションアイテムのスタイル */
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  /* ページネーションリンクの基本スタイル */
+  .pagination a {
+    color: #FF69B4; /* ピンク色に変更 */
+    text-decoration: none;
+    padding: 5px 14px; /* パディングを少し増やす */
+    border: 2px solid #FF69B4; /* 枠線を少し太くして色を合わせる */
+    border-radius: 50px; /* 角の丸みを強調 */
+    transition: all 0.3s ease; /* 背景色とサイズの変化も滑らかに */
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.1); /* ソフトな影を追加 */
+  }
+  
+  /* アクティブなページのスタイル */
+  .pagination a.active {
+    background-color: #FFB6C1; /* アクティブなリンクの背景色を変更 */
+    color: white;
+  }
+  
+  /* ページネーションリンクのホバー時のスタイル */
+  .pagination a:hover {
+    background-color: #FFB6C1; /* ホバー時の背景色を変更 */
+    color: white;
+    transform: scale(1.1); /* ホバー時に少し大きくする */
+  }
+  
+  // ここまで
+  
+  // カテゴリーのCSS
+  .categories {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .category {
+    margin-bottom: 10px; /* カテゴリー間のマージンを追加 */
+  }
+  
+  .card-img-top {
+      width: 100%;
+      height: 300px;
+      object-fit: contain; /* 画像を完全にカバーするように調整 */
+  }
+  
+  .img-top {
+      width: 100%;
+      height: 300px;
+      object-fit: contain; /* 画像を完全にカバーするように調整 */
+  }
+  
+  .custom-gap {
+    margin-left: 50px; /* または他の値 */
+  }
+  
+  .rotate {
+    display: inline-block;
+    transform: rotate(-360deg);
+    white-space: nowrap; /* テキストが折り返されないように */
+    transform-origin: 0 0;
+    width: 1.5em; /* 回転した後の幅を調整 */
+  }
+  
+  .horizontal-links {
+    display: flex;
+    justify-content: space-between; /* または適切なスペーシングに調整 */
+  }
+  
+  .navbar {
+    align-items: end;
+  }
+  
+  .lab > label {
+    margin-right: 2.0em;
+  }
+  
+  .customer-name {
+    margin-bottom: 16px;
+  }
+  
+  .customer-name strong {
+    margin-right: 130px; /* 適切な間隔に調整してください */
+    margin-bottom: 20px;
+  }
+  
+  .customer-peyment strong {
+    margin-right: 100px;
+  }
+  
+  .heart-icon {
+    color: red;
+  }
+  
+  .thank-you-message {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  // 管理者側のレビューカードのレイアウトの実装
+  .card-pink {
+      color: #000000; // 黒
+  }
+  
+  
+  .card-pink .card-header,
+  .card-pink .card-footer {
+      background-color: #FFF0F5;
+      color: #000000; // 黒
+  }
+  
+  // お礼コメントの背景色
+  .comment-container {
+      background-color: #FFFFFF; /* 薄ピンク */
+      color: #4a4a4a; /* 暗めのグレー */
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+  }
+  
+  .card-footer-custom {
+      background-color: #FFFFFF; /* より濃いピンク */
+      color: #ffffff;
+  }
+  
+  // 会員側の実装
+  
+  .card-header-1 {
+    padding: 10px;
+    background-color: #ffb6c1;
+  }

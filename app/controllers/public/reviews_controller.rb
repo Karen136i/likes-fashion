@@ -14,14 +14,16 @@ class Public::ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.customer_id = current_customer.id
     @review.item_id = params[:item_id]
-    if @review.save
-      flash[:notice] = "Reviewを追加しました。"
-      redirect_to public_reviews_path(item_id: @review.item_id)  # 修正
-    else
-      flash.now[:alert] = "Reviewの追加に失敗しました。"
-      render :new
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to public_reviews_path(item_id: @review.item_id), notice: "Reviewを追加しました。" }
+        format.js # 追加: create.js.erb を呼び出す
+      else
+        format.html { render :new, alert: "Reviewの追加に失敗しました。" }
+      end
     end
   end
+
 
   def index
     if params[:item_id].present?

@@ -1,0 +1,7 @@
+<% if @review.errors.any? %>
+  <!--// エラーメッセージを表示する処理-->
+  $('#error_messages').html('<%= j render("public/shared/error_messages", resource: @review) %>');
+<% else %>
+  <!--// 成功メッセージを表示する処理-->
+  $('#success_message').text('Reviewを追加しました。');
+<% end %>

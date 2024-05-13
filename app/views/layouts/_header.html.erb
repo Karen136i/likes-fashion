@@ -89,31 +89,31 @@
           
           <!-- 顧客も管理者もログインしていない場合 -->
           <p class="my-2">
-            <%= link_to new_customer_registration_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <%= link_to new_customer_registration_path, class: 'navlink text-black', style: 'margin-right: 10px; padding: 8px;' do %>
             <i class="fa-solid fa-user-plus"></i>sign up
             <% end %>
           </p>
 
           <p class="my-2">
-            <%= link_to new_customer_session_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <%= link_to new_customer_session_path, class: 'navlink text-black', style: 'margin-right: 10px; padding: 8px;' do %>
             <i class="fa-solid fa-arrow-right-to-bracket"></i> log in
             <% end %>
           </p>
 
           <p class="my-2">
-            <%= link_to public_guest_sign_in_path, class: 'navlink text-black', style: 'margin-right: 10px;', method: :post do %>
+            <%= link_to public_guest_sign_in_path, class: 'navlink text-black', style: 'margin-right: 10px; padding: 8px;', method: :post do %>
             <i class="fa-solid fa-arrow-right-to-bracket"></i> guest login
             <% end %>
           </p>
 
           <p class="my-2">
-            <%= link_to public_items_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <%= link_to public_items_path, class: 'navlink text-black', style: 'margin-right: 10px; padding: 8px;' do %>
             <i class="fa-solid fa-shirt"></i> items
             <% end %>
           </p>
 
           <p class="my-2">
-            <%= link_to about_path, class: 'navlink text-black', style: 'margin-right: 10px;' do %>
+            <%= link_to about_path, class: 'navlink text-black', style: 'margin-right: 10px; padding: 8px;' do %>
             <i class="fa-solid fa-house-laptop"></i> about
             <% end %>
           </p>
