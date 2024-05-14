@@ -1,35 +1,28 @@
 class Customer < ApplicationRecord
-  
-   # is_deletedがfalseならtrueを返すようにしている
+  require 'miyabi'
+
   def active_for_authentication?
-    # デバッグ出力
     Rails.logger.info "Called active_for_authentication?: is_deleted = #{is_deleted}"
     super && !is_deleted
   end
 
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   has_many :favorites, dependent: :destroy
-  has_many :review_favorites, dependent: :destroy #レビューに対するいいね機能
+  has_many :review_favorites, dependent: :destroy
   has_many :cart_items
   has_many :addresses
   has_many :orders
   has_many :reviews
 
-  # フォーム内がすべて空じゃないようにする
   validates :last_name, :first_name, :last_name_kana, :first_name_kana, :email, :encrypted_password, :telephone_number, :postal_code, :address, presence: true
 
-
-  # ゲストログインの記述
   GUEST_USER_EMAIL = "guest@example.com"
 
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |customer|
-      customer.password = SecureRandom.urlsafe_base64 #ランダムな文字列を生成するRubyのメソッドの一種
+      customer.password = SecureRandom.urlsafe_base64
       customer.last_name = "guest"
       customer.first_name = "user"
       customer.last_name_kana = "ゲスト"
@@ -43,29 +36,25 @@ class Customer < ApplicationRecord
   def guest?
     email == GUEST_USER_EMAIL
   end
-  # ここまで
 
-
-  
-  # 顧客の検索を行うメソッド
-  def self.search_for(content, method)
-    case method
-    when "perfect"
-      # 完全一致
-      Customer.where("CONCAT(last_name, first_name) = ?", content)
-    when "forward"
-      # 前方一致
-      Customer.where("CONCAT(last_name, first_name) LIKE ?", "#{content}%")
-    when "backward"
-      # 後方一致
-      Customer.where("CONCAT(last_name, first_name) LIKE ?", "%#{content}")
-    when "partial"
-      # 部分一致
-      Customer.where("CONCAT(last_name, first_name) LIKE ?", "%#{content}%")
-    else
-      Customer.none
-    end
+  # 検索ボックスの記述
+  def self.get_all_conversions(content)
+    [
+      content,
+      content.to_hiragana,
+      content.to_katakana,
+      content.to_roman
+    ].uniq
   end
-  #ここまで
 
+  def self.search_for(content)
+    converted_contents = get_all_conversions(content)
+
+    queries = converted_contents.map do |converted_content|
+      "(CONCAT(last_name, first_name) LIKE '%#{converted_content}%' OR email LIKE '%#{converted_content}%')"
+    end.join(" OR ")
+
+    Customer.where(queries)
+  end
+  # ここまで
 end
