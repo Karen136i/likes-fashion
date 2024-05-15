@@ -23,7 +23,8 @@ class Item < ApplicationRecord
       content,
       content.to_hiragana,
       content.to_katakana,
-      content.to_roman
+      content.to_roman,
+      content.to_kanhira
     ].uniq
   end
 

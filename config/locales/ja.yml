@@ -1,30 +1,24 @@
 ---
 ja:
   activerecord:
+    models:
+      customer: "顧客情報"
+    attributes:
+      customer:
+        last_name: "性"
+        first_name: "名"
+        last_name_kana: "セイ"
+        first_name_kana: "メイ"
+        email: "メールアドレス"
+        postal_code: "郵便番号"
+        address: "住所"
+        telephone_number: "電話番号"
+        password: "パスワード"
+        encrypted_password: "確認用パスワード"
     errors:
       models:
         customer:
-          attributes:
-            last_name:
-              blank: "性を入力してください"
-            first_name:
-              blank: "名を入力してください"
-            last_name_kana:
-              blank: "セイを入力してください"
-            first_name_kana:
-              blank: "メイを入力してください"
-            email:
-              blank: "メールアドレスを入力してください"
-            postal_code:
-              blank: "郵便番号を入力してください"
-            address:
-              blank: "住所を入力してください"
-            telephone_number:
-              blank: "電話番号を入力してください"
-            password:
-              blank: "パスワードを入力してください"
-            password_confirmation:
-              blank: "確認用パスワードを入力してください"
+          blank: を入力してください
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
@@ -209,4 +203,3 @@ ja:
       payment_method:
          credit_card: "クレジットカード"
          transfer: "銀行振込"
-      

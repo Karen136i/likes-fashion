@@ -43,7 +43,8 @@ class Customer < ApplicationRecord
       content,
       content.to_hiragana,
       content.to_katakana,
-      content.to_roman
+      content.to_roman,
+      content.to_kanhira
     ].uniq
   end
 
@@ -53,6 +54,9 @@ class Customer < ApplicationRecord
     queries = converted_contents.map do |converted_content|
       "(CONCAT(last_name, first_name) LIKE '%#{converted_content}%' OR email LIKE '%#{converted_content}%')"
     end.join(" OR ")
+    
+    # 検索クエリのデバッグ出力
+    # Rails.logger.info "Search queries: #{queries}"
 
     Customer.where(queries)
   end
