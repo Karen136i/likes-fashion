@@ -1,10 +1,10 @@
-<div class='container' style="margin-top: 100px; margin-bottom: 100px;">
-  <div class='row justify-content-center'>
-    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto align-self-center text-start">
-      <h3 class="text-center" style="margin-bottom: 30px;">Cart Items<i class="fa-solid fa-cart-plus"></i></h3>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-10 col-lg-8 px-3 px-md-0 mx-auto align-self-center text-start">
+      <h3 class="text-center mb-4">Cart Items <i class="fa-solid fa-cart-plus"></i></h3>
 
       <% if @cart_items.any? %>
-        <table class="table">
+        <table class="table table-responsive">
 
           <thead>
             <tr>
@@ -12,41 +12,37 @@
               <th>単価(税抜)</th>
               <th>数量</th>
               <th>小計</th>
-              <th><%= button_to '全削除',  public_cart_items_all_destroy_path, method: :delete, data: { confirm: '本当にカートを空にしますか?' }, class: 'btn btn-danger btn-sm' %></th>
+              <th>
+                <%= button_to '全削除', public_cart_items_all_destroy_path, method: :delete, data: { confirm: '本当にカートを空にしますか?' }, class: 'btn btn-danger btn-sm' %>
+              </th>
             </tr>
           </thead>
 
           <tbody>
             <% @total_payment = 0 %>
             <% @cart_items.each do |cart_item| %>
-              <% subtotal = (cart_item.item.price * cart_item.amount)%>
-
-
+              <% subtotal = (cart_item.item.price * cart_item.amount) %>
               <tr>
                 <td><%= link_to cart_item.item.name, public_item_path(cart_item.item) %></td><!--商品名-->
-
                 <td>￥<%= number_with_delimiter(cart_item.item.price, delimiter: ',') %></td><!--単価(税抜)-->
-
                 <td><!--数量-->
                   <%= form_with model: cart_item, url: public_cart_item_path(cart_item), method: :patch do |form| %>
                     <%= form.select :amount, (1..10), { selected: cart_item.amount }, { class: 'form-select form-control-sm' } %>
-                    <%= form.submit '変更', class: 'btn btn-sm btn btn-success ' %>
+                    <%= form.submit '変更', class: 'btn btn-sm btn-success' %>
                   <% end %>
                 </td>
-
                 <td>￥<%= number_with_delimiter(subtotal, delimiter: ',') %></td> <!--小計-->
-
                 <td>
                   <%= link_to '削除', public_cart_item_path(cart_item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
                 </td>
               </tr>
-              <% @total_payment +=  (subtotal * 1.1).floor.to_i %>
+              <% @total_payment += (subtotal * 1.1).floor.to_i %>
             <% end %>
           </tbody>
 
         </table>
 
-        <div class="text-center" style="margin-top: 100px;">
+        <div class="text-center my-5">
           <div class="d-flex justify-content-between">
             <p class="text-left">
               <%= link_to '買い物を続ける', public_items_path, class: "btn btn-primary" %>
@@ -55,7 +51,7 @@
           </div>
         </div>
 
-        <div class="text-center" style="margin-top: 50px;">
+        <div class="text-center my-4">
           <%= link_to '注文の情報入力に進む', new_public_order_path, class: "btn btn-pink" %>
         </div>
 
