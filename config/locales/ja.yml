@@ -3,7 +3,41 @@ ja:
   activerecord:
     models:
       customer: "顧客情報"
+      category: "カテゴリー"
+      review: "レビュー"
+      item: "商品"
+      comment: "お礼コメント"
+    errors:
+      models:
+        review:
+          blank: "を入力してください"
+          attributes:
+            nickname: "ニックネームを入力してください"
+            review_content: "レビュー内容を入力してください"
+            star:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+        customer: "顧客情報"
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
     attributes:
+      comment:
+        content: "お礼コメント"
+      item:
+        category: "カテゴリー"
+        price: "金額"
+        name: "商品名"
+        image: "写真"
+        introduction: "商品説明"
+      category:
+        name: "カテゴリー名"
+      review:
+        nickname: "ニックネーム"
+        star: "★評価"
+        review_content: "レビュー内容"
       customer:
         last_name: "性"
         first_name: "名"
@@ -15,15 +49,6 @@ ja:
         telephone_number: "電話番号"
         password: "パスワード"
         encrypted_password: "確認用パスワード"
-    errors:
-      models:
-        customer:
-          blank: を入力してください
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
   date:
     abbr_day_names:
     - 日

@@ -41,7 +41,7 @@ class Admin::ItemsController < ApplicationController
     @categories = Category.all
     if @item.update(item_params)
       flash[:notice] = "情報を変更しました。"
-      redirect_to reviews_admin_item_path(review.item)
+      redirect_to admin_item_path(@item)
     else
       flash.now[:alert] = "情報の変更に失敗しました。"
       render :edit

@@ -123,6 +123,7 @@
   </nav>
 
   <div class="text-right mr-3 pb-2 search-container">
+    
     <!-- 管理者がログインしている場合の検索ボックス -->
       <% if admin_signed_in? %>
       <%= form_with url: search_path, method: :get, local: true, class: 'form-style' do |f| %>

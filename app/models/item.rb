@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
-  validates :price, presence: true
+  validates :price, presence: true, numericality: { only_integer: true }
   validates :name, presence: true, length: { maximum: 20 }
   validates :image, presence: true
   validates :introduction, presence: true, length: { maximum: 70 }
@@ -24,7 +24,6 @@ class Item < ApplicationRecord
       content.to_hiragana,
       content.to_katakana,
       content.to_roman,
-      content.to_kanhira
     ].uniq
   end
 

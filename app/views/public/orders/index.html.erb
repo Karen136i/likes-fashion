@@ -33,9 +33,11 @@
 
 
         <td>
-          <% order.order_details.each do |order_detail| %>
-          <p><%= link_to 'レビュー', new_public_review_path(item_id: order_detail.item_id), class: "btn btn-danger btn-sm" %><br></p>
+          <% if order.status == "発送済み" %> <!-- 発送済みの場合にのみ表示 -->
+            <% order.order_details.each do |order_detail| %>
+            <p><%= link_to 'レビュー', new_public_review_path(item_id: order_detail.item_id), class: "btn btn-danger btn-sm" %><br></p>
             <% end %>
+          <% end %>
         </td>
 
         <td>

@@ -28,15 +28,15 @@
               <th class="text-end" style="border: none; white-space: nowrap;">商品説明</th>
               <td style="border: none; white-space: normal;"><%= @item.introduction %></td>
             </tr>
-
+            
             <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;">税込価格:</th>
-              <td style="border: none; white-space: normal;">￥<%= number_with_delimiter((@item.price * 1.1).round, delimiter: ',') %> (税込)</td>
+              <th class="text-end" style="border: none; white-space: nowrap;">税抜価格:</th>
+              <td style="border: none; white-space: normal;">￥<%= number_with_delimiter((@item.price).ceil.to_i, delimiter: ',') %></td>
             </tr>
 
             <tr>
-              <th class="text-end" style="border: none; white-space: nowrap;">税抜価格:</th>
-              <td style="border: none; white-space: normal;">￥<%= number_with_delimiter((@item.price).ceil.to_i, delimiter: ',') %> (税抜)</td>
+              <th class="text-end" style="border: none; white-space: nowrap;">税込価格:</th>
+              <td style="border: none; white-space: normal;">￥<%= number_with_delimiter((@item.price * 1.1).round, delimiter: ',') %></td>
             </tr>
 
             <tr>
