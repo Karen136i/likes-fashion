@@ -1,48 +1,48 @@
-.flash-message {
-  text-align: center;
-  border-radius: 5px;
-  padding: 16px 24px;
-}
-
-.flash-message.notice {
-  background-color: #bcdfff;
-  color: #0067C0;
-  border: solid 1px #0067C0;
-}
-
-.flash-message.alert {
-  background-color: #ffd4d1;
-  color: #930403;
-  border: solid 1px #930403;
-}
-
-.item-grid {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.item-container {
-  width: 25%; /* 2列にするための幅 */
-  box-sizing: border-box; /* ボックスの外側も含めて幅を設定 */
-  padding: 10px; /* 適切な間隔を設定 */
-}
-
-.image-wrapper {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-top: 100%;
-  overflow: hidden;
-}
-
-.item-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  .flash-message {
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px 24px;
+  }
+  
+  .flash-message.notice {
+    background-color: #bcdfff;
+    color: #0067C0;
+    border: solid 1px #0067C0;
+  }
+  
+  .flash-message.alert {
+    background-color: #ffd4d1;
+    color: #930403;
+    border: solid 1px #930403;
+  }
+  
+  .item-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .item-container {
+    width: 25%; /* 2列にするための幅 */
+    box-sizing: border-box; /* ボックスの外側も含めて幅を設定 */
+    padding: 10px; /* 適切な間隔を設定 */
+  }
+  
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 100%;
+    overflow: hidden;
+  }
+  
+  .item-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   @media screen and (max-width: 768px) {
     .text_about {
@@ -74,65 +74,65 @@
   .your-link-class {
   color: black; /* リンクの色を黒に設定 */
   /* 他のスタイルを追加する場合はここに追加 */
-}
-
-main {
-  background-image: url('');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin: 0;
-  padding: 0;
-
-}
-
-
-main {
-  display: flex;
-  flex-direction: column;
-  min-height: 90vh; /* 画面の高さいっぱいに表示 */
-}
-
-a {
-  color: #6D6868; /* リンクのテキスト色をpinkに設定 */
-  font-family:  "Sawarabi Gothic";
-}
-
-.btn-pink {
-    color: #fff;
-    background-color: #ffb6c1;
-    border-color: #ffb6c1;
-    width: 250px;
-}
-
-.btn-pink-1 {
-    color: #fff;
-    background-color: #ffb6c1;
-    border-color: #ffb6c1;
-    width: 50px;
-}
-
-.btn-lavenderblush {
-    color: #808080;
-    background-color: #fff0f5;
-    border-color: #fff0f5;
-}
-
-.custom-btn {
-    width: 200px;
   }
 
-.no-border {
-  border: none !important;
-}
+  main {
+    background-image: url('');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+  
+  }
+  
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh; /* 画面の高さいっぱいに表示 */
+  }
+  
+  a {
+    color: #6D6868; /* リンクのテキスト色をpinkに設定 */
+    font-family:  "Sawarabi Gothic";
+  }
+  
+  .btn-pink {
+      color: #fff;
+      background-color: #ffb6c1;
+      border-color: #ffb6c1;
+      width: 250px;
+  }
+  
+  .btn-pink-1 {
+      color: #fff;
+      background-color: #ffb6c1;
+      border-color: #ffb6c1;
+      width: 50px;
+  }
+  
+  .btn-lavenderblush {
+      color: #808080;
+      background-color: #fff0f5;
+      border-color: #fff0f5;
+  }
+  
+  .custom-btn {
+      width: 200px;
+  }
+  
+  .no-border {
+    border: none !important;
+  }
+  
+  .header_text{
+    font-color: #544C40;
+    font-size: 20px;
+  }
 
-.header_text{
-  font-color: #544C40;
-  font-size: 20px;
-}
-
-// 商品新規登録
-.custom-textarea-field {
+  // 商品新規登録
+  .custom-textarea-field {
     width: 320px; /* フィールドの幅を100%に設定 */
     height: 120px; /* フィールド内の余白を追加 */
     font-size: 16px; /* フォントサイズを調整 */
@@ -343,3 +343,100 @@ a {
     padding: 10px;
     background-color: #ffb6c1;
   }
+
+  // public/homes/topのレイアウト
+  .slider {
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .slider-item {
+    display: none;
+    width: 100%;
+    transition: opacity 0.5s ease-in-out; /* トランジション追加 */
+    opacity: 0; /* 透明度を0に */
+  }
+  
+  .slider-item.active {
+    display: block;
+    opacity: 1; /* アクティブなアイテムは完全に不透明 */
+  }
+  
+  .slider-img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .slider-controls, .slider-indicators {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+  }
+  
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+  }
+  
+  .prev-btn { left: 10px; }
+  .next-btn { right: 10px; }
+  
+  .dot {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .dot.active { background-color: #717171; }
+  
+  // ここまで
+  
+  // public/item/indexのレイアウト
+  .menu-image {
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .categories {
+      display: none;
+    }
+  }
+  
+  // ここまで
+  
+  // public/orders/showのレイアウト
+  @media (max-width: 768px) {
+    .table {
+      font-size: 14px; /* テーブル内のフォントサイズを小さく調整 */
+    }
+  
+    .px-5 {
+      padding-left: 1rem; /* 左右のパディングを調整 */
+      padding-right: 1rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .table {
+      font-size: 12px; /* 更に小さなデバイスでフォントサイズを小さく */
+    }
+  
+    h3 {
+      font-size: 16px; /* タイトルのフォントサイズ調整 */
+    }
+  }
+  // ここまで

@@ -71,64 +71,6 @@
   
 </div>
 
-<style>
-  .slider {
-    max-width: 100%;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .slider-item {
-    display: none;
-    width: 100%;
-    transition: opacity 0.5s ease-in-out; /* トランジション追加 */
-    opacity: 0; /* 透明度を0に */
-  }
-  
-  .slider-item.active {
-    display: block;
-    opacity: 1; /* アクティブなアイテムは完全に不透明 */
-  }
-  
-  .slider-img {
-    width: 100%;
-    height: auto;
-  }
-  
-  .slider-controls, .slider-indicators {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    z-index: 10;
-  }
-  
-  .slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 24px;
-  }
-  
-  .prev-btn { left: 10px; }
-  .next-btn { right: 10px; }
-  
-  .dot {
-    display: inline-block;
-    height: 15px;
-    width: 15px;
-    margin: 0 5px;
-    background-color: #bbb;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  .dot.active { background-color: #717171; }
-</style>
-
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const slides = document.querySelectorAll('.slider-item');
