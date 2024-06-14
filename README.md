@@ -42,6 +42,15 @@
 ### ER図
 ![スクリーンショット 2024-04-25 144504](https://github.com/Karen136i/likes-fashion/assets/156569903/c909503c-e910-4dd3-97fe-473897f116d8)
 
+### ワイヤーフレーム(ユーザー)
+![スクリーンショット 2024-06-14 170157](https://github.com/Karen136i/likes-fashion/assets/156569903/01afb75d-e2ce-42ff-80b0-c84bba0f8a13)
+
+### ワイヤーフレーム(管理者)
+![スクリーンショット 2024-06-14 170250](https://github.com/Karen136i/likes-fashion/assets/156569903/98da0aa8-d5e9-4186-8149-477d3b7e5390)
+
+### インフラ設計書
+![スクリーンショット 2024-06-14 165952](https://github.com/Karen136i/likes-fashion/assets/156569903/3150e924-0b48-4fce-8254-1f690bb144ef)
+
 ## 使用技術
 ![image](https://img.shields.io/badge/Ruby-e60033?style=plastic&logo=Ruby&logoColor=white)
 ![image](https://img.shields.io/badge/Ruby%20on%20Rails-e60033?style=plastic&logo=Ruby%20on%20Rails&logoColor=white)
